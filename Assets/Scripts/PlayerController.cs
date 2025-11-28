@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 5.0f;
-    public float turnSpeed;
-    public float horizontalInput;
-    public float forwardInput;
+    private float speed = 20.0f;
+    private float turnSpeed = 45.0f;
+    private float horizontalInput;
+    private float forwardInput;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -17,16 +17,12 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         horizontalInput = Input.GetAxis("Horizontal");
-        Debug.Log($"horizontal input: {horizontalInput}");
-
         forwardInput = Input.GetAxis("Vertical");
 
-        // Move the vehicle forward
+        // Move the vehicle forward based on vertical input
         transform.Translate(Vector3.forward * Time.deltaTime * speed * forwardInput);
-        // transform.Translate(Vector3.right * Time.deltaTime * turnSpeed * horizontalInput); // make car slide left or right
 
-
-        // Make vehicle rotate instead of slide
+        // Rotates the car based on horizontal input
         transform.Rotate(Vector3.up, turnSpeed * horizontalInput * Time.deltaTime);
     }
 }

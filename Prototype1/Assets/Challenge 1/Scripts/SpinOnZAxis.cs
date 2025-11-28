@@ -1,0 +1,17 @@
+using UnityEngine;
+
+public class SpinOnZAxis : MonoBehaviour
+{
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        transform.Rotate(Vector3.back, 1000 * Time.deltaTime);
+    }
+}

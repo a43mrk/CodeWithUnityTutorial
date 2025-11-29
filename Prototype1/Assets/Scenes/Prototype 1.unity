@@ -1010,8 +1010,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d89cdcb3f5a118e1b99550895c71caef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CinemachineSwitcher
-  cam1: {fileID: 12638051}
-  cam2: {fileID: 1005241132}
+  cameras:
+  - {fileID: 1005241132}
+  - {fileID: 12638051}
 --- !u!114 &534669910
 MonoBehaviour:
   m_ObjectHideFlags: 0

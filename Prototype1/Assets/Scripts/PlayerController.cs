@@ -2,8 +2,16 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private float speed = 20.0f;
-    private float turnSpeed = 45.0f;
+    [Header("Movement Settings")]
+    [SerializeField] private float speed = 20.0f;
+    [SerializeField] private float turnSpeed = 45.0f;
+
+    [Header("Custom Input Keys")]
+    [SerializeField] private KeyCode forwardKey = KeyCode.W;
+    [SerializeField] private KeyCode backwardKey = KeyCode.S;
+    [SerializeField] private KeyCode leftKey = KeyCode.A;
+    [SerializeField] private KeyCode rightKey = KeyCode.D;
+
     private float horizontalInput;
     private float forwardInput;
 
@@ -16,8 +24,21 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
-        forwardInput = Input.GetAxis("Vertical");
+        // Get custom key inputs
+        horizontalInput = 0f;
+        forwardInput = 0f;
+
+        // Forward/Backward input
+        if(Input.GetKey(forwardKey))
+            forwardInput += 1f;
+        if(Input.GetKey(backwardKey))
+            forwardInput -= 1f;
+
+        // Left/Right input
+        if(Input.GetKey(leftKey))
+            horizontalInput -= 1f;
+        if(Input.GetKey(rightKey))
+            horizontalInput += 1f;
 
         // Move the vehicle forward based on vertical input
         transform.Translate(Vector3.forward * Time.deltaTime * speed * forwardInput);

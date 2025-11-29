@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// Set the cameras in two vertical split screen mode
+/// *require that cameras with Cinemachine brain stays on a unique channel.
+/// </summary>
 public class SplitScreenManager : MonoBehaviour
 {
     public Camera camP1;

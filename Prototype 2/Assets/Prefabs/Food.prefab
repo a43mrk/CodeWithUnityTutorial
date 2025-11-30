@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7180654855225020692}
   - component: {fileID: 1524329352575755543}
+  - component: {fileID: -4427818906081006102}
   m_Layer: 0
   m_Name: Food
   m_TagString: Untagged
@@ -46,6 +47,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoveForward
   speed: 40
+--- !u!114 &-4427818906081006102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5162198636806011641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7826e4e2268c86c3fb0a9815ddf30705, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DestroyOutOfBounds
 --- !u!1001 &7064791336208595511
 PrefabInstance:
   m_ObjectHideFlags: 0

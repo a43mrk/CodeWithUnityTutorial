@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
             // Launch a projectile from the player
             Instantiate(
                 projectilePrefab,
-                transform.position + new Vector3(0f, 1.0f, 0f),
+                transform.position + new Vector3(0f, 1.0f, 1.5f),
                 Quaternion.identity);
         }
 

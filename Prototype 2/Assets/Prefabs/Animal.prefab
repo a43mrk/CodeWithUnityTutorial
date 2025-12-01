@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6396589332879128486}
   - component: {fileID: -6803212250908873083}
   - component: {fileID: 6595675501857595408}
+  - component: {fileID: -3827366645359834572}
   m_Layer: 0
   m_Name: Animal
   m_TagString: Untagged
@@ -81,6 +82,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.2823033, y: 4.751924, z: 4.697892}
   m_Center: {x: -0.0012648106, y: 2.6194084, z: 0.71290827}
+--- !u!114 &-3827366645359834572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562178167543759236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6baeb0a5074e2d9399a2c6e49f1816e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DetectCollisions
 --- !u!1001 &1994075880304340737
 PrefabInstance:
   m_ObjectHideFlags: 0

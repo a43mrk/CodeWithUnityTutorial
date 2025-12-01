@@ -8,25 +8,31 @@ The dogs and balls are removed from the scene when they leave the screen
 
 # Bugs to Fix:
 ## 3. Dogs are spawning at the top of the screen
-[] Make the balls spawn from the top of the screen.
+[x] Make the balls spawn from the top of the screen.
+-replace the wrong prefabs
 
 ## 4. The player is spawning green balls instead of dogs
-[] Make the player spawn dogs
+[x] Make the player spawn dogs
+-replace the wrong prefab
 
 ## 5. The balls are destroyed if anywhere near the dog
-[] The balls should only be destroyed when coming into direct contact with a dog.
+[x] The balls should only be destroyed when coming into direct contact with a dog.
+-adjust the box collider boundaries
 
 ## 6. Nothing is being destroyed off screen
-[] Balls should be destroyed when they leave the bottom of the screen and dogs should be destroyed when they leave the left side of the screen.
+[x] Balls should be destroyed when they leave the bottom of the screen and dogs should be destroyed when they leave the left side of the screen.
+- adjust x destroy coordinate from positive to negative, and fix the wrong condition from > to <
+- fix the wrong destroy direction for balls that should be position.y
 
 ## 7. Only one type of ball is being spawned
-[] Ball 1, 2, and 3 should be spawned randomly
+[x] Ball 1, 2, and 3 should be spawned randomly
+-use Random.Range method
 
 ## 8. Bonus: The spawn interval is always the same
-[] Make the spawn interval a random value between 3 seconds and 5 seconds
+[x] Make the spawn interval a random value between 3 seconds and 5 seconds
 
 ## 9. Bonus: The player can “spam” the spacebar key
-[] Only allow the player to spawn a new dog after a certain amount of time has passed
+[x] Only allow the player to spawn a new dog after a certain amount of time has passed
 
 
 # 10. Hints

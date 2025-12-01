@@ -48,3 +48,29 @@ Hint - In the DestroyOutOfBounds script, double-check the lowerLimit and leftLim
 Hint - In the SpawnRandomBall() method, you should declare a new random int index variable, then incorporate that variable into the Instantiate call
 ## Bonus - Make the spawn interval a random value between 3 seconds and 5 seconds
 Hint - Set the spawnInterval value to a new random number between 3 and 5 seconds in the SpawnRandomBall method
+
+
+# Bonus Features 2
+## Easy: Vertical player movement
+[] Allow the player to move forward and backwards within a certain range.
+
+## Medium: Aggressive animals
+[] Have animals that also spawn from the left and right side of the screen. If one of them hits you, “Game Over” should be logged to the console.
+
+## Hard: Game user interface
+At the start of the game, display in the console that the player’s Lives = 3 and Score = 0. If the player feeds an animal, increase and display the Score. If the player misses an animal or is hit by one, decrease and display the Lives. When the number of Lives reaches 0, log “Game Over” in the console.
+
+## Expert: Animal hunger bar
+Display a “hunger bar” on top of each of the animals. Then, each time you feed one of them, the hunger bar fills up a little. Each animal should require different amounts of food to successfully “feed” them. They should only disappear after their hunger bars are full.
+
+# 6. Hints and solution walkthrough
+Hints:
+
+## Easy: Vertical player movement
+Look at how we are doing the left and right movement range.
+## Medium: Aggressive animals
+Look at how we are currently spawning animals and doing collisions.
+## Hard: Game user interface
+You will need to update the score and lives in the DetectCollisions script, and update the lives in the DestroyOutOfBounds script.
+## Expert: Animal hunger bar
+You will need to add a UI Slider object in World space Render Mode as a prefab for each animal, then set the slider’s value through a script every time the animal is fed.

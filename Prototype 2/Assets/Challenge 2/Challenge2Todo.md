@@ -50,9 +50,9 @@ Hint - In the SpawnRandomBall() method, you should declare a new random int inde
 Hint - Set the spawnInterval value to a new random number between 3 and 5 seconds in the SpawnRandomBall method
 
 
-# Bonus Features 2
+# Bonus Features 2 (on Prototype 2 scene)
 ## Easy: Vertical player movement
-[] Allow the player to move forward and backwards within a certain range.
+[x] Allow the player to move forward and backwards within a certain range.
 
 ## Medium: Aggressive animals
 [] Have animals that also spawn from the left and right side of the screen. If one of them hits you, “Game Over” should be logged to the console.

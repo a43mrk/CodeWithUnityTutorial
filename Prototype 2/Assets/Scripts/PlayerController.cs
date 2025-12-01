@@ -3,8 +3,13 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float horizontalInput;
+    public float verticalInput;
     public float speed = 10.0f;
     public float xRange = 16f;
+
+    // Z limit: 16.5 ~ -2
+    public float lowerBound = -1f;
+    public float upperBound = 16f;
 
     public GameObject projectilePrefab;
 
@@ -42,7 +47,21 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
         }
 
+        if (transform.position.z >= upperBound)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, upperBound);
+        }
+
+        if(transform.position.z <= lowerBound)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, lowerBound);
+        }
+
         horizontalInput = Input.GetAxis("Horizontal");
         transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
+
+        verticalInput = Input.GetAxis("Vertical");
+        transform.Translate(Vector3.forward * verticalInput * Time.deltaTime * speed);
+
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 
 public enum SpawnSide
@@ -11,6 +12,7 @@ public enum SpawnSide
 
 public class SpawnManager : MonoBehaviour
 {
+    public static SpawnManager Instance;
     public GameObject[] animalPrefabs;
     private float spawnRangeX = 16;
     private float spawnPosZ = 20;
@@ -19,6 +21,19 @@ public class SpawnManager : MonoBehaviour
     // z range to spawn from left or right side: -1 ~ 16
     private float lowerBound = -1f;
     private float upperBound = 16f;
+    public long score = 0;
+    public TextMeshProUGUI scoreTxt;
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+            Destroy(gameObject);
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -33,6 +48,12 @@ public class SpawnManager : MonoBehaviour
         // {
         //     SpawnRandomAnimal();
         // }
+    }
+
+    public void AddScore(int amount)
+    {
+        score += amount;
+        scoreTxt.text = $"Score: {score}";
     }
 
     private void SpawnRandomAnimal()

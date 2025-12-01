@@ -20,7 +20,10 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space))
         {
             // Launch a projectile from the player
-            Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+            Instantiate(
+                projectilePrefab,
+                transform.position + new Vector3(0f, 1.0f, 0f),
+                Quaternion.identity);
         }
 
         ProcessMove();

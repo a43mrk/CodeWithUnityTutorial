@@ -78,6 +78,30 @@ PrefabInstance:
       propertyPath: speed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 6595675501857595408, guid: 869586df48387fdcc846439711ad480a, type: 3}
+      propertyPath: m_Size.x
+      value: 0.8135166
+      objectReference: {fileID: 0}
+    - target: {fileID: 6595675501857595408, guid: 869586df48387fdcc846439711ad480a, type: 3}
+      propertyPath: m_Size.y
+      value: 2.006494
+      objectReference: {fileID: 0}
+    - target: {fileID: 6595675501857595408, guid: 869586df48387fdcc846439711ad480a, type: 3}
+      propertyPath: m_Size.z
+      value: 3.149739
+      objectReference: {fileID: 0}
+    - target: {fileID: 6595675501857595408, guid: 869586df48387fdcc846439711ad480a, type: 3}
+      propertyPath: m_Center.x
+      value: 1.3131123
+      objectReference: {fileID: 0}
+    - target: {fileID: 6595675501857595408, guid: 869586df48387fdcc846439711ad480a, type: 3}
+      propertyPath: m_Center.y
+      value: 1.1198764
+      objectReference: {fileID: 0}
+    - target: {fileID: 6595675501857595408, guid: 869586df48387fdcc846439711ad480a, type: 3}
+      propertyPath: m_Center.z
+      value: 1.9925
+      objectReference: {fileID: 0}
     - target: {fileID: 8303465107918481229, guid: 869586df48387fdcc846439711ad480a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

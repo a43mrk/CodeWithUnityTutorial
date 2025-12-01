@@ -60,7 +60,7 @@ Hint - Set the spawnInterval value to a new random number between 3 and 5 second
 ## Hard: Game user interface
 At the start of the game, display in the console that the [x]player’s Lives = 3 and [x]Score = 0.
 [x] If the player feeds an animal, increase and display the Score.
-[] If the player misses an animal or is hit by one, decrease and display the Lives.
+[x] If the player misses an animal or is hit by one, decrease and display the Lives.
 [] When the number of Lives reaches 0, log “Game Over” in the console.
 
 ## Expert: Animal hunger bar

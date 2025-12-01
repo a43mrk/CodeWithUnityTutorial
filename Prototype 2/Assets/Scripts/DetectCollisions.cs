@@ -17,30 +17,47 @@ public class DetectCollisions : MonoBehaviour
         
     }
 
+    void OnEnable()
+    {
+        DestroyOutOfBounds.OnAnimalDestroyed += ReduceLife;
+    }
+
+    void OnDisable()
+    {
+        DestroyOutOfBounds.OnAnimalDestroyed -= ReduceLife;
+    }
+
     void OnTriggerEnter(Collider other)
     {
-        ReduceLife(1);
+        ReduceLife();
         Debug.Log($"collided with: {other.gameObject.name}");
 
-        if(life <= 0)
+        if (life <= 0 && other.gameObject.CompareTag("Projectile"))
         {
-            if(other.gameObject.CompareTag("Projectile"))
-            {
-                SpawnManager.Instance.AddScore(10);
-            }
+            SpawnManager.Instance.AddScore(10);
+        }
+    }
 
-            if(gameObject.CompareTag("Player"))
+    private void CheckForLife()
+    {
+        if (life <= 0)
+        {
+
+            if (gameObject.CompareTag("Player"))
                 Debug.Log("Game Over!");
 
+            Debug.Log($"Destroying {gameObject.name}, has tag: {gameObject.tag}");
             Destroy(gameObject);
             // Destroy(other.gameObject);
 
         }
     }
 
-    public void ReduceLife(int amount)
+    public void ReduceLife()
     {
-        life -= amount;
+        --life;
         Debug.Log($"reduces {gameObject.name} life: {life}");
+
+        CheckForLife();
     }
 }

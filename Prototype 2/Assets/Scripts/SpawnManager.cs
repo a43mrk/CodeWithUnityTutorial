@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -17,12 +19,14 @@ public class SpawnManager : MonoBehaviour
     private float spawnRangeX = 16;
     private float spawnPosZ = 20;
     private float startDelay = 2;
-    private float spawnInterval = 1.5f;
+    private float spawnInterval = 3f;
     // z range to spawn from left or right side: -1 ~ 16
     private float lowerBound = -1f;
     private float upperBound = 16f;
     public long score = 0;
     public TextMeshProUGUI scoreTxt;
+
+    private List<SpawnSide> sides = Enum.GetValues(typeof(SpawnSide)).OfType<SpawnSide>().ToList();
 
     void Awake()
     {
@@ -58,7 +62,7 @@ public class SpawnManager : MonoBehaviour
 
     private void SpawnRandomAnimal()
     {
-        foreach(SpawnSide side in Enum.GetValues(typeof(SpawnSide)))
+        SpawnSide side = sides[UnityEngine.Random.Range(0, sides.Count)];
         {
             // Randomly generate animal index and spawn position
             int animalIndex = UnityEngine.Random.Range(0, animalPrefabs.Length);

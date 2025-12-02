@@ -64,8 +64,8 @@ At the start of the game, display in the console that the [x]player’s Lives = 
 [x] When the number of Lives reaches 0, log “Game Over” in the console.
 
 ## Expert: Animal hunger bar
-[] Display a “hunger bar” on top of each of the animals.
-[] Then, each time you feed one of them, the hunger bar fills up a little.
+[x] Display a “hunger bar” on top of each of the animals.
+[x] Then, each time you feed one of them, the hunger bar fills up a little.
 [] Each animal should require different amounts of food to successfully “feed” them.
 [] They should only disappear after their hunger bars are full.
 

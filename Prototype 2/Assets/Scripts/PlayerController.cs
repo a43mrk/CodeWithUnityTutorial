@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
             Instantiate(
                 projectilePrefab,
                 transform.position + new Vector3(0f, 1.0f, 1.5f),
-                Quaternion.identity);
+                transform.rotation);
         }
 
         ProcessMove();
@@ -59,7 +59,8 @@ public class PlayerController : MonoBehaviour
         }
 
         horizontalInput = Input.GetAxis("Horizontal");
-        transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
+        // transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
+        transform.Rotate(Vector3.up * horizontalInput * speed * Time.deltaTime *10);
 
         verticalInput = Input.GetAxis("Vertical");
         transform.Translate(Vector3.forward * verticalInput * Time.deltaTime * speed);

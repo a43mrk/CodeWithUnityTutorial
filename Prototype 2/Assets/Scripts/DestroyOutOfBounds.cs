@@ -6,11 +6,13 @@ public class DestroyOutOfBounds : MonoBehaviour
     private float bottomBound = -15;
 
     private float sideRange = 25f;
-    public static event System.Action OnAnimalDestroyed;
+    // public static event System.Action OnAnimalDestroyed;
+    private DetectCollisions player;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        player = GameObject.FindWithTag("Player")?.GetComponent<DetectCollisions>();
     }
 
     // Update is called once per frame
@@ -24,7 +26,9 @@ public class DestroyOutOfBounds : MonoBehaviour
             if(gameObject.CompareTag("Animal") )
             {
                 // reduce players life by 1
-                OnAnimalDestroyed?.Invoke();
+                // OnAnimalDestroyed?.Invoke();
+                Debug.Log("reducing life for animal escape");
+                player?.ReduceLife();
             }
             if(gameObject.CompareTag("Player"))
                 Debug.Log("Game Over!");

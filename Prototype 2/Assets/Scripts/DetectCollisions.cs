@@ -26,20 +26,26 @@ public class DetectCollisions : MonoBehaviour
         hungerBar.value = lifeTotal - life;
     }
 
-    void OnEnable()
-    {
-        DestroyOutOfBounds.OnAnimalDestroyed += ReduceLife;
-    }
+    // void OnEnable()
+    // {
+    //     DestroyOutOfBounds.OnAnimalDestroyed += ReduceLife;
+    // }
 
-    void OnDisable()
-    {
-        DestroyOutOfBounds.OnAnimalDestroyed -= ReduceLife;
-    }
+    // void OnDisable()
+    // {
+    //     DestroyOutOfBounds.OnAnimalDestroyed -= ReduceLife;
+    // }
 
     void OnTriggerEnter(Collider other)
     {
-        ReduceLife();
+        if(gameObject.CompareTag("Player") && other.gameObject.CompareTag("Projectile"))
+        {
+            Debug.Log("**ignoring projectile collision with player**");
+            return;
+        }
+
         Debug.Log($"collided with: {other.gameObject.name}");
+        ReduceLife();
 
         if (life <= 0 && other.gameObject.CompareTag("Projectile"))
         {

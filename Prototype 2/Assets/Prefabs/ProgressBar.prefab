@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 6163752993131846582}
   - component: {fileID: 7497876298179697619}
   m_Layer: 5
-  m_Name: HungerBar
+  m_Name: ProgressBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -321,7 +321,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &7497876298179697619
 MonoBehaviour:
   m_ObjectHideFlags: 0

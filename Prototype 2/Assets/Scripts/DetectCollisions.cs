@@ -5,13 +5,15 @@ using UnityEngine.UI;
 public class DetectCollisions : MonoBehaviour
 {
     private float lifeRemain = 0f;
-    public GameObject hugerBarPrefab;
+    public GameObject progressBarPrefab;
     public float totalLife = 3.0f;
-    private Slider hungerBar;
+    private float currentFeedAmount = 0f;
+    public float amountToBeFeed = 3.0f;
+    private Slider _progressBar;
 
     void Awake()
     {
-        hungerBar = Instantiate(hugerBarPrefab, gameObject.transform).GetComponentInChildren<Slider>();
+        _progressBar = Instantiate(progressBarPrefab, gameObject.transform).GetComponentInChildren<Slider>();
         lifeRemain += totalLife;
     }
 
@@ -23,7 +25,11 @@ public class DetectCollisions : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        hungerBar.value = (totalLife - lifeRemain)/totalLife;
+        if(gameObject.CompareTag("Player"))
+            _progressBar.value = (totalLife - lifeRemain)/totalLife;
+
+        if(gameObject.CompareTag("Animal"))
+            _progressBar.value =   currentFeedAmount / amountToBeFeed;
     }
 
     // void OnEnable()
@@ -38,18 +44,19 @@ public class DetectCollisions : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(gameObject.CompareTag("Player") && other.gameObject.CompareTag("Projectile"))
+        if(gameObject.CompareTag("Player"))
         {
-            Debug.Log("**ignoring projectile collision with player**");
-            return;
-        }
+            if(other.gameObject.CompareTag("Projectile"))
+            {
+                Debug.Log("**ignoring projectile collision with player**");
+                return;
+            }
 
-        Debug.Log($"collided with: {other.gameObject.name}");
-        ReduceLife();
-
-        if (lifeRemain <= 0 && other.gameObject.CompareTag("Projectile"))
+            Debug.Log($"collided with: {other.gameObject.name}");
+            ReduceLife();
+        } else if (gameObject.CompareTag("Animal") && other.gameObject.CompareTag("Projectile"))
         {
-            SpawnManager.Instance.AddScore(10);
+            Feed();
         }
     }
 
@@ -74,5 +81,18 @@ public class DetectCollisions : MonoBehaviour
         Debug.Log($"reduces {gameObject.name} life: {lifeRemain}");
 
         CheckForLife();
+    }
+
+    public void Feed()
+    {
+        Debug.Log("feeding");
+        ++currentFeedAmount;
+
+        if(currentFeedAmount >= amountToBeFeed)
+        {
+            Debug.Log($"fully feed {currentFeedAmount}");
+            SpawnManager.Instance.AddScore(10);
+            Destroy(gameObject);
+        }
     }
 }

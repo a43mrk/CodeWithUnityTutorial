@@ -1059,29 +1059,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 400522873887167565, guid: eb64dc27d2cbf2f199d89904a0d80ea1, type: 3}
-      propertyPath: hungerBar
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 400522873887167565, guid: eb64dc27d2cbf2f199d89904a0d80ea1, type: 3}
-      propertyPath: totalLife
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 400522873887167565, guid: eb64dc27d2cbf2f199d89904a0d80ea1, type: 3}
-      propertyPath: hugerBarPrefab
-      value: 
-      objectReference: {fileID: 4648306347895074294, guid: 5f7b0009568de4a088523b4033861de6, type: 3}
-    - target: {fileID: 1824657145441439152, guid: eb64dc27d2cbf2f199d89904a0d80ea1, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4657429432473795283, guid: eb64dc27d2cbf2f199d89904a0d80ea1, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 5612762398590596520, guid: eb64dc27d2cbf2f199d89904a0d80ea1, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7201359701048596135, guid: eb64dc27d2cbf2f199d89904a0d80ea1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1124,8 +1104,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 4687348373370315566, guid: eb64dc27d2cbf2f199d89904a0d80ea1, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb64dc27d2cbf2f199d89904a0d80ea1, type: 3}

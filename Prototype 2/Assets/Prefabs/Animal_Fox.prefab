@@ -70,6 +70,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3827366645359834572, guid: 869586df48387fdcc846439711ad480a, type: 3}
+      propertyPath: totalLife
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1562178167543759236, guid: 869586df48387fdcc846439711ad480a, type: 3}
       propertyPath: m_Name
       value: Animal_Fox

@@ -1064,6 +1064,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 400522873887167565, guid: eb64dc27d2cbf2f199d89904a0d80ea1, type: 3}
+      propertyPath: totalLife
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 400522873887167565, guid: eb64dc27d2cbf2f199d89904a0d80ea1, type: 3}
       propertyPath: hugerBarPrefab
       value: 
       objectReference: {fileID: 4648306347895074294, guid: 5f7b0009568de4a088523b4033861de6, type: 3}

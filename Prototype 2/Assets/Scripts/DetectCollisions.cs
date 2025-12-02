@@ -4,15 +4,15 @@ using UnityEngine.UI;
 
 public class DetectCollisions : MonoBehaviour
 {
-    private float life = 0f;
+    private float lifeRemain = 0f;
     public GameObject hugerBarPrefab;
-    private float lifeTotal = 3.0f;
+    public float totalLife = 3.0f;
     private Slider hungerBar;
 
     void Awake()
     {
         hungerBar = Instantiate(hugerBarPrefab, gameObject.transform).GetComponentInChildren<Slider>();
-        life += lifeTotal;
+        lifeRemain += totalLife;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -23,7 +23,7 @@ public class DetectCollisions : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        hungerBar.value = lifeTotal - life;
+        hungerBar.value = (totalLife - lifeRemain)/totalLife;
     }
 
     // void OnEnable()
@@ -47,7 +47,7 @@ public class DetectCollisions : MonoBehaviour
         Debug.Log($"collided with: {other.gameObject.name}");
         ReduceLife();
 
-        if (life <= 0 && other.gameObject.CompareTag("Projectile"))
+        if (lifeRemain <= 0 && other.gameObject.CompareTag("Projectile"))
         {
             SpawnManager.Instance.AddScore(10);
         }
@@ -55,7 +55,7 @@ public class DetectCollisions : MonoBehaviour
 
     private void CheckForLife()
     {
-        if (life <= 0)
+        if (lifeRemain <= 0)
         {
 
             if (gameObject.CompareTag("Player"))
@@ -70,8 +70,8 @@ public class DetectCollisions : MonoBehaviour
 
     public void ReduceLife()
     {
-        --life;
-        Debug.Log($"reduces {gameObject.name} life: {life}");
+        --lifeRemain;
+        Debug.Log($"reduces {gameObject.name} life: {lifeRemain}");
 
         CheckForLife();
     }

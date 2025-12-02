@@ -1,10 +1,19 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DetectCollisions : MonoBehaviour
 {
-    public float life = 3.0f;
+    private float life = 0f;
+    public GameObject hugerBarPrefab;
+    private float lifeTotal = 3.0f;
+    private Slider hungerBar;
 
+    void Awake()
+    {
+        hungerBar = Instantiate(hugerBarPrefab, gameObject.transform).GetComponentInChildren<Slider>();
+        life += lifeTotal;
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -12,9 +21,9 @@ public class DetectCollisions : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        
+        hungerBar.value = lifeTotal - life;
     }
 
     void OnEnable()

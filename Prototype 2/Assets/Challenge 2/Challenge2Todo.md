@@ -61,10 +61,13 @@ Hint - Set the spawnInterval value to a new random number between 3 and 5 second
 At the start of the game, display in the console that the [x]player’s Lives = 3 and [x]Score = 0.
 [x] If the player feeds an animal, increase and display the Score.
 [x] If the player misses an animal or is hit by one, decrease and display the Lives.
-[] When the number of Lives reaches 0, log “Game Over” in the console.
+[x] When the number of Lives reaches 0, log “Game Over” in the console.
 
 ## Expert: Animal hunger bar
-Display a “hunger bar” on top of each of the animals. Then, each time you feed one of them, the hunger bar fills up a little. Each animal should require different amounts of food to successfully “feed” them. They should only disappear after their hunger bars are full.
+[] Display a “hunger bar” on top of each of the animals.
+[] Then, each time you feed one of them, the hunger bar fills up a little.
+[] Each animal should require different amounts of food to successfully “feed” them.
+[] They should only disappear after their hunger bars are full.
 
 # 6. Hints and solution walkthrough
 Hints:

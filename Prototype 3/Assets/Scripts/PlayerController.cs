@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 100f;
     public float gravityModifier;
     public bool isOnGround = false;
+    public bool gameOver = false;
     private Rigidbody playerRb;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -26,6 +27,13 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        isOnGround = true;
+        if(collision.gameObject.CompareTag("Ground"))
+        {
+            isOnGround = true;
+        } else if(collision.gameObject.CompareTag("Obstacle"))
+        {
+            gameOver = true;
+            Debug.Log("Game Over!");
+        }
     }
 }

@@ -586,7 +586,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1419314599}
   serializedVersion: 5
-  m_Mass: 50
+  m_Mass: 1.5
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -617,8 +617,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77139745419f5da79881663c0a3c5ee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  jumpForce: 400
-  gravityModifier: 2
+  jumpForce: 10
+  gravityModifier: 1
   isOnGround: 0
   gameOver: 0
 --- !u!1001 &1690613545

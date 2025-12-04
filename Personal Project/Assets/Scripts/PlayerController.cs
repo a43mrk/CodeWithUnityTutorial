@@ -1,0 +1,46 @@
+using UnityEngine;
+
+public class PlayerController : MonoBehaviour
+{
+    private float speed = 100.0f;
+    private Rigidbody playerRb;
+
+    private float xRange = 23.0f;
+    private float zRange = 23.0f;
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        playerRb = GetComponent<Rigidbody>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        var verticalInput = Input.GetAxis("Vertical");
+        var horizontalInput = Input.GetAxis("Horizontal");
+
+        playerRb.AddForce(Vector3.forward * speed * verticalInput * Time.deltaTime);
+        playerRb.AddForce(Vector3.right * speed * horizontalInput * Time.deltaTime);
+
+        if(transform.position.x > xRange)
+        {
+            transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
+        }
+
+        if(transform.position.x < -xRange)
+        {
+            transform.position = new Vector3(-xRange, transform.position.y, transform.position.z);
+        }
+
+        if(transform.position.z > zRange)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, zRange);
+        }
+
+        if(transform.position.z < -zRange)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, -zRange);
+        }
+    }
+}

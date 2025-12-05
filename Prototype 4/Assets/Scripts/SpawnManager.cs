@@ -8,11 +8,10 @@ public class SpawnManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        float spawnPosX = Random.Range(-spawnRange, spawnRange);
-        float spawnPosZ = Random.Range(-spawnRange, spawnRange);
 
         Instantiate(
-            enemyPrefab, new Vector3(spawnPosX, 0, spawnPosZ),
+            enemyPrefab,
+            GenerateSpawnPosition(),
             enemyPrefab.transform.rotation
             );
     }
@@ -21,5 +20,13 @@ public class SpawnManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private Vector3 GenerateSpawnPosition()
+    {
+        float spawnPosX = Random.Range(-spawnRange, spawnRange);
+        float spawnPosZ = Random.Range(-spawnRange, spawnRange);
+
+        return new Vector3(spawnPosX, 0, spawnPosZ);
     }
 }

@@ -13,9 +13,12 @@ public class SpawnManagerX : MonoBehaviour
 
     public int enemyCount;
     public int waveCount = 1;
+    public int enemyInitialSpeed = 30;
+    public int enemySpeedProgress = 10;
+    private int enemyCurrentSpeed = 0;
 
 
-    public GameObject player; 
+    public GameObject player;
 
     // Update is called once per frame
     void Update()
@@ -47,6 +50,11 @@ public class SpawnManagerX : MonoBehaviour
         {
             Instantiate(powerupPrefab, GenerateSpawnPosition() + powerupSpawnOffset, powerupPrefab.transform.rotation);
         }
+
+        var enemyX = enemyPrefab.GetComponent<EnemyX>();
+        enemyCurrentSpeed = enemiesToSpawn <= 1 ?enemyInitialSpeed :enemyCurrentSpeed + enemySpeedProgress;
+        enemyX.speed = enemyCurrentSpeed;
+        Debug.Log($"enemy speed: {enemyX.speed}");
 
         // Spawn number of enemy balls based on wave number
         for (int i = 0; i < enemiesToSpawn; i++)

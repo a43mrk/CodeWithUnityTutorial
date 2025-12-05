@@ -6,14 +6,20 @@ public class SpawnManager : MonoBehaviour
     public int enemyCount;
     private float spawnRange = 9f;
 
+    /// <summary>
+    /// Every time the player defeats a wave of enemies, more should rise to take their place.
+    /// </summary>
+    private int waveNumber = 1;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        SpawnEnemyWave(3);
+        SpawnEnemyWave(waveNumber);
     }
 
     private void SpawnEnemyWave(int enemiesToSpawn)
     {
+
         for(int i = 0; i < enemiesToSpawn; i++)
         {
             Instantiate(
@@ -30,7 +36,8 @@ public class SpawnManager : MonoBehaviour
         enemyCount = FindObjectsByType<Enemy>(FindObjectsSortMode.None).Length;
         if(enemyCount == 0)
         {
-            SpawnEnemyWave(1);
+            waveNumber++;
+            SpawnEnemyWave(waveNumber);
         }
     }
 

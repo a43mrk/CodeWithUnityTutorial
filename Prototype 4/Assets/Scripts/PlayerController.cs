@@ -1,12 +1,14 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody playerRb;
     private GameObject focalPoint;
-    public float speed = 5.0f;
     private bool hasPowerup = false;
     private float powerupStrength = 15.0f;
+    public float speed = 5.0f;
+    public GameObject powerupIndicator;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,6 +22,9 @@ public class PlayerController : MonoBehaviour
     {
         float forwardInput = Input.GetAxis("Vertical");
         playerRb.AddForce(focalPoint.transform.forward * speed * forwardInput);
+
+        if(hasPowerup)
+            powerupIndicator.transform.position = transform.position + new Vector3(0, -.5f, 0);
     }
 
     void OnTriggerEnter(Collider other)
@@ -28,6 +33,8 @@ public class PlayerController : MonoBehaviour
         {
             hasPowerup = true;
             Destroy(other.gameObject);
+
+            powerupIndicator.gameObject.SetActive(true);
         }
 
     }
@@ -44,6 +51,17 @@ public class PlayerController : MonoBehaviour
 
             Debug.Log("Collided with" + collision.gameObject.name + " with powerup set to " + hasPowerup);
             enemyRigidbody.AddForce(awayFromPlayer * powerupStrength, ForceMode.Impulse);
+
+            // limit the powerup by time
+            StartCoroutine(PowerupCountdownRoutine());
         }
+    }
+
+    IEnumerator PowerupCountdownRoutine()
+    {
+        yield return new WaitForSeconds(5);
+        hasPowerup = false;
+        Debug.Log("Powerup effect vanishes...");
+        powerupIndicator.gameObject.SetActive(false);
     }
 }

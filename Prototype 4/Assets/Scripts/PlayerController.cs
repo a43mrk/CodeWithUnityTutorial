@@ -28,5 +28,17 @@ public class PlayerController : MonoBehaviour
             hasPowerup = true;
             Destroy(other.gameObject);
         }
+
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        /// The powerup will only come into play in a very particular circumstance:
+        /// when the player has a powerup AND they collide with an enemy
+        /// - so we’ll first test for that very specific condition.
+        if(collision.gameObject.CompareTag("Enemy") && hasPowerup)
+        {
+            Debug.Log("Collided with" + collision.gameObject.name + " with powerup set to " + hasPowerup);
+        }
     }
 }

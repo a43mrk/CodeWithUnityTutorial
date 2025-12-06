@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private float powerupStrength = 15.0f;
     public float speed = 5.0f;
     public GameObject powerupIndicator;
+    public Transform pfRocket;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -24,7 +25,20 @@ public class PlayerController : MonoBehaviour
         playerRb.AddForce(focalPoint.transform.forward * speed * forwardInput);
 
         if(hasPowerup)
+        {
             powerupIndicator.transform.position = transform.position + new Vector3(0, -.5f, 0);
+        }
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            var rotation = new Quaternion(
+                    0,
+                    transform.rotation.y,
+                    0,
+                    transform.rotation.w
+                );
+            Instantiate(pfRocket, transform.position - new Vector3(2,0,0), rotation);
+        }
     }
 
     void OnTriggerEnter(Collider other)

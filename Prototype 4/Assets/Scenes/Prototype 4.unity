@@ -964,6 +964,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   speed: 5
   powerupIndicator: {fileID: 667554093}
+  pfRocket: {fileID: 2772312449988685174, guid: 6fbb5ffeff131a6ac817127fb8465578, type: 3}
 --- !u!1001 &7305732181041295649
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,10 +1,11 @@
+using System.Linq;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
     public GameObject enemyPrefab;
+    public GameObject[] harderEnemies;
     public GameObject powerupPrefab;
-    public int enemyCount;
     private float spawnRange = 9f;
 
     /// <summary>
@@ -12,11 +13,26 @@ public class SpawnManager : MonoBehaviour
     /// </summary>
     private int waveNumber = 1;
 
+    public int ratio = 3;
+    private int[] specialTotals;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        InitializeSpecialTotals();
+
         SpawnEnemyWave(waveNumber);
         SpawnPowerup();
+
+    }
+
+    private void InitializeSpecialTotals()
+    {
+        specialTotals = new int[harderEnemies.Length];
+        for(int i = 0; i < harderEnemies.Length; i++)
+        {
+            specialTotals[i] = 0;
+        }
     }
 
     private void SpawnPowerup()
@@ -35,12 +51,64 @@ public class SpawnManager : MonoBehaviour
                 enemyPrefab.transform.rotation
                 );
         }
+
+        CascadeSpecials();
+    }
+
+    /// <summary>
+    /// Spawn Special Tier Enemies proportionally using ratio
+    /// the ration regulates that to spawn a harder enemy for a bunch of normal enemies,
+    /// that in turn a harder enemy is spawn if a bunch of hard enemy is spawn and so on...
+    /// </summary>
+    /// ratio holds the proportinal scale that will be used to calculate the harder enemies spawns
+    /// specialTotals holds the sum of each hard enemy
+    private void CascadeSpecials()
+    {
+        if (ratio <= 0) return;
+
+        Debug.Log($"waveNumber: {waveNumber}, ratio: {ratio}, specialTotals: {specialTotals}");
+        int neededTier0 = (waveNumber / ratio) + specialTotals.FirstOrDefault();
+        Debug.Log($"neededTier0: {neededTier0}");
+        SpawnSpecialsForTier(0, neededTier0);
+
+        // tiers 1..N-1
+        for (int tier = 1; tier < harderEnemies.Length; tier++)
+        {
+            int prerequisite = specialTotals[tier - 1];
+            int needed = (prerequisite / ratio) + specialTotals[tier];
+            SpawnSpecialsForTier(tier, needed);
+        }
+
+    }
+
+    private void SpawnSpecialsForTier(int tier, int count)
+    {
+        if(count <= 0) return;
+        var prefab = harderEnemies[tier];
+
+        if(prefab == null)
+        {
+            Debug.LogWarning($"Special tier {tier} prefab is missing.");
+            return;
+        }
+
+        Debug.Log($"count: {count}, tier: {tier}");;
+        for(int i = 0; i < count; i++)
+        {
+            Instantiate(
+                prefab,
+                GenerateSpawnPosition(),
+                prefab.transform.rotation
+                );
+            specialTotals[tier]++;
+        }
+        Debug.Log($"spawned Special Tier {tier}. Totals: {string.Join(",", specialTotals)}");
     }
 
     // Update is called once per frame
     void Update()
     {
-        enemyCount = FindObjectsByType<Enemy>(FindObjectsSortMode.None).Length;
+        var enemyCount = FindObjectsByType<Enemy>(FindObjectsSortMode.None).Length;
         if(enemyCount == 0)
         {
             waveNumber++;

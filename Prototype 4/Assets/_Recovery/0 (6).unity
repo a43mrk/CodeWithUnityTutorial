@@ -506,6 +506,7 @@ MonoBehaviour:
   - {fileID: 6552061834037870998, guid: f8a68931af77cc898a76fbfbb2f2ee49, type: 3}
   - {fileID: 6552061834037870998, guid: c5089df8fb2814609b859e7332026b4c, type: 3}
   powerupPrefab: {fileID: 4446659399940870297, guid: bd1445a2909d9dd2eb572db967227ad5, type: 3}
+  enemyCount: 0
   ratio: 2
 --- !u!4 &1082658105
 Transform:

@@ -991,6 +991,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Island
       objectReference: {fileID: 0}
+    - target: {fileID: 1301643505922104, guid: 961be46ca9a355943ae3f65c47741bb0, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 4625923886776944, guid: 961be46ca9a355943ae3f65c47741bb0, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1188,8 +1192,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   speed: 5
+  jumpForce: 10
+  slamForce: -30
+  shockwaveRadius: 5
+  shockwaveForce: 20
   powerupIndicator: {fileID: 667554093}
   pfRocket: {fileID: 2772312449988685174, guid: 6fbb5ffeff131a6ac817127fb8465578, type: 3}
+  rocketPowerupIndicator: {fileID: 1835115682}
+  impactPowerupIndicator: {fileID: 1248964940}
 --- !u!1001 &7305732181041295649
 PrefabInstance:
   m_ObjectHideFlags: 0

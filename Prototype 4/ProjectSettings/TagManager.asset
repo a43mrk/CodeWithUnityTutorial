@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Food
   - Speed
+  - Ground
   layers:
   - Default
   - TransparentFX

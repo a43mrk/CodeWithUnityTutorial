@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Numerics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
 
@@ -11,8 +13,20 @@ public class PlayerController : MonoBehaviour
     private bool hasPowerup = false;
     private float powerupStrength = 15.0f;
     public float speed = 5.0f;
+    public float jumpForce = 8f;
+    public float slamForce = -30f;
+    public float shockwaveRadius = 6f;
+    public float shockwaveForce = 25f;
     public GameObject powerupIndicator;
     public Transform pfRocket;
+    private bool canLaunchRockets = false;
+    private bool hasImpactPowerup = false;
+    private bool isGrounded = true;
+    private bool isSlamming = false;
+    public GameObject rocketPowerupIndicator;
+    public GameObject impactPowerupIndicator;
+    private float lastCtrPressTime = -1f;
+    private float comboMaxDelay = 1f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -32,8 +46,31 @@ public class PlayerController : MonoBehaviour
             powerupIndicator.transform.position = transform.position + new Vector3(0, -.5f, 0);
         }
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(canLaunchRockets)
         {
+            rocketPowerupIndicator.transform.position = transform.position + new Vector3(0, -.5f, 0);
+        }
+
+        if(hasImpactPowerup)
+        {
+            impactPowerupIndicator.transform.position = transform.position + new Vector3(0, -.5f, 0);
+
+            if(isGrounded && Input.GetKeyDown(KeyCode.Space))
+            {
+                    playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                    isGrounded = false;
+            }
+            else if(!isGrounded && Input.GetKeyDown(KeyCode.Space) && !isSlamming)
+            {
+                isSlamming = true;
+                playerRb.linearVelocity = new Vector3(playerRb.linearVelocity.x, 0f, playerRb.linearVelocity.z); // cancel upward motion
+                playerRb.AddForce(Vector3.down * MathF.Abs(slamForce), ForceMode.Impulse);
+            }
+        }
+
+        if(canLaunchRockets && Input.GetKeyDown(KeyCode.Space))
+        {
+
             // use only the camera's yaw
             float yaw = Camera.main.transform.eulerAngles.y;
 
@@ -48,6 +85,19 @@ public class PlayerController : MonoBehaviour
             Instantiate(pfRocket, position, rot);
         }
 
+        if(Input.GetKeyDown(KeyCode.LeftControl))
+            lastCtrPressTime = Time.time;
+
+        if((Time.time - lastCtrPressTime <= comboMaxDelay) && Input.GetKeyDown(KeyCode.I))
+        {
+            ActivateImpactPowerup();
+        }
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
         Debug.DrawRay(transform.position, Camera.main.transform.forward * 5f, Color.red);
         Debug.DrawRay(transform.position, Camera.main.transform.right * 5f, Color.green);
         Debug.DrawRay(transform.position, Camera.main.transform.up * 5f, Color.blue);
@@ -57,10 +107,21 @@ public class PlayerController : MonoBehaviour
     {
         if(other.CompareTag("Powerup"))
         {
-            hasPowerup = true;
-            Destroy(other.gameObject);
-
-            powerupIndicator.gameObject.SetActive(true);
+            if(other.gameObject.name.Contains("Rocket"))
+            {
+                Destroy(other.gameObject);
+                ActivateRocketPowerup();
+            }
+            else if(other.gameObject.name.Contains("Impact"))
+            {
+                Destroy(other.gameObject);
+                ActivateImpactPowerup();
+            }
+            else
+            {
+                Destroy(other.gameObject);
+                ActivatePowerup();
+            }
         }
 
         // Eating food adds one to mass
@@ -78,6 +139,30 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private void ActivateRocketPowerup()
+    {
+        canLaunchRockets = true;
+        rocketPowerupIndicator.gameObject.SetActive(true);
+
+        StartCoroutine(RocketPowerupCooldownRoutine());
+    }
+
+    private void ActivateImpactPowerup()
+    {
+        hasImpactPowerup = true;
+        impactPowerupIndicator.SetActive(true);
+        StartCoroutine(ImpactPowerupCooldownRoutine());
+    }
+
+    private void ActivatePowerup()
+    {
+        hasPowerup = true;
+        powerupIndicator.gameObject.SetActive(true);
+
+        // limit the powerup by time
+        StartCoroutine(PowerupCountdownRoutine());
+    }
+
     void OnCollisionEnter(Collision collision)
     {
         /// The powerup will only come into play in a very particular circumstance:
@@ -91,9 +176,43 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Collided with" + collision.gameObject.name + " with powerup set to " + hasPowerup);
             enemyRigidbody.AddForce(awayFromPlayer * powerupStrength, ForceMode.Impulse);
 
-            // limit the powerup by time
-            StartCoroutine(PowerupCountdownRoutine());
         }
+
+        if(collision.gameObject.CompareTag("Ground"))
+        {
+            if(isSlamming)
+            {
+                createShockWave();
+            }
+
+            isGrounded = true;
+            isSlamming = false;
+        }
+    }
+
+    private void createShockWave()
+    {
+        Collider[] hits = Physics.OverlapSphere(transform.position, shockwaveRadius);
+        Debug.Log($"Shockwave detected {hits.Length} colliders.");
+
+        foreach(Collider hit in hits)
+        {
+            Debug.Log($"hit tag is: {hit.gameObject.tag }");
+            // if(hit.gameObject.CompareTag("Enemy"))
+            // {
+                Rigidbody enemyRb = hit.GetComponentInParent<Rigidbody>();
+                if(enemyRb)
+                {
+                    Vector3 dir = (hit.transform.position - transform.position).normalized;
+                    Debug.Log($"Applying force to enemy {hit.name}, direction: {dir}");
+                    enemyRb.AddForce(dir * shockwaveForce, ForceMode.Impulse);
+                }
+            // }
+        }
+
+
+        // TODO: Add VFX / Camera shake / sound here
+        Debug.Log("Shockwave triggered!");
     }
 
     IEnumerator PowerupCountdownRoutine()
@@ -102,5 +221,18 @@ public class PlayerController : MonoBehaviour
         hasPowerup = false;
         Debug.Log("Powerup effect vanishes...");
         powerupIndicator.gameObject.SetActive(false);
+    }
+
+    IEnumerator RocketPowerupCooldownRoutine()
+    {
+        yield return new WaitForSeconds(5);
+        canLaunchRockets = false;
+        rocketPowerupIndicator.gameObject.SetActive(false);
+    }
+    private IEnumerator ImpactPowerupCooldownRoutine()
+    {
+        yield return new WaitForSeconds(5);
+        hasImpactPowerup = false;
+        impactPowerupIndicator.gameObject.SetActive(false);
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Numerics;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Quaternion = UnityEngine.Quaternion;
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
     public GameObject impactPowerupIndicator;
     private float lastCtrPressTime = -1f;
     private float comboMaxDelay = 1f;
+    public CinemachineImpulseSource impulseSource;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -213,6 +215,7 @@ public class PlayerController : MonoBehaviour
 
         // TODO: Add VFX / Camera shake / sound here
         Debug.Log("Shockwave triggered!");
+        impulseSource.GenerateImpulse();
     }
 
     IEnumerator PowerupCountdownRoutine()

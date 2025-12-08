@@ -1,11 +1,14 @@
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
     public GameObject enemyPrefab;
     public GameObject[] harderEnemies;
-    public GameObject powerupPrefab;
+    public GameObject[] powerupPrefabs;
+    public GameObject foodPrefab;
+    public GameObject speedPrefab;
     private float spawnRange = 9f;
 
     /// <summary>
@@ -35,9 +38,20 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
+    private void SpawnSpeedPickup()
+    {
+        Instantiate(speedPrefab, GenerateSpawnPosition(), speedPrefab.transform.rotation);
+    }
+
+    private void SpawnFood()
+    {
+        Instantiate(foodPrefab, GenerateSpawnPosition(), foodPrefab.transform.rotation);
+    }
+
     private void SpawnPowerup()
     {
-        Instantiate(powerupPrefab, GenerateSpawnPosition(), powerupPrefab.transform.rotation);
+        var prefab = powerupPrefabs[Random.Range(0, powerupPrefabs.Length)];
+        Instantiate(prefab, GenerateSpawnPosition(), prefab.transform.rotation);
     }
 
     private void SpawnEnemyWave(int enemiesToSpawn)
@@ -50,6 +64,26 @@ public class SpawnManager : MonoBehaviour
                 GenerateSpawnPosition(),
                 enemyPrefab.transform.rotation
                 );
+        }
+
+        if(enemiesToSpawn >= 2)
+        {
+            switch (Random.Range(0, 3))
+            {
+            case 0:
+                SpawnFood();
+                break;
+            case 1:
+                SpawnSpeedPickup();
+                break;
+            case 2:
+                SpawnFood();
+                SpawnSpeedPickup();
+                break;
+            default:
+                return;
+
+            }
         }
 
         CascadeSpecials();

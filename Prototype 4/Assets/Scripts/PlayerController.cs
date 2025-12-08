@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
+            // TODO: fix the instantiation of the distance of rocket from the player
             var rotation = new Quaternion(
                     0,
                     transform.rotation.y,
@@ -49,6 +50,19 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
 
             powerupIndicator.gameObject.SetActive(true);
+        }
+
+        // Eating food adds one to mass
+        if(other.CompareTag("Food"))
+        {
+            Destroy(other.gameObject);
+            playerRb.mass += 1;
+        }
+
+        if(other.CompareTag("Speed"))
+        {
+            Destroy(other.gameObject);
+            speed += 5.0f;
         }
 
     }

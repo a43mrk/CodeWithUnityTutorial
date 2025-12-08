@@ -1,12 +1,15 @@
+using System;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SpawnManager : MonoBehaviour
 {
     public GameObject enemyPrefab;
     public GameObject[] harderEnemies;
     public GameObject[] powerupPrefabs;
+    public GameObject[] bossPrefabs;
     public GameObject foodPrefab;
     public GameObject speedPrefab;
     private float spawnRange = 9f;
@@ -145,10 +148,29 @@ public class SpawnManager : MonoBehaviour
         var enemyCount = FindObjectsByType<Enemy>(FindObjectsSortMode.None).Length;
         if(enemyCount == 0)
         {
+
             waveNumber++;
-            SpawnEnemyWave(waveNumber);
+
+            if(waveNumber % 3 == 0)
+            {
+                SpawnBoss();
+            }
+            else
+            {
+                SpawnEnemyWave(waveNumber);
+            }
             SpawnPowerup();
         }
+    }
+
+    private void SpawnBoss()
+    {
+        var boss =  waveNumber > 9 ?bossPrefabs.Last() :bossPrefabs[(waveNumber / 3) - 1];
+        Instantiate(
+            boss,
+            GenerateSpawnPosition(),
+            boss.transform.rotation
+            );
     }
 
     private Vector3 GenerateSpawnPosition()

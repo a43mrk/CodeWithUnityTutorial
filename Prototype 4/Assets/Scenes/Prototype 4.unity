@@ -665,6 +665,10 @@ MonoBehaviour:
   - {fileID: 4446659399940870297, guid: bd1445a2909d9dd2eb572db967227ad5, type: 3}
   - {fileID: 238231601381441, guid: 60aba65d292aca6b4a518a0b5ad4520b, type: 3}
   - {fileID: 4294044931318870387, guid: 75ec730147aa0df23bbcd2df59730786, type: 3}
+  bossPrefabs:
+  - {fileID: 6552061834037870998, guid: 5d56ec766eb6482d0acc8ea4a77d7161, type: 3}
+  - {fileID: 6552061834037870998, guid: 6a9d6273bcff7ecc9824e1a277543dfd, type: 3}
+  - {fileID: 6552061834037870998, guid: bc2aef7dca18b9ab49252fe784bd7565, type: 3}
   foodPrefab: {fileID: 6827490106557459117, guid: d2ae63b7908cf77e6854128c8b98497c, type: 3}
   speedPrefab: {fileID: 8527924462262769098, guid: ed53d6e83dddb60a29cd622dc8a5f9d3, type: 3}
   ratio: 2

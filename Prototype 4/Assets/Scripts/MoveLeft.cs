@@ -14,14 +14,17 @@ public class MoveLeft : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.left * speed * Time.deltaTime);
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 
     void OnCollisionEnter(Collision collision)
     {
-            Rigidbody enemyRigidbody = collision.gameObject.GetComponent<Rigidbody>();
-            Vector3 awayFromPlayer = (collision.gameObject.transform.position - transform.position);
+        if(collision.gameObject.CompareTag("Player"))
+            return;
 
-            enemyRigidbody.AddForce(awayFromPlayer * 30, ForceMode.Impulse);
+        Rigidbody enemyRigidbody = collision.gameObject.GetComponent<Rigidbody>();
+        Vector3 awayFromPlayer = (collision.gameObject.transform.position - transform.position);
+
+        enemyRigidbody.AddForce(awayFromPlayer * 30, ForceMode.Impulse);
     }
 }

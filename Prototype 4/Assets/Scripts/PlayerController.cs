@@ -1,5 +1,8 @@
 using System.Collections;
+using System.Numerics;
 using UnityEngine;
+using Quaternion = UnityEngine.Quaternion;
+using Vector3 = UnityEngine.Vector3;
 
 public class PlayerController : MonoBehaviour
 {
@@ -31,15 +34,23 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
+            // use only the camera's yaw
+            float yaw = Camera.main.transform.eulerAngles.y;
+
+            // Build a flat forward direction
+            Vector3 flatForward = Quaternion.Euler(0, yaw, 0) * Vector3.forward;
+            flatForward.Normalize();
+
             // TODO: fix the instantiation of the distance of rocket from the player
-            var rotation = new Quaternion(
-                    0,
-                    transform.rotation.y,
-                    0,
-                    transform.rotation.w
-                );
-            Instantiate(pfRocket, transform.position - new Vector3(2,0,0), rotation);
+            var rot = Quaternion.LookRotation(flatForward, Vector3.up);
+
+            var position = transform.position + flatForward * 1.5f;
+            Instantiate(pfRocket, position, rot);
         }
+
+        Debug.DrawRay(transform.position, Camera.main.transform.forward * 5f, Color.red);
+        Debug.DrawRay(transform.position, Camera.main.transform.right * 5f, Color.green);
+        Debug.DrawRay(transform.position, Camera.main.transform.up * 5f, Color.blue);
     }
 
     void OnTriggerEnter(Collider other)

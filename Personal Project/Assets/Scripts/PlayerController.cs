@@ -53,4 +53,21 @@ public class PlayerController : MonoBehaviour
         playerRb.AddForce(Vector3.forward * speed * verticalInput * Time.deltaTime);
         playerRb.AddForce(Vector3.right * speed * horizontalInput * Time.deltaTime);
     }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log($"Collided with enemy: {collision.gameObject.name}");
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Powerup"))
+        {
+            Destroy(other.gameObject);
+            Debug.Log($"Got Powerup: {other.gameObject.name}");
+        }
+    }
 }

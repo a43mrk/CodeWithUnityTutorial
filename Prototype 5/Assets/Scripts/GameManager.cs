@@ -1,12 +1,16 @@
 using UnityEngine;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 
 public class GameManager : MonoBehaviour
 {
     public List<GameObject> targets;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverText;
+    public Button restartButton;
 
     private float spawnRate = 1.0f;
     private int score = 0;
@@ -47,10 +51,19 @@ public class GameManager : MonoBehaviour
     {
         isGameActive = false;
         gameOverText.gameObject.SetActive(true);
+        restartButton.gameObject.SetActive(true);
     }
 
     public bool IsGameOver()
     {
         return gameOverText.gameObject.active;
+    }
+
+    // In the Button’s inspector, click + to add a new On Click event, drag it in the "Game Manager" object
+    // from Hierarchy and select the GameManager.RestartGame function
+    public void RestartGame()
+    {
+        Debug.Log("Restarting Game...");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BadItem
       objectReference: {fileID: 0}
+    - target: {fileID: 716178887275073810, guid: 6103e9207fbff0cd8acdbabbdbda2bd0, type: 3}
+      propertyPath: m_TagString
+      value: Bad
+      objectReference: {fileID: 0}
     - target: {fileID: 1395952538463013576, guid: 6103e9207fbff0cd8acdbabbdbda2bd0, type: 3}
       propertyPath: m_Size.x
       value: 1.1150697

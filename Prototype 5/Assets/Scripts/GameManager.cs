@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
         StartCoroutine(SpawnTarget());
         UpdateScore(0);
 
-        gameOverText.gameObject.SetActive(true);
     }
 
     // Update is called once per frame
@@ -40,5 +39,15 @@ public class GameManager : MonoBehaviour
             Instantiate(targets[index]);
         }
 
+    }
+
+    public void GameOver()
+    {
+        gameOverText.gameObject.SetActive(true);
+    }
+
+    public bool IsGameOver()
+    {
+        return gameOverText.gameObject.active;
     }
 }

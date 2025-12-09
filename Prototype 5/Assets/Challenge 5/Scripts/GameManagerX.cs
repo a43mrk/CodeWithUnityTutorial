@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System;
 
 public class GameManagerX : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class GameManagerX : MonoBehaviour
     public Button restartButton; 
 
     public List<GameObject> targetPrefabs;
+    public TextMeshProUGUI countdownText;
+    public float countDownTimeInSec;
 
     private int score;
     private float spawnRate = 1.5f;
@@ -21,7 +24,25 @@ public class GameManagerX : MonoBehaviour
     private float spaceBetweenSquares = 2.5f; 
     private float minValueX = -3.75f; //  x value of the center of the left-most square
     private float minValueY = -3.75f; //  y value of the center of the bottom-most square
-    
+    void Update()
+    {
+        if(isGameActive)
+        {
+            StartCountDown();
+        }
+    }
+
+    private void StartCountDown()
+    {
+        countDownTimeInSec -= Time.deltaTime;
+        countdownText.text = $"Time: {(int)countDownTimeInSec}";
+
+        if(countDownTimeInSec <= 0)
+        {
+            GameOver();
+        }
+    }
+
     // Start the game, remove title screen, reset score, and adjust spawnRate based on difficulty button clicked
     public void StartGame(int difficulty)
     {
@@ -39,7 +60,7 @@ public class GameManagerX : MonoBehaviour
         while (isGameActive)
         {
             yield return new WaitForSeconds(spawnRate);
-            int index = Random.Range(0, targetPrefabs.Count);
+            int index = UnityEngine.Random.Range(0, targetPrefabs.Count);
 
             if (isGameActive)
             {
@@ -63,7 +84,7 @@ public class GameManagerX : MonoBehaviour
     // Generates random square index from 0 to 3, which determines which square the target will appear in
     int RandomSquareIndex()
     {
-        return Random.Range(0, 4);
+        return UnityEngine.Random.Range(0, 4);
     }
 
     // Update score with value from target clicked

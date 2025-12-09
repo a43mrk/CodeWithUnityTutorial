@@ -50,6 +50,10 @@ public class Target : MonoBehaviour
         Destroy(gameObject);
     }
 
+    /// <summary>
+    /// will be triggered when the objects collides with the sensor set at bottom of the scene.
+    /// </summary>
+    /// <param name="other"></param>
     void OnTriggerEnter(Collider other)
     {
         Destroy(gameObject);

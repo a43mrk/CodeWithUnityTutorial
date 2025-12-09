@@ -8,11 +8,21 @@ public class Target : MonoBehaviour
     private float maxTorque = 10;
     private float xRange = 4;
     private float ySpawnPos = -6;
+    private GameManager gameManager;
+
+    public int pointValue;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         targetRb = GetComponent<Rigidbody>();
+
+        // give random good point to the ? box
+        if(gameObject.CompareTag("Random"))
+        {
+            pointValue = Random.Range(0, 10);
+        }
 
         // throw the object upwards
         targetRb.AddForce(RandomForce(), ForceMode.Impulse);
@@ -48,6 +58,7 @@ public class Target : MonoBehaviour
     void OnMouseDown()
     {
         Destroy(gameObject);
+        gameManager.UpdateScore(pointValue);
     }
 
     /// <summary>

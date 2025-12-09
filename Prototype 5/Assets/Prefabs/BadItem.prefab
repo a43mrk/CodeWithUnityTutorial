@@ -28,6 +28,14 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: 0.64609903
       objectReference: {fileID: 0}
+    - target: {fileID: 1645808080535682914, guid: 6103e9207fbff0cd8acdbabbdbda2bd0, type: 3}
+      propertyPath: pointValue
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8154323098103707110, guid: 6103e9207fbff0cd8acdbabbdbda2bd0, type: 3}
+      propertyPath: m_Mass
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8381758453150046187, guid: 6103e9207fbff0cd8acdbabbdbda2bd0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

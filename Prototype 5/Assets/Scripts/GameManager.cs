@@ -10,10 +10,12 @@ public class GameManager : MonoBehaviour
 
     private float spawnRate = 1.0f;
     private int score = 0;
+    public bool isGameActive;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        isGameActive = true;
         StartCoroutine(SpawnTarget());
         UpdateScore(0);
 
@@ -32,7 +34,7 @@ public class GameManager : MonoBehaviour
 
     private System.Collections.IEnumerator SpawnTarget()
     {
-        while(true)
+        while(isGameActive)
         {
             yield return new WaitForSeconds(spawnRate);
             int index = Random.Range(0, targets.Count);
@@ -43,6 +45,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        isGameActive = false;
         gameOverText.gameObject.SetActive(true);
     }
 

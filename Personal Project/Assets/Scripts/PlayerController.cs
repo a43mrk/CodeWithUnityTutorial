@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody playerRb;
-    private float speed = 100.0f;
+    public float speed = 10.0f;
 
     private float xRange = 23.0f;
     private float zRange = 23.0f;
@@ -50,8 +50,10 @@ public class PlayerController : MonoBehaviour
         var verticalInput = Input.GetAxis("Vertical");
         var horizontalInput = Input.GetAxis("Horizontal");
 
-        playerRb.AddForce(Vector3.forward * speed * verticalInput * Time.deltaTime);
-        playerRb.AddForce(Vector3.right * speed * horizontalInput * Time.deltaTime);
+        // playerRb.AddForce(Vector3.forward * speed * verticalInput * Time.deltaTime);
+        // playerRb.AddForce(Vector3.right * speed * horizontalInput * Time.deltaTime);
+        transform.Translate(Vector3.forward * speed * verticalInput * Time.deltaTime);
+        transform.Translate(Vector3.right * speed * horizontalInput * Time.deltaTime);
     }
 
     void OnCollisionEnter(Collision collision)

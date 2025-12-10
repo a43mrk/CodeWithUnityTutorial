@@ -66,12 +66,25 @@ public class Target : MonoBehaviour
         }
     }
 
+
+    public void TakeDown()
+    {
+        if(gameManager.isGameActive)
+        {
+            Destroy(gameObject);
+            Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
+            gameManager.UpdateScore(pointValue);
+        }
+    }
+
     /// <summary>
     /// will be triggered when the objects collides with the sensor set at bottom of the scene.
     /// </summary>
     /// <param name="other"></param>
     void OnTriggerEnter(Collider other)
     {
+        if(!other.CompareTag("Sensor")) return;
+
         Destroy(gameObject);
 
         if(!gameManager.IsGameOver() && !gameObject.CompareTag("Bad"))

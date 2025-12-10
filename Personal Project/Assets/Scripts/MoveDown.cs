@@ -16,7 +16,8 @@ public class MoveDown : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.AddForce(Vector3.forward * -speed);
+        // rb.AddForce(Vector3.forward * -speed);
+        transform.Translate(Vector3.forward * -speed * Time.deltaTime);
 
 
         // this make sure objects are destroyed when they leave the screen

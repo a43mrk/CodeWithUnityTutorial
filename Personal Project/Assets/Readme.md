@@ -1,0 +1,1 @@
+** some materials may appear pink when you install them. To fix this, go to the top menu and select Window > Rendering > Render Pipeline Converter. Then, choose the Material Upgrade option and click Initialize and Convert.

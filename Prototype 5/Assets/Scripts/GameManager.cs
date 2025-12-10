@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public bool isGameActive;
     public int totalLives = 3;
     private AudioSource audioSource;
+    public GameObject pauseScreen;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -30,6 +31,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseOrPlayTheGame();
+        }
     }
 
     public void UpdateScore(int scoreToAdd)
@@ -105,4 +110,26 @@ public class GameManager : MonoBehaviour
     {
         audioSource.volume = intensity;
     }
+
+    public void PauseOrPlayTheGame()
+    {
+        if(Time.timeScale == 1)
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
+
+        if(pauseScreen.active)
+        {
+            pauseScreen.SetActive(false);
+        }
+        else
+        {
+            pauseScreen.SetActive(true);
+        }
+    }
+
 }

@@ -18,11 +18,13 @@ public class GameManager : MonoBehaviour
     private int score = 0;
     public bool isGameActive;
     public int totalLives = 3;
+    private AudioSource audioSource;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        audioSource = GetComponent<AudioSource>();
+        UpdateVolume(0.5f);
     }
 
     // Update is called once per frame
@@ -97,5 +99,10 @@ public class GameManager : MonoBehaviour
         {
             GameOver();
         }
+    }
+
+    public void UpdateVolume(float intensity)
+    {
+        audioSource.volume = intensity;
     }
 }

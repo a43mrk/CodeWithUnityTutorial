@@ -6,7 +6,7 @@ public class CongratScript : MonoBehaviour
     public TextMesh Text;
     public ParticleSystem SparksParticles;
     
-    private List<string> TextToDisplay;
+    private List<string> TextToDisplay = new List<string>();
     
     private float RotatingSpeed;
     private float TimeToNextText;

@@ -1,4 +1,4 @@
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -53,34 +53,43 @@ public class DetectCollisions : MonoBehaviour
             }
 
             Debug.Log($"collided with: {other.gameObject.name}");
-            ReduceLife();
+            ReduceLife(other);
         } else if (gameObject.CompareTag("Animal") && other.gameObject.CompareTag("Projectile"))
         {
             Feed();
         }
     }
 
-    private void CheckForLife()
+    private void CheckForLife(Collider other)
     {
         if (lifeRemain <= 0)
         {
 
             if (gameObject.CompareTag("Player"))
-                Debug.Log("Game Over!");
+            {
+                Debug.Log($"Destroying {gameObject.name}, has tag: {gameObject.tag}");
 
-            Debug.Log($"Destroying {gameObject.name}, has tag: {gameObject.tag}");
-            Destroy(gameObject);
-            // Destroy(other.gameObject);
+                Debug.Log("Game Over!");
+                Destroy(gameObject);
+            }
+
+
+            // Instead of destroying the projectile when it collides with an animal
+            //Destroy(other.gameObject); 
+
+            // Just deactivate the food and destroy the animal
+            other?.gameObject.SetActive(false);
+            Debug.Log($"Deativate {gameObject.name}, has tag: {gameObject.tag}");
 
         }
     }
 
-    public void ReduceLife()
+    public void ReduceLife(Collider other)
     {
         --lifeRemain;
         Debug.Log($"reduces {gameObject.name} life: {lifeRemain}");
 
-        CheckForLife();
+        CheckForLife(other);
     }
 
     public void Feed()

@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8303465107918481229}
   - component: {fileID: 6396589332879128486}
-  - component: {fileID: -6803212250908873083}
   - component: {fileID: 6595675501857595408}
-  - component: {fileID: -3827366645359834572}
+  - component: {fileID: 1965300006744153468}
+  - component: {fileID: -2505026060517952569}
   m_Layer: 0
   m_Name: Animal
   m_TagString: Animal
@@ -49,18 +49,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoveForward
   speed: 10
---- !u!114 &-6803212250908873083
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1562178167543759236}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7826e4e2268c86c3fb0a9815ddf30705, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DestroyOutOfBounds
 --- !u!65 &6595675501857595408
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -82,7 +70,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.2823033, y: 4.751924, z: 4.697892}
   m_Center: {x: -0.0012648106, y: 2.6194084, z: 0.71290827}
---- !u!114 &-3827366645359834572
+--- !u!114 &1965300006744153468
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,12 +79,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1562178167543759236}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6baeb0a5074e2d9399a2c6e49f1816e8, type: 3}
+  m_Script: {fileID: 11500000, guid: 81e62e9a8a22fac478a927ce940e28f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DetectCollisions
   progressBarPrefab: {fileID: 4648306347895074294, guid: 5f7b0009568de4a088523b4033861de6, type: 3}
   totalLife: 3
   amountToBeFeed: 3
+--- !u!114 &-2505026060517952569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562178167543759236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c52ee72091692143869a36cdefe1fd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DestroyOutOfBounds
 --- !u!1001 &1994075880304340737
 PrefabInstance:
   m_ObjectHideFlags: 0

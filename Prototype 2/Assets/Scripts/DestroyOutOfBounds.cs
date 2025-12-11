@@ -1,3 +1,5 @@
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class DestroyOutOfBounds : MonoBehaviour
@@ -20,18 +22,28 @@ public class DestroyOutOfBounds : MonoBehaviour
     {
         var z = transform.position.z;
         var x = transform.position.x;
-        if(z > topBound || z < bottomBound || x > sideRange || x < -sideRange)
+        if(z > topBound || z < bottomBound ||  x > sideRange || x < -sideRange)
         {
-            Destroy(gameObject);
-            if(gameObject.CompareTag("Animal") )
+            Debug.Log("Game Over!");
+
+            if(gameObject.CompareTag("Projectile"))
             {
+                // Instead of destroying the projectile when it leaves the screen
+                // Just deactivate it
+                gameObject.SetActive(false);
+            } else if(gameObject.CompareTag("Animal") )
+            {
+                Destroy(gameObject);
+
                 // reduce players life by 1
                 // OnAnimalDestroyed?.Invoke();
                 Debug.Log("reducing life for animal escape");
-                player?.ReduceLife();
+                player?.ReduceLife(null);
             }
-            if(gameObject.CompareTag("Player"))
-                Debug.Log("Game Over!");
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

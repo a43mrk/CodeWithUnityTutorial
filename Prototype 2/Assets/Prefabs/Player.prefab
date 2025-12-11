@@ -443,10 +443,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7201359701048596135}
   - component: {fileID: 3800334923530464796}
-  - component: {fileID: 4173087384963384553}
-  - component: {fileID: 400522873887167565}
   - component: {fileID: 8191497409847367406}
   - component: {fileID: 2201028278027658478}
+  - component: {fileID: 8411275237160277656}
+  - component: {fileID: 6815949591679689105}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -496,40 +496,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4173087384963384553
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4657429432473795283}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 745d7311b4aa6fbe2bdf482fb4019a4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  horizontalInput: 0
-  verticalInput: 0
-  speed: 10
-  xRange: 16
-  lowerBound: -1
-  upperBound: 16
-  projectilePrefab: {fileID: 5162198636806011641, guid: 78df9b72b61cab0b49d204a0874b6051, type: 3}
---- !u!114 &400522873887167565
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4657429432473795283}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6baeb0a5074e2d9399a2c6e49f1816e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DetectCollisions
-  progressBarPrefab: {fileID: 4648306347895074294, guid: 5f7b0009568de4a088523b4033861de6, type: 3}
-  totalLife: 5
-  amountToBeFeed: 0
 --- !u!65 &8191497409847367406
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -578,6 +544,40 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8411275237160277656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4657429432473795283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81e62e9a8a22fac478a927ce940e28f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DetectCollisions
+  progressBarPrefab: {fileID: 4648306347895074294, guid: 5f7b0009568de4a088523b4033861de6, type: 3}
+  totalLife: 3
+  amountToBeFeed: 3
+--- !u!114 &6815949591679689105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4657429432473795283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38e917c52987daa41af6a0305d9813c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  horizontalInput: 0
+  verticalInput: 0
+  speed: 10
+  xRange: 16
+  lowerBound: -1
+  upperBound: 16
+  projectilePrefab: {fileID: 5162198636806011641, guid: 78df9b72b61cab0b49d204a0874b6051, type: 3}
 --- !u!1 &4784640181356978971
 GameObject:
   m_ObjectHideFlags: 0

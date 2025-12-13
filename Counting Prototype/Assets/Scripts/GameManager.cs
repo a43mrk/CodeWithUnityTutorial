@@ -9,7 +9,8 @@ public class GameManager : MonoBehaviour
     public GameObject startPointAndDirection;
     public int startCredits = 100;
     public int interval = 1;
-    public float initialForce = 100f;
+    public float initialForce = 300f;
+    public float maxForce = 500f;
 
     [UnitHeaderInspectable("Gravity Settings")]
     public Vector3 gravity = new Vector3(0f, -9.81f, 0f);
@@ -57,6 +58,6 @@ public class GameManager : MonoBehaviour
         }
 
         Vector3 direction = startPointAndDirection.transform.up;
-        rb.AddForce(direction * initialForce, ForceMode.Impulse);
+        rb.AddForce(direction * UnityEngine.Random.Range(initialForce, maxForce), ForceMode.Impulse);
     }
 }

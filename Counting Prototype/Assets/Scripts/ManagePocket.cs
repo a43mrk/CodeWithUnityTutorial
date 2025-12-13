@@ -8,6 +8,8 @@ public class ManagePocket : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        leftArm.transform.Rotate(Vector3.back * 5);
+        rightArm.transform.Rotate(Vector3.forward * 5);
     }
 
     // Update is called once per frame

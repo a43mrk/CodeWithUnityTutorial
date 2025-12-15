@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class GameManager : MonoBehaviour
 
     [UnitHeaderInspectable("Gravity Settings")]
     public Vector3 gravity = new Vector3(0f, -9.81f, 0f);
+    public Text CounterText;
+
+    private int totalScore = 0;
 
     void Awake()
     {
@@ -59,5 +63,11 @@ public class GameManager : MonoBehaviour
 
         Vector3 direction = startPointAndDirection.transform.up;
         rb.AddForce(direction * UnityEngine.Random.Range(initialForce, maxForce), ForceMode.Impulse);
+    }
+
+    public void UpdateScore(int points)
+    {
+        totalScore += points;
+        CounterText.text = "Count : " + totalScore;
     }
 }

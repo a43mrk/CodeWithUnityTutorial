@@ -6,18 +6,18 @@ using UnityEngine.UI;
 
 public class Counter : MonoBehaviour
 {
-    public Text CounterText;
 
-    private int Count = 0;
+    public int pointsWorth = 1;
+    private GameManager gameManager;
 
     private void Start()
     {
-        Count = 0;
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Count += 1;
-        CounterText.text = "Count : " + Count;
+        Destroy(other.gameObject);
+        gameManager.UpdateScore(pointsWorth);
     }
 }

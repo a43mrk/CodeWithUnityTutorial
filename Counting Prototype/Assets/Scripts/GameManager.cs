@@ -16,8 +16,11 @@ public class GameManager : MonoBehaviour
     [UnitHeaderInspectable("Gravity Settings")]
     public Vector3 gravity = new Vector3(0f, -9.81f, 0f);
     public Text CounterText;
+    public Text LostBallsText;
 
     private int totalScore = 0;
+
+    private int ballsLost = 0;
 
     void Awake()
     {
@@ -69,5 +72,11 @@ public class GameManager : MonoBehaviour
     {
         totalScore += points;
         CounterText.text = "Count : " + totalScore;
+    }
+
+    public void IncrementBallsLost()
+    {
+        ++ballsLost;
+        LostBallsText.text = $"Lost: {ballsLost}";
     }
 }

@@ -247,7 +247,7 @@ MonoBehaviour:
     m_AreaError: 15
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 5e68fb374f2643cd8a4f303f44a333ee
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 4300000, guid: f655cdbab67c6886ea58934e3453fecb, type: 2}
   m_VersionIndex: 274
   m_IsSelectable: 1
   m_SelectedFaces: 
@@ -333,7 +333,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3407072877323272815}
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 4300000, guid: f655cdbab67c6886ea58934e3453fecb, type: 2}
 --- !u!65 &3261152907506341855
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -666,7 +666,7 @@ MonoBehaviour:
     m_AreaError: 15
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: b0a8fdad7ee345faa15192503786d31e
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 4300000, guid: 0220d48ebc4b88c89904d9f231f3fe07, type: 2}
   m_VersionIndex: 274
   m_IsSelectable: 1
   m_SelectedFaces: 
@@ -752,7 +752,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6822901104555951314}
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 4300000, guid: 0220d48ebc4b88c89904d9f231f3fe07, type: 2}
 --- !u!65 &2942857661690131048
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -983,7 +983,7 @@ MonoBehaviour:
     m_AreaError: 15
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: a7b3b78925944d4c93a4ad0d0fd3cb63
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 4300000, guid: 7093bed52fa892c77b7676ee4e15bc75, type: 2}
   m_VersionIndex: 28
   m_IsSelectable: 1
   m_SelectedFaces: 
@@ -1069,7 +1069,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8026052537079761319}
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 4300000, guid: 7093bed52fa892c77b7676ee4e15bc75, type: 2}
 --- !u!1 &9098539709314342479
 GameObject:
   m_ObjectHideFlags: 0
@@ -1317,7 +1317,7 @@ MonoBehaviour:
     m_AreaError: 15
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 693430adac9148b89c4bfaae10a2ca22
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 4300000, guid: cab04af8ae6e596b4a6030718c3cffca, type: 2}
   m_VersionIndex: 274
   m_IsSelectable: 1
   m_SelectedFaces: 
@@ -1403,7 +1403,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9098539709314342479}
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 4300000, guid: cab04af8ae6e596b4a6030718c3cffca, type: 2}
 --- !u!65 &2682876514781130007
 BoxCollider:
   m_ObjectHideFlags: 0

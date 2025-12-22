@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5916314652287381122}
   - component: {fileID: 2341223564771461385}
   - component: {fileID: 46053296664006802}
+  - component: {fileID: 3323478186392785708}
   m_Layer: 0
   m_Name: Tulip_Left_Arm.004
   m_TagString: Untagged
@@ -90,6 +91,28 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &3323478186392785708
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317287591465004534}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -750802600050652064, guid: 4bac0c54b52a52df78d91f2b750caf74, type: 3}
 --- !u!1 &3273705772815202833
 GameObject:
   m_ObjectHideFlags: 0
@@ -101,6 +124,7 @@ GameObject:
   - component: {fileID: 1428933811512123817}
   - component: {fileID: 5430891496006965058}
   - component: {fileID: 1617185424463768093}
+  - component: {fileID: 5099939355206627881}
   m_Layer: 0
   m_Name: Tulip_Body.004
   m_TagString: Untagged
@@ -117,8 +141,8 @@ Transform:
   m_GameObject: {fileID: 3273705772815202833}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.70710677}
-  m_LocalPosition: {x: -0.25133556, y: 0.59877, z: -5.603666}
-  m_LocalScale: {x: 0.079415135, y: 0.07941513, z: 0.115850784}
+  m_LocalPosition: {x: -0.000032793, y: 0.011132401, z: 0.0010905}
+  m_LocalScale: {x: 0.08240909, y: 0.082409084, z: 0.14274728}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4423790125477152267}
@@ -180,6 +204,28 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &5099939355206627881
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3273705772815202833}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5826186528913467238, guid: 4bac0c54b52a52df78d91f2b750caf74, type: 3}
 --- !u!1 &4196925807611452809
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,8 +251,8 @@ Transform:
   m_GameObject: {fileID: 4196925807611452809}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.3002, y: 0.58905, z: -5.62}
-  m_LocalScale: {x: 1, y: 1.4588, z: 1}
+  m_LocalPosition: {x: -0.054201, y: 0.0010286013, z: -0.025579}
+  m_LocalScale: {x: 1.0377, y: 1.7974823, z: 1.0377}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3528020735346125542}
@@ -237,8 +283,8 @@ Transform:
   m_GameObject: {fileID: 4305088637847559582}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.2006, y: 0.55389, z: -5.62}
-  m_LocalScale: {x: 1, y: 1.4588, z: 1}
+  m_LocalPosition: {x: 0.054447, y: -0.0437, z: -0.026097}
+  m_LocalScale: {x: 1.0377, y: 1.7974823, z: 1.0377}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5916314652287381122}
@@ -255,6 +301,7 @@ GameObject:
   - component: {fileID: 4423790125477152267}
   - component: {fileID: 3461627829685015204}
   - component: {fileID: 3196466748854874332}
+  - component: {fileID: 4069390872788362038}
   m_Layer: 0
   m_Name: Pink Tulip
   m_TagString: Untagged
@@ -312,6 +359,27 @@ MonoBehaviour:
   isJackpotCollector: 0
   isFoulBallCollector: 0
   openTulipsType: 0
+--- !u!65 &4069390872788362038
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6057745533737175346}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.090965524, y: 0.04011534, z: 0.04368645}
+  m_Center: {x: 0.00029232353, y: -0.027153216, z: 0.018497005}
 --- !u!1 &8739220410347818697
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,6 +391,7 @@ GameObject:
   - component: {fileID: 3528020735346125542}
   - component: {fileID: 7210499010948913832}
   - component: {fileID: 5259510314422618272}
+  - component: {fileID: 2379426636145176445}
   m_Layer: 0
   m_Name: Tulip_Right_Arm.004
   m_TagString: Untagged
@@ -402,6 +471,28 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &2379426636145176445
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8739220410347818697}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3603948874054353701, guid: 4bac0c54b52a52df78d91f2b750caf74, type: 3}
 --- !u!1001 &2011850161171898546
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -412,15 +503,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: ddf71c1f03393d85e96fc962210f0b05, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.25357544
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ddf71c1f03393d85e96fc962210f0b05, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.57884955
+      value: -0.0168
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ddf71c1f03393d85e96fc962210f0b05, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.6012893
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ddf71c1f03393d85e96fc962210f0b05, type: 3}
       propertyPath: m_LocalRotation.w

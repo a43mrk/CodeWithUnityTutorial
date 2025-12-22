@@ -21,6 +21,18 @@ public class GameManager : MonoBehaviour
     private int totalScore = 0;
 
     private int ballsLost = 0;
+    // Payout amount is fixed (e.g., 10, 15, or 20 balls).
+    public int jackPotPremium = 15; // normally 15
+    public int sidePocketPremium = 3; // 0 ~ 3 balls
+    public float jackPointTime = 30.0f; // 30~60 seconds
+    public int jackpotRounds = 8; // 8~15 rounds
+    private float jackPointTimeLeft = 0;
+    private int ballsMissed = 0;
+    private int redeemedMissedBalls = 0;
+    // used to toggle winning light when users redeem the balls
+    private bool isWinningBalls = false;
+    public bool isJackpotTimeBased = true; // in case of false it will use round based jackpot system.
+    public int foulBallCount = 0; // Foul ball pockets: These collect balls that don’t count toward scoring but may accumulate until released.
 
     void Awake()
     {
@@ -37,7 +49,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(IsJackpotTime())
+        {
+            UpdateJackPockCountdown();
+        }
     }
     private IEnumerator SpawnAndShoot()
     {
@@ -78,5 +93,19 @@ public class GameManager : MonoBehaviour
     {
         ++ballsLost;
         LostBallsText.text = $"Lost: {ballsLost}";
+    }
+
+    public void PushJackPocketTime()
+    {
+        jackPointTimeLeft += jackPointTime;
+    }
+
+    private void UpdateJackPockCountdown()
+    {
+        jackPointTimeLeft -= Time.deltaTime;
+    }
+    public bool IsJackpotTime()
+    {
+        return jackPointTimeLeft > 0.01f;
     }
 }

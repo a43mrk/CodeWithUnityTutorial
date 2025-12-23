@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 1428933811512123817}
   - component: {fileID: 5430891496006965058}
   - component: {fileID: 1617185424463768093}
-  - component: {fileID: 5099939355206627881}
+  - component: {fileID: 6650049637216337843}
   m_Layer: 0
   m_Name: Tulip_Body.004
   m_TagString: Untagged
@@ -204,7 +204,7 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5099939355206627881
+--- !u!64 &6650049637216337843
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -251,7 +251,7 @@ Transform:
   m_GameObject: {fileID: 4196925807611452809}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.054201, y: 0.0010286013, z: -0.025579}
+  m_LocalPosition: {x: -0.0562, y: 0.0010286013, z: -0.025579}
   m_LocalScale: {x: 1.0377, y: 1.7974823, z: 1.0377}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -283,7 +283,7 @@ Transform:
   m_GameObject: {fileID: 4305088637847559582}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.054447, y: -0.0437, z: -0.026097}
+  m_LocalPosition: {x: 0.0553, y: -0.0437, z: -0.026097}
   m_LocalScale: {x: 1.0377, y: 1.7974823, z: 1.0377}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -378,8 +378,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.090965524, y: 0.04011534, z: 0.04368645}
-  m_Center: {x: 0.00029232353, y: -0.027153216, z: 0.018497005}
+  m_Size: {x: 0.090965524, y: 0.04011534, z: 0.06812726}
+  m_Center: {x: 0.00029232353, y: -0.027153216, z: 0.006276599}
 --- !u!1 &8739220410347818697
 GameObject:
   m_ObjectHideFlags: 0

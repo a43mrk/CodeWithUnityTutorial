@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 113184190840840675}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7070746, y: 0.006747587, z: 0.006747588, w: 0.7070746}
-  m_LocalPosition: {x: -2.7160165, y: 0.7202001, z: -5.7943735}
+  m_LocalPosition: {x: -2.7160165, y: 0.7045, z: -5.7944}
   m_LocalScale: {x: 15.452865, y: 15.452865, z: 3.1516652}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -130,12 +130,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.012951827, y: 0.0038760512, z: 0.0110768}
-  m_Center: {x: -0.00014021738, y: -0.004272697, z: -0.000064579064}
+  m_Size: {x: 0.016642937, y: 0.0047921087, z: 0.0110768}
+  m_Center: {x: -0.00014050677, y: -0.003256917, z: -0.00006457897}
 --- !u!114 &2085705669822909324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,7 +177,7 @@ Transform:
   m_GameObject: {fileID: 725152237736857110}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.6267, y: 0.7296, z: -5.8448}
+  m_LocalPosition: {x: -2.6267, y: 0.7196, z: -5.8448}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -196,6 +196,7 @@ GameObject:
   - component: {fileID: 4699405466431717499}
   - component: {fileID: 8689135434645964231}
   - component: {fileID: 8627856399974316538}
+  - component: {fileID: 6258572541019472352}
   m_Layer: 0
   m_Name: "B\xE9zierCurve.044"
   m_TagString: Untagged
@@ -294,9 +295,36 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -1963196812963210802, guid: d5a72f839dcfb1e11be07dfae36278da, type: 3}
+--- !u!54 &6258572541019472352
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567825348245485923}
+  serializedVersion: 5
+  m_Mass: 0.1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 62
+  m_CollisionDetection: 0
 --- !u!1 &2063411600085433185
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,6 +579,7 @@ GameObject:
   - component: {fileID: 2232694654455447706}
   - component: {fileID: 3238178646162046400}
   - component: {fileID: 955827401808328983}
+  - component: {fileID: 6023748397682591538}
   m_Layer: 0
   m_Name: "B\xE9zierCurve.045"
   m_TagString: Untagged
@@ -649,9 +678,36 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 8402200733621487144, guid: d5a72f839dcfb1e11be07dfae36278da, type: 3}
+--- !u!54 &6023748397682591538
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4451534236869937039}
+  serializedVersion: 5
+  m_Mass: 0.1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 62
+  m_CollisionDetection: 0
 --- !u!1 &5773813234280334248
 GameObject:
   m_ObjectHideFlags: 0
@@ -716,7 +772,7 @@ Transform:
   m_GameObject: {fileID: 7819000606233998533}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.8135, y: 0.6989, z: -5.8448}
+  m_LocalPosition: {x: -2.8135, y: 0.68876, z: -5.8448}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

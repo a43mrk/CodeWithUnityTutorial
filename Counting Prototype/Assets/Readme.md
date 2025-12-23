@@ -35,6 +35,7 @@
 
 ## Yellow pocket on the bottom
 [] If a ball enter on the yellow pocket it will pays a prize.
+[] make the star spin if a ball enter the yellow pocket too
 
 
 ## TODOs

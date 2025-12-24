@@ -1,10 +1,20 @@
 ﻿<Solution>
+  <Project Path="Unity.ShaderGraph.Editor.csproj" />
   <Project Path="Unity.ProBuilder.csproj" />
   <Project Path="Unity.ProBuilder.Poly2Tri.csproj" />
+  <Project Path="Unity.RenderPipelines.Universal.Editor.csproj" />
   <Project Path="Unity.ProBuilder.Csg.csproj" />
   <Project Path="Unity.ProBuilder.Editor.csproj" />
+  <Project Path="UnityGLTFScripts.csproj" />
+  <Project Path="UnityGltf.RenderPipelines.csproj" />
+  <Project Path="UnityGLTF.Helpers.csproj" />
+  <Project Path="UnityGLTFEditor.csproj" />
+  <Project Path="UnityEditor.UI.csproj" />
+  <Project Path="GLTFSerialization.csproj" />
   <Project Path="Unity.ProBuilder.KdTree.csproj" />
   <Project Path="Unity.ProBuilder.AddOns.Editor.csproj" />
+  <Project Path="UnityGLTF.Plugins.Experimental.csproj" />
+  <Project Path="UnityGLTF.ShaderGraph.csproj" />
   <Project Path="Unity.ProBuilder.AssetIdRemapUtility.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
   <Project Path="Unity.ProBuilder.Stl.csproj" />

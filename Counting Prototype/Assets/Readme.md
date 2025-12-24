@@ -44,3 +44,7 @@
 [] Add balls spitting out on Jackpot
 [] Add Tulips opening sound effects
 [] Add Tulips closing sound effects
+[x] Add Wings Balls collector box collider as trigger and counter script
+[] Add free camera
+[] Add Game Menu
+[] Add 

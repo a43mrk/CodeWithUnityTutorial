@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.deemos.rodinbridge": "file:/home/krs/Downloads/PachinkoMachine/unity_rodin_bridge_v0.1",
     "com.unity.ai.navigation": "2.0.9",
     "com.unity.collab-proxy": "2.10.2",
     "com.unity.ide.rider": "3.0.38",

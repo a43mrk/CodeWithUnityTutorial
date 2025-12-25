@@ -39,7 +39,7 @@
 
 
 ## TODOs
-[] Add shooting sound effects
+[x] Add shooting sound effects
 [] Add balls falling sound effects
 [] Add balls spitting out on Jackpot
 [] Add Tulips opening sound effects
@@ -50,3 +50,5 @@
 [] Add Entering the ball lose hole audio
 [] Add Wing switching Audio
 [] Add ball enter top most pocket Audio
+[x] Ball and Nail Collision Sound Effects
+[] Add option to the player to use auto shoot or manual shoot

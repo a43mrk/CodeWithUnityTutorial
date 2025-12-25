@@ -66,6 +66,6 @@ public class PachinkoBall : MonoBehaviour
 
     public static float KineticEnergy(Rigidbody rb){
         // mass in kg, velocity in meters per second, result is joules
-        return 0.5f*rb.mass*Mathf.Pow(rb.velocity.magnitude,2); 
+        return 0.5f*rb.mass*Mathf.Pow(rb.linearVelocity.magnitude,2); 
     }
 }

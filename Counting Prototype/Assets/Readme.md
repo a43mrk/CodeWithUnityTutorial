@@ -47,4 +47,6 @@
 [x] Add Wings Balls collector box collider as trigger and counter script
 [] Add free camera
 [] Add Game Menu
-[] Add 
+[] Add Entering the ball lose hole audio
+[] Add Wing switching Audio
+[] Add ball enter top most pocket Audio

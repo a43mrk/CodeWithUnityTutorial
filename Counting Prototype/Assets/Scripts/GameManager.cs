@@ -33,11 +33,13 @@ public class GameManager : MonoBehaviour
     private bool isWinningBalls = false;
     public bool isJackpotTimeBased = true; // in case of false it will use round based jackpot system.
     public int foulBallCount = 0; // Foul ball pockets: These collect balls that don’t count toward scoring but may accumulate until released.
+    private AudioSource shootingAudioFx;
 
     void Awake()
     {
         // Apply global gravity at startup
         Physics.gravity = gravity;
+        shootingAudioFx = GetComponent<AudioSource>();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -81,6 +83,7 @@ public class GameManager : MonoBehaviour
 
         Vector3 direction = startPointAndDirection.transform.up;
         rb.AddForce(direction * UnityEngine.Random.Range(initialForce, maxForce), ForceMode.Impulse);
+        shootingAudioFx.Play();
     }
 
     public void UpdateScore(int points)

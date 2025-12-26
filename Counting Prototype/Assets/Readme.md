@@ -67,3 +67,4 @@
 [] Add payout exit to collect tray
 [] Add Collect btn
 [] Add Recharge credits btn
+[] Display available credits

@@ -26,6 +26,7 @@ public class RechargeOrCollect : MonoBehaviour
         // r to use the available balls into credits
         else if(Input.GetKeyDown(KeyCode.R))
         {
+            // TODO: Add to credits
             // Destroy(other.gameObject);
         }
     }

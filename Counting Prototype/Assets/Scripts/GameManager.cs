@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject ballPrefab;
     public GameObject startPointAndDirection;
+    public GameObject jackpotStartPointAndDirection;
     public int startCredits = 100;
     public int interval = 1;
     public float initialForce = 300f;
@@ -47,6 +48,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         StartCoroutine(SpawnAndShoot());
+        ExecutePayout();
     }
 
     // Update is called once per frame
@@ -113,5 +115,30 @@ public class GameManager : MonoBehaviour
     public bool IsJackpotTime()
     {
         return jackPointTimeLeft > 0.01f;
+    }
+
+    private void ExecutePayout()
+    {
+        for(int i = 0; i < jackPotPremium; i++)
+        {
+            GameObject ball = Instantiate(
+                ballPrefab,
+                jackpotStartPointAndDirection.transform.position,
+                Quaternion.identity
+            );
+
+            Debug.Log("instantiating payout ball: " + ball.gameObject.GetInstanceID());
+
+            Rigidbody rb = ball.GetComponent<Rigidbody>();
+            if(rb == null)
+            {
+                Debug.LogError("Ball prefab must have a Rigidbody.");
+                return;
+            }
+
+            Vector3 direction = jackpotStartPointAndDirection.transform.up;
+            rb.AddForce(direction * 100, ForceMode.Impulse);
+        }
+
     }
 }

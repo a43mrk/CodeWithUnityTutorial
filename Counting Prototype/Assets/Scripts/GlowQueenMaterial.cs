@@ -11,7 +11,16 @@ public class GlowQueenMaterial : MonoBehaviour
     [Range(0f, 20f)]
     public float intensity = 5f;
 
-    private Material[] runtimeMaterials;
+    [Header("Point Light Settings")]
+    public Light pointLight;
+    [Range(0f, 60f)]
+    public float lightIntensity = 2f;
+    [Range(0.1f, 15f)]
+    public float lightRange = 1f;
+
+    private Material runtimeMaterial;
+    private bool hadEmission;
+    private Color originalEmissionColor;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -19,28 +28,86 @@ public class GlowQueenMaterial : MonoBehaviour
         Renderer renderer = GetComponent<Renderer>();
 
         // This creates a runtime instance (NOT the imported asset)
-        runtimeMaterials = renderer.materials;
+        runtimeMaterial = renderer.materials.FirstOrDefault(a => a.name.Contains("Orange_Glass_Or_Acrylic"));
 
-        EnableGlow();
+        // Cache original emission state
+        if(runtimeMaterial.HasProperty("_EmissionColor"))
+        {
+            originalEmissionColor = runtimeMaterial.GetColor("EmissionColor");
+            hadEmission = runtimeMaterial.IsKeywordEnabled("_EMISSION");
+        }
+
+
+        if(pointLight != null)
+        {
+            pointLight.enabled = false;
+            pointLight.intensity = lightIntensity;
+            pointLight.range = lightRange;
+            pointLight.color = glowColor;
+            pointLight.shadows = LightShadows.None;
+        }
     }
 
-    private void EnableGlow()
+    void Start()
     {
-        var mat = runtimeMaterials.FirstOrDefault(a => a.name.Contains("Orange_Glass_Or_Acrylic"));
+    }
 
-        mat.EnableKeyword("_EMISSION");
+    public void EnableGlow()
+    {
+        if (!runtimeMaterial.HasProperty("_EmissionColor"))
+            return;
+
+        runtimeMaterial.EnableKeyword("_EMISSION");
 
         Color finalColor = glowColor * intensity;
-        mat.SetColor("_EmissionColor", finalColor);
+        runtimeMaterial.SetColor("_EmissionColor", finalColor);
+
+        SetPointLight(true);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void SetPointLight(bool v)
     {
-        float pulse = Mathf.Sin(Time.time * 4f) * 0.5f + 0.5f;
-        var mat = runtimeMaterials.FirstOrDefault(a => a.name.Contains("Orange_Glass_Or_Acrylic"));
-        Color finalColor = glowColor * intensity * pulse;
-        mat.SetColor("_EmissionColor", finalColor);
+        if (pointLight != null)
+        {
+            pointLight.color = glowColor;
+            pointLight.intensity = lightIntensity;
+            pointLight.range = lightRange;
+            pointLight.enabled = v;
+        }
+    }
 
+    public void PulsatingGlow()
+    {
+        if(!runtimeMaterial.HasProperty("_EmissionColor"))
+            return;
+
+        float pulse = Mathf.Sin(Time.time * 4f) * 0.5f + 0.5f;
+        Color finalColor = glowColor * intensity * pulse;
+        runtimeMaterial.SetColor("_EmissionColor", finalColor);
+
+    }
+
+    public void DisableGlow()
+    {
+        if(!runtimeMaterial.HasProperty("_EmissionColor"))
+            return;
+
+        if(hadEmission)
+        {
+            // Restore original emission
+            runtimeMaterial.SetColor("_EmissionColor", originalEmissionColor);
+        }
+        else
+        {
+            // Fully disable emission
+            runtimeMaterial.SetColor("_EmissionColor", Color.black);
+            runtimeMaterial.DisableKeyword("_EMISSION");
+        }
+
+
+        if(pointLight != null)
+        {
+            pointLight.enabled = false;
+        }
     }
 }

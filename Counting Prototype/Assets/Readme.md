@@ -68,3 +68,4 @@
 [] Add Collect btn
 [] Add Recharge credits btn
 [] Display available credits
+[x] Add missing tulips card identities on prefab

@@ -54,3 +54,11 @@
 [] Add option to the player to use auto shoot or manual shoot
 [] Add an individual Count for every pocket too
 [] replace the metal material
+[x] Add lights on Queen
+[x] Add lights on King
+[x] Add lights on the Victory Lamp
+[] Separate the machine state into a Single Machine Manager
+[] Animate the lever when shooting
+[] Count missed balls
+[] Fix missed balls that comeback to the shooting place
+[] wire the King lamp to light when a jackpot is underway

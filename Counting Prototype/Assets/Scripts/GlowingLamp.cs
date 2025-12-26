@@ -28,7 +28,7 @@ public class GlowQueenMaterial : MonoBehaviour
         Renderer renderer = GetComponent<Renderer>();
 
         // This creates a runtime instance (NOT the imported asset)
-        runtimeMaterial = renderer.materials.FirstOrDefault(a => a.name.Contains("Orange_Glass_Or_Acrylic"));
+        runtimeMaterial = renderer.materials.FirstOrDefault(a => a.name.Contains("Glass"));
 
         // Cache original emission state
         if(runtimeMaterial.HasProperty("_EmissionColor"))

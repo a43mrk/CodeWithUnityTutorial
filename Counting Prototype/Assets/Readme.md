@@ -62,3 +62,8 @@
 [] Count missed balls
 [] Fix missed balls that comeback to the shooting place
 [] wire the King lamp to light when a jackpot is underway
+[x] Add payout spot
+[] Add payout collector
+[] Add payout exit to collect tray
+[] Add Collect btn
+[] Add Recharge credits btn

@@ -127,7 +127,7 @@ public class GameManager : MonoBehaviour
                 Quaternion.identity
             );
 
-            Debug.Log("instantiating payout ball: " + ball.gameObject.GetInstanceID());
+            // Debug.Log("instantiating payout ball: " + ball.gameObject.GetInstanceID());
 
             Rigidbody rb = ball.GetComponent<Rigidbody>();
             if(rb == null)

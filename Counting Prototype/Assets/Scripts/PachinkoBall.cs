@@ -36,11 +36,11 @@ public class PachinkoBall : MonoBehaviour
     {
         if(!collision.gameObject.CompareTag("Nail")) return;
 
-        Debug.Log("Collided with: " + collision.gameObject.name);
+        // Debug.Log("Collided with: " + collision.gameObject.name);
         if(lastCollidedNailId != collision.gameObject.GetInstanceID())
         {
             float impulse = collision.impulse.magnitude;
-            Debug.Log("impulse is: " + impulse);
+            // Debug.Log("impulse is: " + impulse);
 
             if(impulse < minImpulse)
                 return;

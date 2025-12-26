@@ -119,6 +119,33 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &36501224 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8151461005003418375, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
+  m_PrefabInstance: {fileID: 9002765408288174020}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &36501229
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 36501224}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fbc04728c63cd93e589b2f59f6785f01, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &250417154
 GameObject:
   m_ObjectHideFlags: 0
@@ -1858,11 +1885,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 318144532787263210, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: m_VersionIndex
-      value: 1231
+      value: 1234
       objectReference: {fileID: 0}
     - target: {fileID: 459573037373294095, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: m_VersionIndex
-      value: 1231
+      value: 1234
       objectReference: {fileID: 0}
     - target: {fileID: 2731633463618446239, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1906,40 +1933,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2774326024984509462, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: m_VersionIndex
-      value: 1231
+      value: 1234
       objectReference: {fileID: 0}
     - target: {fileID: 3484726845864153720, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: m_VersionIndex
-      value: 985
+      value: 988
       objectReference: {fileID: 0}
     - target: {fileID: 4667388548017894739, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: m_VersionIndex
-      value: 985
+      value: 988
       objectReference: {fileID: 0}
+    - target: {fileID: 4818578491516338246, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
+      propertyPath: starAnimator
+      value: 
+      objectReference: {fileID: 36501229}
     - target: {fileID: 5276400318553131493, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: m_Name
       value: Single_pachine_final
       objectReference: {fileID: 0}
     - target: {fileID: 6204196050048621373, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: m_VersionIndex
-      value: 1231
+      value: 1234
       objectReference: {fileID: 0}
     - target: {fileID: 6825580673624011773, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: m_VersionIndex
-      value: 887
+      value: 890
+      objectReference: {fileID: 0}
+    - target: {fileID: 8151461005003418375, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
+      propertyPath: m_Name
+      value: Star
       objectReference: {fileID: 0}
     - target: {fileID: 8427254673845604801, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: m_VersionIndex
-      value: 1231
+      value: 1234
       objectReference: {fileID: 0}
     - target: {fileID: 8572991683454476580, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: m_VersionIndex
-      value: 1231
+      value: 1234
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8151461005003418375, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 36501229}
   m_SourcePrefab: {fileID: 100100000, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
 --- !u!95 &9002765408288174022 stripped
 Animator:

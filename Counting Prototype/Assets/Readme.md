@@ -35,7 +35,7 @@
 
 ## Yellow pocket on the bottom
 [] If a ball enter on the yellow pocket it will pays a prize.
-[] make the star spin if a ball enter the yellow pocket too
+[x] make the star spin if a ball enter the yellow pocket too
 
 
 ## TODOs
@@ -58,7 +58,7 @@
 [x] Add lights on King
 [x] Add lights on the Victory Lamp
 [] Separate the machine state into a Single Machine Manager
-[] Animate the lever when shooting
+[x] Animate the lever when shooting
 [] Count missed balls
 [] Fix missed balls that comeback to the shooting place
 [] wire the King lamp to light when a jackpot is underway

@@ -20,6 +20,7 @@ public class Counter : MonoBehaviour
     public bool isJackpotCollector = false;
     public bool isFoulBallCollector = false;
     public TulipsThatCanOpen openTulipsType = TulipsThatCanOpen.None;
+    public Animator starAnimator;
 
     private void Start()
     {
@@ -42,6 +43,11 @@ public class Counter : MonoBehaviour
         if(isJackpotCollector)
         {
             gameManager.PushJackPocketTime();
+        }
+
+        if(starAnimator != null)
+        {
+            starAnimator.SetTrigger("Pull");
         }
     }
 }

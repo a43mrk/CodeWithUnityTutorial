@@ -52,3 +52,5 @@
 [] Add ball enter top most pocket Audio
 [x] Ball and Nail Collision Sound Effects
 [] Add option to the player to use auto shoot or manual shoot
+[] Add an individual Count for every pocket too
+[] replace the metal material

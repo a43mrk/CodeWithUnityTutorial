@@ -501,7 +501,7 @@ GameObject:
   - component: {fileID: 4069390872788362038}
   m_Layer: 0
   m_Name: Pink Tulip
-  m_TagString: Untagged
+  m_TagString: Tulip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -556,6 +556,10 @@ MonoBehaviour:
   isJackpotCollector: 0
   isFoulBallCollector: 0
   openTulipsType: 0
+  connectedTulips: []
+  tulipCloseBehavior: 0
+  starAnimator: {fileID: 0}
+  count: 0
 --- !u!65 &4069390872788362038
 BoxCollider:
   m_ObjectHideFlags: 0

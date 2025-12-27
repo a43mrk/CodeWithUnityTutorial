@@ -21,6 +21,7 @@
 ## Orange Tulip
 [] If a ball enters a closed orange Tulip it will open and pays a prize
 [] If a ball enters an open orange tulip it pays a prise and closes
+[] If a ball enters the top most orange tulip, it will open all tulips on it's side(except the pink)
 
 ## Topmost Center pocket is the Jackpot
 [] If a ball enter the jackpot pocket it will open all the Tulips and [ ] give the player a payout!
@@ -35,6 +36,7 @@
 
 ## Yellow pocket on the bottom
 [] If a ball enter on the yellow pocket it will pays a prize.
+[] closes all tulips that are open on its side(except the pink)
 [x] make the star spin if a ball enter the yellow pocket too
 
 
@@ -69,3 +71,7 @@
 [] Add Recharge credits btn
 [] Display available credits
 [x] Add missing tulips card identities on prefab
+[] Animate the collect btn
+[] change the count, lost text color
+[] Change the caount, lost into an new panel
+[] replace the close and open of the tulips by Animation to reduce errors

@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -36,12 +38,14 @@ public class GameManager : MonoBehaviour
     public int foulBallCount = 0; // Foul ball pockets: These collect balls that don’t count toward scoring but may accumulate until released.
     private AudioSource shootingAudioFx;
     public Animator leverAnimator;
+    private GameObject[] allTulips;
 
     void Awake()
     {
         // Apply global gravity at startup
         Physics.gravity = gravity;
         shootingAudioFx = GetComponent<AudioSource>();
+        allTulips = GameObject.FindGameObjectsWithTag("Tulip");
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -117,7 +121,7 @@ public class GameManager : MonoBehaviour
         return jackPointTimeLeft > 0.01f;
     }
 
-    private void ExecutePayout()
+    public void ExecutePayout()
     {
         for(int i = 0; i < jackPotPremium; i++)
         {
@@ -141,4 +145,21 @@ public class GameManager : MonoBehaviour
         }
 
     }
+
+    public void OpenAllTulips()
+    {
+        foreach(var tulip in allTulips.Select(i => i.GetComponent<ManagePocket>()))
+        {
+            tulip.OpenArms();
+        }
+    }
+
+    public void CloseAllTulips()
+    {
+        foreach(var tulip in allTulips.Select(i => i.GetComponent<ManagePocket>()))
+        {
+            tulip.CloseArms();
+        }
+    }
+
 }

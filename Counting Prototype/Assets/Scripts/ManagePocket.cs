@@ -20,15 +20,11 @@ public class ManagePocket : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gameManager.IsJackpotTime())
-        {
-            if(isClosed)
-                OpenArms();
-        }
     }
 
     public void OpenArms()
     {
+        Debug.Log("Open Arm");
         isClosed = false;
         leftArm.transform.Rotate(Vector3.down * openAngle);
         rightArm.transform.Rotate(Vector3.up * openAngle);
@@ -36,8 +32,11 @@ public class ManagePocket : MonoBehaviour
 
     public void CloseArms()
     {
+        Debug.Log("Close Arm");
         isClosed = true;
         leftArm.transform.Rotate(Vector3.up * openAngle);
         rightArm.transform.Rotate(Vector3.down * openAngle);
     }
+
+    public bool IsOpen() => !isClosed;
 }

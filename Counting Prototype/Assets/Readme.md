@@ -75,3 +75,4 @@
 [] change the count, lost text color
 [] Change the caount, lost into an new panel
 [] replace the close and open of the tulips by Animation to reduce errors
+[] BUG: review if the ball is counted twice or more

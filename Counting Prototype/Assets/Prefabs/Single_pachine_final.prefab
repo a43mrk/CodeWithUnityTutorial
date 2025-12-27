@@ -3655,7 +3655,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 0f029415320e42e084c304bfb9f219f9
   m_Mesh: {fileID: 4300000, guid: 16a8b53c8d3a0a60a848856d7b23c4a0, type: 2}
-  m_VersionIndex: 1221
+  m_VersionIndex: 1230
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -4976,7 +4976,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 761a9188c1484bb1ab87cef6e8970e86
   m_Mesh: {fileID: 4300000, guid: f0b89014171c389d5b54fd10d24a4f1b, type: 2}
-  m_VersionIndex: 41
+  m_VersionIndex: 50
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -12176,7 +12176,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 9dbe26e78ab24ef6b3ebfc8a850ffd97
   m_Mesh: {fileID: 4300000, guid: e5b53b725a381882ba4130b040c956b9, type: 2}
-  m_VersionIndex: 41
+  m_VersionIndex: 50
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -15724,7 +15724,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: b28f8548fa054d6eb2605f1fec79a416
   m_Mesh: {fileID: 4300000, guid: 65e5362bcdd1d398a8f3705ed972b46e, type: 2}
-  m_VersionIndex: 41
+  m_VersionIndex: 50
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -22352,7 +22352,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8535700229561243178, guid: 766f42b2a946a1283bd29f1ca43d5f15, type: 3}
       propertyPath: m_Name
-      value: Orange Tulip (5)
+      value: Jack Club Orange Tulip
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -22503,12 +22503,28 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1025035964063248324, guid: 766f42b2a946a1283bd29f1ca43d5f15, type: 3}
       propertyPath: openTulipsType
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1025035964063248324, guid: 766f42b2a946a1283bd29f1ca43d5f15, type: 3}
       propertyPath: tulipCloseBehavior
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1025035964063248324, guid: 766f42b2a946a1283bd29f1ca43d5f15, type: 3}
+      propertyPath: connectedTulips.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1025035964063248324, guid: 766f42b2a946a1283bd29f1ca43d5f15, type: 3}
+      propertyPath: 'connectedTulips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 5319431792508096518}
+    - target: {fileID: 1025035964063248324, guid: 766f42b2a946a1283bd29f1ca43d5f15, type: 3}
+      propertyPath: 'connectedTulips.Array.data[1]'
+      value: 
+      objectReference: {fileID: 9065195505862973494}
+    - target: {fileID: 1025035964063248324, guid: 766f42b2a946a1283bd29f1ca43d5f15, type: 3}
+      propertyPath: 'connectedTulips.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2873366545049793737}
     - target: {fileID: 2234345047398586643, guid: 766f42b2a946a1283bd29f1ca43d5f15, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.314
@@ -22551,7 +22567,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8535700229561243178, guid: 766f42b2a946a1283bd29f1ca43d5f15, type: 3}
       propertyPath: m_Name
-      value: Orange Tulip (2)
+      value: King Of Hearts Orange Tulip
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -22772,7 +22788,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 38248329025212967, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_VersionIndex
-      value: 1561
+      value: 1570
       objectReference: {fileID: 0}
     - target: {fileID: 183837645430006466, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_Mesh
@@ -22784,7 +22800,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 183837645430006466, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_VersionIndex
-      value: 1561
+      value: 1570
       objectReference: {fileID: 0}
     - target: {fileID: 2036889488882965751, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_LocalPosition.x
@@ -22836,7 +22852,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3796984156933109429, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_VersionIndex
-      value: 1315
+      value: 1324
       objectReference: {fileID: 0}
     - target: {fileID: 5977436746001891312, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_Mesh
@@ -22848,7 +22864,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5977436746001891312, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_VersionIndex
-      value: 1561
+      value: 1570
       objectReference: {fileID: 0}
     - target: {fileID: 8705884202327931433, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_Name
@@ -23480,7 +23496,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8535700229561243178, guid: 766f42b2a946a1283bd29f1ca43d5f15, type: 3}
       propertyPath: m_Name
-      value: Orange Tulip
+      value: Queen Of Hearts Orange Tulip
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -23555,7 +23571,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8535700229561243178, guid: 766f42b2a946a1283bd29f1ca43d5f15, type: 3}
       propertyPath: m_Name
-      value: Orange Tulip (4)
+      value: Queen Club Orange Tulip
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -23872,7 +23888,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8535700229561243178, guid: 16bd6e8b203a47075a1f9c6fa465d243, type: 3}
       propertyPath: m_Name
-      value: Yellow Tulip
+      value: Right Joker Yellow Tulip
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -23882,6 +23898,11 @@ PrefabInstance:
 --- !u!4 &1239881315892839144 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2234345047398586643, guid: 16bd6e8b203a47075a1f9c6fa465d243, type: 3}
+  m_PrefabInstance: {fileID: 1023739365156150267}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8665466252719853009 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8535700229561243178, guid: 16bd6e8b203a47075a1f9c6fa465d243, type: 3}
   m_PrefabInstance: {fileID: 1023739365156150267}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1044632254305752036
@@ -28642,12 +28663,28 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1025035964063248324, guid: 766f42b2a946a1283bd29f1ca43d5f15, type: 3}
       propertyPath: openTulipsType
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1025035964063248324, guid: 766f42b2a946a1283bd29f1ca43d5f15, type: 3}
       propertyPath: tulipCloseBehavior
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1025035964063248324, guid: 766f42b2a946a1283bd29f1ca43d5f15, type: 3}
+      propertyPath: connectedTulips.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1025035964063248324, guid: 766f42b2a946a1283bd29f1ca43d5f15, type: 3}
+      propertyPath: 'connectedTulips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8665466252719853009}
+    - target: {fileID: 1025035964063248324, guid: 766f42b2a946a1283bd29f1ca43d5f15, type: 3}
+      propertyPath: 'connectedTulips.Array.data[1]'
+      value: 
+      objectReference: {fileID: 9055679228932048665}
+    - target: {fileID: 1025035964063248324, guid: 766f42b2a946a1283bd29f1ca43d5f15, type: 3}
+      propertyPath: 'connectedTulips.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8631568723989510724}
     - target: {fileID: 2234345047398586643, guid: 766f42b2a946a1283bd29f1ca43d5f15, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.823
@@ -28690,7 +28727,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8535700229561243178, guid: 766f42b2a946a1283bd29f1ca43d5f15, type: 3}
       propertyPath: m_Name
-      value: Orange Tulip (3)
+      value: King Club Orange Tulip
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -29153,7 +29190,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8535700229561243178, guid: 16bd6e8b203a47075a1f9c6fa465d243, type: 3}
       propertyPath: m_Name
-      value: Yellow Tulip (1)
+      value: Left Joker Yellow Tulip
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -29163,6 +29200,11 @@ PrefabInstance:
 --- !u!4 &2352974476623355711 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2234345047398586643, guid: 16bd6e8b203a47075a1f9c6fa465d243, type: 3}
+  m_PrefabInstance: {fileID: 4586508483719497260}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5319431792508096518 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8535700229561243178, guid: 16bd6e8b203a47075a1f9c6fa465d243, type: 3}
   m_PrefabInstance: {fileID: 4586508483719497260}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4627539357630635310
@@ -31252,7 +31294,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8535700229561243178, guid: 766f42b2a946a1283bd29f1ca43d5f15, type: 3}
       propertyPath: m_Name
-      value: Orange Tulip (1)
+      value: Jack Of Hearts Orange Tulip
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -35908,7 +35950,7 @@ PrefabInstance:
       objectReference: {fileID: 4300000, guid: 82720bffd84425e08a35949ec6a8e164, type: 2}
     - target: {fileID: 38248329025212967, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_VersionIndex
-      value: 1561
+      value: 1570
       objectReference: {fileID: 0}
     - target: {fileID: 183837645430006466, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_Mesh
@@ -35916,7 +35958,7 @@ PrefabInstance:
       objectReference: {fileID: 4300000, guid: a8f70d894f4dcd0728abbc4e44b6e0e0, type: 2}
     - target: {fileID: 183837645430006466, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_VersionIndex
-      value: 1561
+      value: 1570
       objectReference: {fileID: 0}
     - target: {fileID: 2036889488882965751, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_LocalPosition.x
@@ -35968,7 +36010,7 @@ PrefabInstance:
       objectReference: {fileID: 4300000, guid: 067cf6c8a6783259f904a3ffb495dbb8, type: 2}
     - target: {fileID: 3796984156933109429, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_VersionIndex
-      value: 1315
+      value: 1324
       objectReference: {fileID: 0}
     - target: {fileID: 5977436746001891312, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_Mesh
@@ -35976,7 +36018,7 @@ PrefabInstance:
       objectReference: {fileID: 4300000, guid: d47076678f508c4399c09ec4e20efb9d, type: 2}
     - target: {fileID: 5977436746001891312, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_VersionIndex
-      value: 1561
+      value: 1570
       objectReference: {fileID: 0}
     - target: {fileID: 7509713599324574478, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_Mesh

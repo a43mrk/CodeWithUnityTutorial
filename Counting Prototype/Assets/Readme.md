@@ -7,25 +7,25 @@
 * the lamp should lights if there is no balls to throw from the white tray that go to the shooting point.
 
 ## Topmost on Tulip of each side(King Tulip)
-[] When balls enters one of the Topmost Tulip of each side, it opens all tulips on it's side that it is located.
-[] spit outs some amount of balls
-[] The Tulip Will close after the next ball enters the tulip
-    [] will spit some bonus balls(payout) again after closing
-[] Will close all tulips on it's side after the next ball enters the Queen tulip.(yellows)
-    [] will spit some bonus balls(payout) again after closing the tulips
+[x] When balls enters one of the Topmost Tulip of each side, it opens all tulips on it's side that it is located.
+[x] spit outs some amount of balls
+[x] The Tulip Will close after the next ball enters the tulip
+    [x] will spit some bonus balls(payout) again after closing
+[x] Will close all tulips on it's side after the next ball enters the Queen tulip.(yellows)
+    [x] will spit some bonus balls(payout) again after closing the tulips
 [] King(and Queen in some machines) lamps is on when the payout is in process
 
 ## Pink Tulip
-[] If a ball enters an open pink tulip it pays a prise and closes
+[x] If a ball enters an open pink tulip it pays a prise and closes
 
 ## Orange Tulip
-[] If a ball enters a closed orange Tulip it will open and pays a prize
-[] If a ball enters an open orange tulip it pays a prise and closes
-[] If a ball enters the top most orange tulip, it will open all tulips on it's side(except the pink)
+[x] If a ball enters a closed orange Tulip it will open and pays a prize
+[x] If a ball enters an open orange tulip it pays a prise and closes
+[x] If a ball enters the top most orange tulip, it will open all tulips on it's side(except the pink)
 
 ## Topmost Center pocket is the Jackpot
-[] If a ball enter the jackpot pocket it will open all the Tulips and [ ] give the player a payout!
-[] the ball should fall straight down to the pink tulip
+[x] If a ball enter the jackpot pocket it will open all the Tulips and [x ] give the player a payout!
+[x] the ball should fall straight down to the pink tulip // analogy
 
 ## Thunderbird's wing
 [] If a ball enter one of the wings of the Thunderbird a payout is made.
@@ -35,8 +35,8 @@
 [] pays a prize(don't pay in some machines)
 
 ## Yellow pocket on the bottom
-[] If a ball enter on the yellow pocket it will pays a prize.
-[] closes all tulips that are open on its side(except the pink)
+[x] If a ball enter on the yellow pocket it will pays a prize.
+[x] closes all tulips that are open on its side(except the pink)
 [x] make the star spin if a ball enter the yellow pocket too
 
 

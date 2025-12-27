@@ -60,7 +60,11 @@ public class Counter : MonoBehaviour
 
     void ProcessPocket()
     {
-        if(tulip == null) return;
+        if(tulip == null)
+        {
+            ProcessPocketForNonTulips();
+            return;
+        }
 
         if(!tulip.IsOpen())
         {
@@ -118,6 +122,42 @@ public class Counter : MonoBehaviour
             }
 
         }
+
+        // Pays the prize
+        gameManager.ExecutePayout();
+    }
+
+    void ProcessPocketForNonTulips()
+    {
+            switch(openTulipsType)
+            {
+                case TulipsThatCanOpen.OnList:
+                    connectedTulips.ForEach(i =>
+                    {
+                        i.GetComponent<ManagePocket>()?.OpenArms();
+                    });
+                    break;
+                case TulipsThatCanOpen.All:
+                    gameManager.OpenAllTulips();
+                    break;
+                default:
+                    break;
+            }
+            switch(tulipCloseBehavior)
+            {
+                case TulipCloseBehaviorType.OnList:
+                    connectedTulips.ForEach(i =>
+                    {
+                        i.GetComponent<ManagePocket>()?.CloseArms();
+                    });
+                    break;
+                case TulipCloseBehaviorType.All:
+                    gameManager.CloseAllTulips();
+                    break;
+                default:
+                    break;
+            }
+
 
         // Pays the prize
         gameManager.ExecutePayout();

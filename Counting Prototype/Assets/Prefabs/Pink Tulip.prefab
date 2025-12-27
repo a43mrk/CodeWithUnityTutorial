@@ -432,6 +432,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5854663700944059242}
+  - component: {fileID: 1939445448703623640}
   m_Layer: 0
   m_Name: Right Arm
   m_TagString: Untagged
@@ -455,6 +456,28 @@ Transform:
   - {fileID: 3528020735346125542}
   m_Father: {fileID: 4423790125477152267}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1939445448703623640
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4196925807611452809}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 373ff9f1f66ef629897ad9c3e4ff7cb4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4305088637847559582
 GameObject:
   m_ObjectHideFlags: 0
@@ -464,6 +487,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1269557603049968224}
+  - component: {fileID: 186328773753540187}
   m_Layer: 0
   m_Name: Left Arm
   m_TagString: Untagged
@@ -487,6 +511,28 @@ Transform:
   - {fileID: 5916314652287381122}
   m_Father: {fileID: 4423790125477152267}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &186328773753540187
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4305088637847559582}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9eaf65be1c32d85e0b151433c048f553, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6057745533737175346
 GameObject:
   m_ObjectHideFlags: 0
@@ -553,8 +599,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Counter
   pointsWorth: 1
-  isJackpotCollector: 0
-  isFoulBallCollector: 0
   openTulipsType: 0
   connectedTulips: []
   tulipCloseBehavior: 0

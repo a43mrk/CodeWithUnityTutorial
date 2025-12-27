@@ -119,11 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &208039603 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2873366545049793737, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
-  m_PrefabInstance: {fileID: 9002765408288174020}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &250417154
 GameObject:
   m_ObjectHideFlags: 0
@@ -195,16 +190,6 @@ Transform:
 --- !u!1 &282834042 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4561806355575081676, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
-  m_PrefabInstance: {fileID: 9002765408288174020}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &354322463 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8631568723989510724, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
-  m_PrefabInstance: {fileID: 9002765408288174020}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &354796772 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9065195505862973494, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
   m_PrefabInstance: {fileID: 9002765408288174020}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &390779115 stripped
@@ -319,7 +304,7 @@ Transform:
   m_GameObject: {fileID: 426902208}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -166, y: 0, z: 0}
   m_LocalScale: {x: 50, y: 1, z: 50}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -654,16 +639,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &1523485480 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9055679228932048665, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
-  m_PrefabInstance: {fileID: 9002765408288174020}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1599559733 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5345733889727598140, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
-  m_PrefabInstance: {fileID: 9002765408288174020}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1648811350
 GameObject:
   m_ObjectHideFlags: 0
@@ -904,11 +879,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &1999131818 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8458151480032183469, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
-  m_PrefabInstance: {fileID: 9002765408288174020}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2135155194
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1101,78 +1071,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3559394374202431, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
-      propertyPath: openTulipsType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3559394374202431, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
-      propertyPath: tulipCloseBehavior
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3559394374202431, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
-      propertyPath: connectedTulips.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3559394374202431, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
-      propertyPath: 'connectedTulips.Array.data[0]'
-      value: 
-      objectReference: {fileID: 1599559733}
-    - target: {fileID: 3559394374202431, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
-      propertyPath: 'connectedTulips.Array.data[1]'
-      value: 
-      objectReference: {fileID: 1523485480}
-    - target: {fileID: 3559394374202431, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
-      propertyPath: 'connectedTulips.Array.data[2]'
-      value: 
-      objectReference: {fileID: 354322463}
     - target: {fileID: 318144532787263210, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: m_VersionIndex
-      value: 1561
-      objectReference: {fileID: 0}
-    - target: {fileID: 397237802571702744, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
-      propertyPath: openTulipsType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 397237802571702744, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
-      propertyPath: tulipCloseBehavior
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 423745882805665527, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
-      propertyPath: openTulipsType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 423745882805665527, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
-      propertyPath: tulipCloseBehavior
-      value: 1
+      value: 1570
       objectReference: {fileID: 0}
     - target: {fileID: 459573037373294095, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: m_VersionIndex
-      value: 1561
+      value: 1570
       objectReference: {fileID: 0}
     - target: {fileID: 582307133432613379, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: m_VersionIndex
-      value: 41
+      value: 50
       objectReference: {fileID: 0}
-    - target: {fileID: 949183168413039939, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
-      propertyPath: openTulipsType
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 949183168413039939, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
-      propertyPath: tulipCloseBehavior
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1118072348341076906, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
-      propertyPath: openTulipsType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1118072348341076906, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
-      propertyPath: tulipCloseBehavior
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1959327763891304514, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 4300000, guid: 16a8b53c8d3a0a60a848856d7b23c4a0, type: 2}
     - target: {fileID: 2731633463618446239, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: m_LocalPosition.x
       value: -156.59
@@ -1215,51 +1125,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2774326024984509462, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: m_VersionIndex
-      value: 1561
+      value: 1570
       objectReference: {fileID: 0}
     - target: {fileID: 3484726845864153720, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: m_VersionIndex
-      value: 1315
-      objectReference: {fileID: 0}
-    - target: {fileID: 3575618329606875624, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
-      propertyPath: openTulipsType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3575618329606875624, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
-      propertyPath: tulipCloseBehavior
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3575618329606875624, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
-      propertyPath: connectedTulips.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3575618329606875624, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
-      propertyPath: 'connectedTulips.Array.data[0]'
-      value: 
-      objectReference: {fileID: 1999131818}
-    - target: {fileID: 3575618329606875624, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
-      propertyPath: 'connectedTulips.Array.data[1]'
-      value: 
-      objectReference: {fileID: 354796772}
-    - target: {fileID: 3575618329606875624, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
-      propertyPath: 'connectedTulips.Array.data[2]'
-      value: 
-      objectReference: {fileID: 208039603}
-    - target: {fileID: 3630625067738707922, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
-      propertyPath: openTulipsType
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3630625067738707922, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
-      propertyPath: tulipCloseBehavior
-      value: 1
+      value: 1324
       objectReference: {fileID: 0}
     - target: {fileID: 4173467439265162525, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: m_VersionIndex
-      value: 41
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4667388548017894739, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: m_VersionIndex
-      value: 1315
+      value: 1324
       objectReference: {fileID: 0}
     - target: {fileID: 5276400318553131493, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: m_Name
@@ -1267,43 +1145,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6204196050048621373, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: m_VersionIndex
-      value: 1561
+      value: 1570
       objectReference: {fileID: 0}
-    - target: {fileID: 6825580673624011773, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 4300000, guid: 16a8b53c8d3a0a60a848856d7b23c4a0, type: 2}
     - target: {fileID: 6825580673624011773, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: m_VersionIndex
-      value: 1221
-      objectReference: {fileID: 0}
-    - target: {fileID: 6894291137568541991, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
-      propertyPath: openTulipsType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6894291137568541991, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
-      propertyPath: tulipCloseBehavior
-      value: 1
+      value: 1230
       objectReference: {fileID: 0}
     - target: {fileID: 7073807983818781089, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: m_VersionIndex
-      value: 41
-      objectReference: {fileID: 0}
-    - target: {fileID: 7622843066424141285, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
-      propertyPath: openTulipsType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7622843066424141285, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
-      propertyPath: tulipCloseBehavior
-      value: 1
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8427254673845604801, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: m_VersionIndex
-      value: 1561
+      value: 1570
       objectReference: {fileID: 0}
     - target: {fileID: 8572991683454476580, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: m_VersionIndex
-      value: 1561
+      value: 1570
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

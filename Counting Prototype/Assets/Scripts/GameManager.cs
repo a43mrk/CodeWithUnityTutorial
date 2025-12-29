@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public GameObject startPointAndDirection;
     public GameObject jackpotStartPointAndDirection;
     public int startCredits = 100;
+    public int jackpotReserve = 200;
     public int interval = 1;
     public float initialForce = 300f;
     public float maxForce = 500f;
@@ -25,11 +26,12 @@ public class GameManager : MonoBehaviour
 
     private int ballsLost = 0;
     // Payout amount is fixed (e.g., 10, 15, or 20 balls).
-    public int jackPotPremium = 15; // normally 15
-    public int sidePocketPremium = 3; // 0 ~ 3 balls
+    // public int jackPotPremium = 15; // normally 15
+    // public int sidePocketPremium = 3; // 0 ~ 3 balls
+    // public int jackpotRounds = 8; // 8~15 rounds
     public float jackPointTime = 30.0f; // 30~60 seconds
-    public int jackpotRounds = 8; // 8~15 rounds
     private float jackPointTimeLeft = 0;
+
     private int ballsMissed = 0;
     private int redeemedMissedBalls = 0;
     // used to toggle winning light when users redeem the balls
@@ -42,6 +44,10 @@ public class GameManager : MonoBehaviour
     public GameObject QueenLamp;
     public GameObject KingLamp;
     public GameObject ShootingChamberLamp;
+    public GameObject victoryLamp;
+    public GameObject victorySign;
+    private GlowingLamp queensLamp;
+    private GlowingLamp kingsLamp;
 
     void Awake()
     {
@@ -49,6 +55,8 @@ public class GameManager : MonoBehaviour
         Physics.gravity = gravity;
         shootingAudioFx = GetComponent<AudioSource>();
         allTulips = GameObject.FindGameObjectsWithTag("Tulip");
+        queensLamp = QueenLamp.GetComponent<GlowingLamp>();
+        kingsLamp = KingLamp.GetComponent<GlowingLamp>();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -64,6 +72,12 @@ public class GameManager : MonoBehaviour
         {
             UpdateJackPockCountdown();
         }
+
+        if(startCredits <= 0)
+        {
+            queensLamp.EnableGlow();
+        }
+
     }
     private IEnumerator SpawnAndShoot()
     {
@@ -123,27 +137,38 @@ public class GameManager : MonoBehaviour
         return jackPointTimeLeft > 0.01f;
     }
 
-    public void ExecutePayout()
+    public void ExecutePayout(int prize)
     {
-        for(int i = 0; i < jackPotPremium; i++)
+        if(jackpotReserve > 0)
         {
-            GameObject ball = Instantiate(
-                ballPrefab,
-                jackpotStartPointAndDirection.transform.position,
-                Quaternion.identity
-            );
+            jackpotReserve -= prize;
 
-            // Debug.Log("instantiating payout ball: " + ball.gameObject.GetInstanceID());
-
-            Rigidbody rb = ball.GetComponent<Rigidbody>();
-            if(rb == null)
+            for(int i = 0; i < prize; i++)
             {
-                Debug.LogError("Ball prefab must have a Rigidbody.");
-                return;
-            }
+                GameObject ball = Instantiate(
+                    ballPrefab,
+                    jackpotStartPointAndDirection.transform.position,
+                    Quaternion.identity
+                );
 
-            Vector3 direction = jackpotStartPointAndDirection.transform.up;
-            rb.AddForce(direction * 50, ForceMode.Impulse);
+                // Debug.Log("instantiating payout ball: " + ball.gameObject.GetInstanceID());
+
+                Rigidbody rb = ball.GetComponent<Rigidbody>();
+                if(rb == null)
+                {
+                    Debug.LogError("Ball prefab must have a Rigidbody.");
+                    return;
+                }
+
+                Vector3 direction = jackpotStartPointAndDirection.transform.up;
+                rb.AddForce(direction * 50, ForceMode.Impulse);
+            }
+        }
+        else
+        {
+            queensLamp.EnableGlow();
+            victoryLamp.GetComponent<GlowingLamp>()?.EnableGlow();
+            victorySign.SetActive(true);
         }
 
     }

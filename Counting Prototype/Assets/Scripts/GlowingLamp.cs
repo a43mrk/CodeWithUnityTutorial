@@ -22,6 +22,7 @@ public class GlowingLamp : MonoBehaviour
     private bool hadEmission;
     private Color originalEmissionColor;
     private Coroutine pulseRoutine;
+    private bool isGlowing;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -41,6 +42,7 @@ public class GlowingLamp : MonoBehaviour
 
         if(pointLight != null)
         {
+            isGlowing = false;
             pointLight.enabled = false;
             pointLight.intensity = lightIntensity;
             pointLight.range = lightRange;
@@ -55,6 +57,8 @@ public class GlowingLamp : MonoBehaviour
 
     public void EnableGlow()
     {
+        if(isGlowing) return;
+
         if (!runtimeMaterial.HasProperty("_EmissionColor"))
             return;
 
@@ -64,6 +68,7 @@ public class GlowingLamp : MonoBehaviour
         runtimeMaterial.SetColor("_EmissionColor", finalColor);
 
         SetPointLight(true);
+        isGlowing = true;
     }
 
     public void StartLampSequence()
@@ -132,6 +137,8 @@ public class GlowingLamp : MonoBehaviour
 
     public void DisableGlow()
     {
+        if(!isGlowing) return;
+
         if(!runtimeMaterial.HasProperty("_EmissionColor"))
             return;
 
@@ -152,5 +159,7 @@ public class GlowingLamp : MonoBehaviour
         {
             pointLight.enabled = false;
         }
+
+        isGlowing = false;
     }
 }

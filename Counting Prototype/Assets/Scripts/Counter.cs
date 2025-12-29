@@ -27,6 +27,7 @@ public class Counter : MonoBehaviour
 {
 
     public int pointsWorth = 1;
+    public int prize = 15;
     // flag this pocket as jackpoint counter
     public TulipsThatCanOpen openTulipsType = TulipsThatCanOpen.None;
     public List<GameObject> connectedTulips = new List<GameObject>();
@@ -144,7 +145,7 @@ public class Counter : MonoBehaviour
         }
 
         // Pays the prize
-        gameManager.ExecutePayout();
+        gameManager.ExecutePayout(prize);
     }
 
     void ProcessPocketForNonTulips()
@@ -180,6 +181,6 @@ public class Counter : MonoBehaviour
 
 
         // Pays the prize
-        gameManager.ExecutePayout();
+        gameManager.ExecutePayout(prize);
     }
 }

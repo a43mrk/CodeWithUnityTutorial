@@ -41,13 +41,20 @@ public class Counter : MonoBehaviour
     public GameObject indicatorLamp2;
     private GlowingLamp lamp;
     private GlowingLamp lamp2;
+    private AudioSource audioSource;
 
     private void Awake()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         tulip = GetComponent<ManagePocket>();
-        lamp = indicatorLamp.GetComponent<GlowingLamp>();
-        lamp2 = indicatorLamp2.GetComponent<GlowingLamp>();
+
+        if(lamp != null)
+            lamp = indicatorLamp.GetComponent<GlowingLamp>();
+
+        if(indicatorLamp2 != null)
+            lamp2 = indicatorLamp2.GetComponent<GlowingLamp>();
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -75,6 +82,14 @@ public class Counter : MonoBehaviour
         if(starAnimator != null)
         {
             starAnimator.SetTrigger("Pull");
+        }
+
+        if(audioSource != null)
+        {
+            if(audioSource.isPlaying)
+                audioSource.Stop();
+
+            audioSource.Play();
         }
 
     }

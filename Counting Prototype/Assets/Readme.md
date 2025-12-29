@@ -7,6 +7,9 @@
 
 ## Not Enough balls to Start Playing
 [] the lamp should lights if there is no balls to throw from the white tray that go to the shooting point.
+[] collect white tray balls to shooting credits
+[] disable the queens lamp after adding credits
+[] rename credits to reserved ball to shoot?
 
 ## Topmost on Tulip of each side(King Tulip)
 [x] When balls enters one of the Topmost Tulip of each side, it opens all tulips on it's side that it is located.
@@ -46,8 +49,8 @@
 [x] Add shooting sound effects
 [] Add balls falling sound effects
 [] Add balls spitting out on Jackpot
-[] Add Tulips opening sound effects
-[] Add Tulips closing sound effects
+[x] Add Tulips opening sound effects
+[x] Add Tulips closing sound effects
 [x] Add Wings Balls collector box collider as trigger and counter script
 [] Add free camera
 [] Add Game Menu
@@ -82,3 +85,5 @@
 [] make shoot if player clicks the lever
 [] make the orange btn on the machine transfer the balls to a basket
 [] Create Various Levels and the their Various payouts settings
+[] instantiate baskets after collecting n balls on a visible place
+[] put balls that escaped/falled from the machine into the basket

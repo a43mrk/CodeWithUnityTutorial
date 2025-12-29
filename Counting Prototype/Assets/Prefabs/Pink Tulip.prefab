@@ -608,6 +608,9 @@ MonoBehaviour:
   count: 0
   indicatorLamp: {fileID: 0}
   indicatorLamp2: {fileID: 0}
+  tracks:
+  - {fileID: 8300000, guid: 79d45d5846ee79d5c990ca9f1c96d366, type: 3}
+  - {fileID: 8300000, guid: 9214e2028f2371b0ea90889ca77ea824, type: 3}
 --- !u!65 &4069390872788362038
 BoxCollider:
   m_ObjectHideFlags: 0

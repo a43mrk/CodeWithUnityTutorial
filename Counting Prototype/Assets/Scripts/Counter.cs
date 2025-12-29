@@ -39,6 +39,7 @@ public class Counter : MonoBehaviour
     private ManagePocket tulip;
     public GameObject indicatorLamp;
     public GameObject indicatorLamp2;
+    public AudioClip[] tracks;
     private GlowingLamp lamp;
     private GlowingLamp lamp2;
     private AudioSource audioSource;
@@ -89,7 +90,11 @@ public class Counter : MonoBehaviour
             if(audioSource.isPlaying)
                 audioSource.Stop();
 
-            audioSource.Play();
+            if(tracks[0] != null)
+                audioSource.PlayOneShot(tracks[0]);
+
+            if(tracks[1] != null)
+                audioSource.PlayOneShot(tracks[1]);
         }
 
     }

@@ -47,16 +47,16 @@
 
 ## TODOs
 [x] Add shooting sound effects
-[] Add balls falling sound effects
-[] Add balls spitting out on Jackpot
+[x] Add jackpot sound effects
+[x] Add balls spitting out on Jackpot
 [x] Add Tulips opening sound effects
 [x] Add Tulips closing sound effects
 [x] Add Wings Balls collector box collider as trigger and counter script
 [] Add free camera
 [] Add Game Menu
-[] Add Entering the ball lose hole audio
+[x] Add Entering the ball lose hole audio
 [] Add Wing switching Audio
-[] Add ball enter top most pocket Audio
+[x] Add ball enter top most pocket Audio
 [x] Ball and Nail Collision Sound Effects
 [] Add option to the player to use auto shoot or manual shoot
 [x] Add an individual Count for every pocket too
@@ -88,3 +88,4 @@
 [] instantiate baskets after collecting n balls on a visible place
 [] put balls that escaped/falled from the machine into the basket
 [] put the audio source on the nail not on the balls(performance)
+[] Fix failing jackpot sound and lamp fx

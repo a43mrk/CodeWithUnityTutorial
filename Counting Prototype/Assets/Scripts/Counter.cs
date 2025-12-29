@@ -90,11 +90,11 @@ public class Counter : MonoBehaviour
             if(audioSource.isPlaying)
                 audioSource.Stop();
 
-            if(tracks[0] != null)
-                audioSource.PlayOneShot(tracks[0]);
+            foreach(var track in tracks)
+            {
+                audioSource.PlayOneShot(track);
+            }
 
-            if(tracks[1] != null)
-                audioSource.PlayOneShot(tracks[1]);
         }
 
     }

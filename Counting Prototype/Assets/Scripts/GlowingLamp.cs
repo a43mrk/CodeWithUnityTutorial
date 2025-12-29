@@ -23,6 +23,8 @@ public class GlowingLamp : MonoBehaviour
     private Color originalEmissionColor;
     private Coroutine pulseRoutine;
     private bool isGlowing;
+    private AudioSource audioSource;
+    private static readonly int EmissionColorID = Shader.PropertyToID("_EmissionColor");
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -33,9 +35,9 @@ public class GlowingLamp : MonoBehaviour
         runtimeMaterial = renderer.materials.FirstOrDefault(a => a.name.Contains("Glass"));
 
         // Cache original emission state
-        if(runtimeMaterial.HasProperty("_EmissionColor"))
+        if(runtimeMaterial.HasProperty(EmissionColorID))
         {
-            originalEmissionColor = runtimeMaterial.GetColor("EmissionColor");
+            originalEmissionColor = runtimeMaterial.GetColor(EmissionColorID);
             hadEmission = runtimeMaterial.IsKeywordEnabled("_EMISSION");
         }
 
@@ -49,6 +51,8 @@ public class GlowingLamp : MonoBehaviour
             pointLight.color = glowColor;
             pointLight.shadows = LightShadows.None;
         }
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Start()
@@ -69,6 +73,14 @@ public class GlowingLamp : MonoBehaviour
 
         SetPointLight(true);
         isGlowing = true;
+
+        if(audioSource != null)
+        {
+            if(audioSource.isPlaying)
+                audioSource.Stop();
+
+            audioSource.Play();
+        }
     }
 
     public void StartLampSequence()

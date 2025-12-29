@@ -59,17 +59,17 @@ public class GlowingLamp : MonoBehaviour
     {
     }
 
-    public void EnableGlow()
+    public void EnableGlow(bool skipMultipleCalls = false)
     {
-        if(isGlowing) return;
+        if(isGlowing && skipMultipleCalls) return;
 
-        if (!runtimeMaterial.HasProperty("_EmissionColor"))
+        if (!runtimeMaterial.HasProperty(EmissionColorID))
             return;
 
         runtimeMaterial.EnableKeyword("_EMISSION");
 
         Color finalColor = glowColor * intensity;
-        runtimeMaterial.SetColor("_EmissionColor", finalColor);
+        runtimeMaterial.SetColor(EmissionColorID, finalColor);
 
         SetPointLight(true);
         isGlowing = true;
@@ -138,12 +138,12 @@ public class GlowingLamp : MonoBehaviour
 
     public void PulsatingGlow()
     {
-        if(!runtimeMaterial.HasProperty("_EmissionColor"))
+        if(!runtimeMaterial.HasProperty(EmissionColorID))
             return;
 
         float pulse = Mathf.Sin(Time.time * 4f) * 0.5f + 0.5f;
         Color finalColor = glowColor * intensity * pulse;
-        runtimeMaterial.SetColor("_EmissionColor", finalColor);
+        runtimeMaterial.SetColor(EmissionColorID, finalColor);
 
     }
 
@@ -151,18 +151,18 @@ public class GlowingLamp : MonoBehaviour
     {
         if(!isGlowing) return;
 
-        if(!runtimeMaterial.HasProperty("_EmissionColor"))
+        if(!runtimeMaterial.HasProperty(EmissionColorID))
             return;
 
         if(hadEmission)
         {
             // Restore original emission
-            runtimeMaterial.SetColor("_EmissionColor", originalEmissionColor);
+            runtimeMaterial.SetColor(EmissionColorID, originalEmissionColor);
         }
         else
         {
             // Fully disable emission
-            runtimeMaterial.SetColor("_EmissionColor", Color.black);
+            runtimeMaterial.SetColor(EmissionColorID, Color.black);
             runtimeMaterial.DisableKeyword("_EMISSION");
         }
 

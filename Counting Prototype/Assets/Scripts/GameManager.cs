@@ -139,6 +139,8 @@ public class GameManager : MonoBehaviour
 
     public void ExecutePayout(int prize)
     {
+        kingsLamp.EnableGlow();
+
         if(jackpotReserve > 0)
         {
             jackpotReserve -= prize;

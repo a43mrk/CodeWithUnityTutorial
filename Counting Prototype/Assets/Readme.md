@@ -88,4 +88,5 @@
 [] instantiate baskets after collecting n balls on a visible place
 [] put balls that escaped/falled from the machine into the basket
 [] put the audio source on the nail not on the balls(performance)
-[] Fix failing jackpot sound and lamp fx
+[x] Fix failing jackpot sound and lamp fx
+[]Fix the broken king lamp is always on

@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(Renderer))]
-public class GlowQueenMaterial : MonoBehaviour
+public class GlowingLamp : MonoBehaviour
 {
     [ColorUsage(true, true)]
     public Color glowColor = Color.orange;
@@ -21,6 +21,7 @@ public class GlowQueenMaterial : MonoBehaviour
     private Material runtimeMaterial;
     private bool hadEmission;
     private Color originalEmissionColor;
+    private Coroutine pulseRoutine;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -63,6 +64,48 @@ public class GlowQueenMaterial : MonoBehaviour
         runtimeMaterial.SetColor("_EmissionColor", finalColor);
 
         SetPointLight(true);
+    }
+
+    public void StartLampSequence()
+    {
+        if(pulseRoutine != null)
+            StopCoroutine(pulseRoutine);
+
+        pulseRoutine = StartCoroutine(LampSequence(2f));
+    }
+
+    public void StartPulsatingLampSequence()
+    {
+        if(pulseRoutine != null)
+            StopCoroutine(pulseRoutine);
+
+        pulseRoutine = StartCoroutine(PulsatingLampSequence(2f));
+    }
+
+    private System.Collections.IEnumerator PulsatingLampSequence(float duration)
+    {
+        float elapsed = 0f;
+
+        while(elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+
+            PulsatingGlow();
+
+            yield return null;
+        }
+
+
+        DisableGlow();
+    }
+
+    private System.Collections.IEnumerator LampSequence(float duration)
+    {
+        EnableGlow();
+
+        yield return new WaitForSeconds(duration);
+
+        DisableGlow();
     }
 
     private void SetPointLight(bool v)

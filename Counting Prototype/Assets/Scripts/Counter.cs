@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -35,12 +36,17 @@ public class Counter : MonoBehaviour
 
     private GameManager gameManager;
     private ManagePocket tulip;
+    public GameObject indicatorLamp;
+    public GameObject indicatorLamp2;
+    private GlowingLamp lamp;
+    private GlowingLamp lamp2;
 
-    private void Start()
+    private void Awake()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         tulip = GetComponent<ManagePocket>();
-
+        lamp = indicatorLamp.GetComponent<GlowingLamp>();
+        lamp2 = indicatorLamp2.GetComponent<GlowingLamp>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -52,6 +58,18 @@ public class Counter : MonoBehaviour
         gameManager.UpdateScore(pointsWorth);
 
         ProcessPocket();
+
+        if(lamp != null)
+        {
+            lamp.StartLampSequence();
+            // lamp.StartPulsatingLampSequence();
+        }
+
+        if(lamp2 != null)
+        {
+            lamp2.StartLampSequence();
+            // lamp2.StartPulsatingLampSequence();
+        }
 
         if(starAnimator != null)
         {

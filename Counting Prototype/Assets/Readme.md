@@ -28,7 +28,7 @@
 [x] the ball should fall straight down to the pink tulip // analogy
 
 ## Thunderbird's wing
-[] If a ball enter one of the wings of the Thunderbird a payout is made.
+[x] If a ball enter one of the wings of the Thunderbird a payout is made.
 
 ## Dai's pockets
 [x] if a ball falls on the one of the sides of the Dai's pockets, it have to open the tulips on the same side(some machines open the pink tulip too)
@@ -76,6 +76,7 @@
 [] Change the caount, lost into an new panel
 [] replace the close and open of the tulips by Animation to reduce errors
 [] BUG: review if the ball is counted twice or more
-[] Add basket of balls
+[x] Add basket of balls
 [] make shoot if player clicks the lever
 [] make the orange btn on the machine transfer the balls to a basket
+[] Create Various Levels and the their Various payouts settings

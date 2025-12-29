@@ -3655,7 +3655,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 0f029415320e42e084c304bfb9f219f9
   m_Mesh: {fileID: 4300000, guid: 16a8b53c8d3a0a60a848856d7b23c4a0, type: 2}
-  m_VersionIndex: 1447
+  m_VersionIndex: 1471
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -4976,7 +4976,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 761a9188c1484bb1ab87cef6e8970e86
   m_Mesh: {fileID: 4300000, guid: f0b89014171c389d5b54fd10d24a4f1b, type: 2}
-  m_VersionIndex: 255
+  m_VersionIndex: 279
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -11671,7 +11671,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 9dbe26e78ab24ef6b3ebfc8a850ffd97
   m_Mesh: {fileID: 4300000, guid: e5b53b725a381882ba4130b040c956b9, type: 2}
-  m_VersionIndex: 258
+  m_VersionIndex: 282
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -15088,7 +15088,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: b28f8548fa054d6eb2605f1fec79a416
   m_Mesh: {fileID: 4300000, guid: 65e5362bcdd1d398a8f3705ed972b46e, type: 2}
-  m_VersionIndex: 261
+  m_VersionIndex: 285
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -15809,6 +15809,8 @@ MonoBehaviour:
   tulipCloseBehavior: 0
   starAnimator: {fileID: 4345415787791337564}
   count: 0
+  indicatorLamp: {fileID: 2377097957420352305}
+  indicatorLamp2: {fileID: 0}
 --- !u!1 &6398602949497369028
 GameObject:
   m_ObjectHideFlags: 0
@@ -21413,6 +21415,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 2731633463618446239}
     m_Modifications:
     - target: {fileID: 1025035964063248324, guid: 766f42b2a946a1283bd29f1ca43d5f15, type: 3}
+      propertyPath: indicatorLamp
+      value: 
+      objectReference: {fileID: 2377097957420352305}
+    - target: {fileID: 1025035964063248324, guid: 766f42b2a946a1283bd29f1ca43d5f15, type: 3}
       propertyPath: openTulipsType
       value: 1
       objectReference: {fileID: 0}
@@ -21611,6 +21617,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2731633463618446239}
     m_Modifications:
+    - target: {fileID: 1025035964063248324, guid: 766f42b2a946a1283bd29f1ca43d5f15, type: 3}
+      propertyPath: indicatorLamp
+      value: 
+      objectReference: {fileID: 2377097957420352305}
     - target: {fileID: 1025035964063248324, guid: 766f42b2a946a1283bd29f1ca43d5f15, type: 3}
       propertyPath: openTulipsType
       value: 2
@@ -21898,7 +21908,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 38248329025212967, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_VersionIndex
-      value: 1777
+      value: 1801
       objectReference: {fileID: 0}
     - target: {fileID: 183837645430006466, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_Mesh
@@ -21910,7 +21920,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 183837645430006466, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_VersionIndex
-      value: 1777
+      value: 1801
       objectReference: {fileID: 0}
     - target: {fileID: 2036889488882965751, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_LocalPosition.x
@@ -21962,7 +21972,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3796984156933109429, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_VersionIndex
-      value: 1531
+      value: 1555
       objectReference: {fileID: 0}
     - target: {fileID: 5977436746001891312, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_Mesh
@@ -21974,7 +21984,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5977436746001891312, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_VersionIndex
-      value: 1777
+      value: 1801
       objectReference: {fileID: 0}
     - target: {fileID: 8705884202327931433, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_Name
@@ -22557,6 +22567,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 2731633463618446239}
     m_Modifications:
     - target: {fileID: 1025035964063248324, guid: 766f42b2a946a1283bd29f1ca43d5f15, type: 3}
+      propertyPath: indicatorLamp
+      value: 
+      objectReference: {fileID: 2377097957420352305}
+    - target: {fileID: 1025035964063248324, guid: 766f42b2a946a1283bd29f1ca43d5f15, type: 3}
       propertyPath: openTulipsType
       value: 1
       objectReference: {fileID: 0}
@@ -22631,6 +22645,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2731633463618446239}
     m_Modifications:
+    - target: {fileID: 1025035964063248324, guid: 766f42b2a946a1283bd29f1ca43d5f15, type: 3}
+      propertyPath: indicatorLamp
+      value: 
+      objectReference: {fileID: 2377097957420352305}
     - target: {fileID: 1025035964063248324, guid: 766f42b2a946a1283bd29f1ca43d5f15, type: 3}
       propertyPath: openTulipsType
       value: 1
@@ -22932,6 +22950,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2731633463618446239}
     m_Modifications:
+    - target: {fileID: 1025035964063248324, guid: 16bd6e8b203a47075a1f9c6fa465d243, type: 3}
+      propertyPath: indicatorLamp
+      value: 
+      objectReference: {fileID: 2377097957420352305}
     - target: {fileID: 1025035964063248324, guid: 16bd6e8b203a47075a1f9c6fa465d243, type: 3}
       propertyPath: openTulipsType
       value: 1
@@ -27772,6 +27794,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 2731633463618446239}
     m_Modifications:
     - target: {fileID: 1025035964063248324, guid: 766f42b2a946a1283bd29f1ca43d5f15, type: 3}
+      propertyPath: indicatorLamp
+      value: 
+      objectReference: {fileID: 2377097957420352305}
+    - target: {fileID: 1025035964063248324, guid: 766f42b2a946a1283bd29f1ca43d5f15, type: 3}
       propertyPath: openTulipsType
       value: 2
       objectReference: {fileID: 0}
@@ -28234,6 +28260,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2731633463618446239}
     m_Modifications:
+    - target: {fileID: 1025035964063248324, guid: 16bd6e8b203a47075a1f9c6fa465d243, type: 3}
+      propertyPath: indicatorLamp
+      value: 
+      objectReference: {fileID: 2377097957420352305}
     - target: {fileID: 1025035964063248324, guid: 16bd6e8b203a47075a1f9c6fa465d243, type: 3}
       propertyPath: openTulipsType
       value: 1
@@ -28961,6 +28991,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2731633463618446239}
     m_Modifications:
+    - target: {fileID: 1233440670997376929, guid: d001804dbc496c1889ac4f1d44c312b0, type: 3}
+      propertyPath: indicatorLamp2
+      value: 
+      objectReference: {fileID: 2377097957420352305}
+    - target: {fileID: 1747367694915240907, guid: d001804dbc496c1889ac4f1d44c312b0, type: 3}
+      propertyPath: indicatorLamp2
+      value: 
+      objectReference: {fileID: 2377097957420352305}
+    - target: {fileID: 4177669754695684994, guid: d001804dbc496c1889ac4f1d44c312b0, type: 3}
+      propertyPath: indicatorLamp
+      value: 
+      objectReference: {fileID: 2377097957420352305}
     - target: {fileID: 4177669754695684994, guid: d001804dbc496c1889ac4f1d44c312b0, type: 3}
       propertyPath: 'connectedTulips.Array.data[0]'
       value: 
@@ -28977,10 +29019,18 @@ PrefabInstance:
       propertyPath: 'connectedTulips.Array.data[3]'
       value: 
       objectReference: {fileID: 8631568723989510724}
+    - target: {fileID: 5504749116597135735, guid: d001804dbc496c1889ac4f1d44c312b0, type: 3}
+      propertyPath: indicatorLamp
+      value: 
+      objectReference: {fileID: 2377097957420352305}
     - target: {fileID: 5773813234280334248, guid: d001804dbc496c1889ac4f1d44c312b0, type: 3}
       propertyPath: m_Name
       value: jack_pot
       objectReference: {fileID: 0}
+    - target: {fileID: 6579189830867918758, guid: d001804dbc496c1889ac4f1d44c312b0, type: 3}
+      propertyPath: indicatorLamp
+      value: 
+      objectReference: {fileID: 2377097957420352305}
     - target: {fileID: 6579189830867918758, guid: d001804dbc496c1889ac4f1d44c312b0, type: 3}
       propertyPath: 'connectedTulips.Array.data[0]'
       value: 
@@ -29055,6 +29105,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2731633463618446239}
     m_Modifications:
+    - target: {fileID: 3196466748854874332, guid: 642f2c090733be93c9a9e4c53ce064e7, type: 3}
+      propertyPath: indicatorLamp
+      value: 
+      objectReference: {fileID: 2377097957420352305}
     - target: {fileID: 3196466748854874332, guid: 642f2c090733be93c9a9e4c53ce064e7, type: 3}
       propertyPath: openTulipsType
       value: 1
@@ -30225,6 +30279,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2731633463618446239}
     m_Modifications:
+    - target: {fileID: 1025035964063248324, guid: 766f42b2a946a1283bd29f1ca43d5f15, type: 3}
+      propertyPath: indicatorLamp
+      value: 
+      objectReference: {fileID: 2377097957420352305}
     - target: {fileID: 1025035964063248324, guid: 766f42b2a946a1283bd29f1ca43d5f15, type: 3}
       propertyPath: openTulipsType
       value: 1
@@ -34931,7 +34989,7 @@ PrefabInstance:
       objectReference: {fileID: 4300000, guid: 82720bffd84425e08a35949ec6a8e164, type: 2}
     - target: {fileID: 38248329025212967, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_VersionIndex
-      value: 1777
+      value: 1801
       objectReference: {fileID: 0}
     - target: {fileID: 183837645430006466, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_Mesh
@@ -34939,7 +34997,7 @@ PrefabInstance:
       objectReference: {fileID: 4300000, guid: a8f70d894f4dcd0728abbc4e44b6e0e0, type: 2}
     - target: {fileID: 183837645430006466, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_VersionIndex
-      value: 1777
+      value: 1801
       objectReference: {fileID: 0}
     - target: {fileID: 2036889488882965751, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_LocalPosition.x
@@ -34991,7 +35049,7 @@ PrefabInstance:
       objectReference: {fileID: 4300000, guid: 067cf6c8a6783259f904a3ffb495dbb8, type: 2}
     - target: {fileID: 3796984156933109429, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_VersionIndex
-      value: 1531
+      value: 1555
       objectReference: {fileID: 0}
     - target: {fileID: 5977436746001891312, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_Mesh
@@ -34999,7 +35057,7 @@ PrefabInstance:
       objectReference: {fileID: 4300000, guid: d47076678f508c4399c09ec4e20efb9d, type: 2}
     - target: {fileID: 5977436746001891312, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_VersionIndex
-      value: 1777
+      value: 1801
       objectReference: {fileID: 0}
     - target: {fileID: 7509713599324574478, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_Mesh

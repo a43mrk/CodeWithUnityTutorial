@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3609705628844697682}
   - component: {fileID: 2542683238587805470}
   m_Layer: 0
-  m_Name: Cylinder.007
+  m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -187,6 +187,8 @@ MonoBehaviour:
   tulipCloseBehavior: 0
   starAnimator: {fileID: 0}
   count: 0
+  indicatorLamp: {fileID: 8950015655003039421}
+  indicatorLamp2: {fileID: 0}
 --- !u!1 &597909693477129643
 GameObject:
   m_ObjectHideFlags: 0
@@ -771,6 +773,8 @@ MonoBehaviour:
   tulipCloseBehavior: 0
   starAnimator: {fileID: 0}
   count: 0
+  indicatorLamp: {fileID: 0}
+  indicatorLamp2: {fileID: 0}
 --- !u!1 &2707106481847642691
 GameObject:
   m_ObjectHideFlags: 0
@@ -843,6 +847,8 @@ MonoBehaviour:
   tulipCloseBehavior: 0
   starAnimator: {fileID: 0}
   count: 0
+  indicatorLamp: {fileID: 8977674654889744152}
+  indicatorLamp2: {fileID: 0}
 --- !u!1 &3992615057979075771
 GameObject:
   m_ObjectHideFlags: 0
@@ -946,7 +952,7 @@ GameObject:
   - component: {fileID: 5641110464762409172}
   - component: {fileID: 8657471309517140447}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Separator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1310,6 +1316,8 @@ MonoBehaviour:
   tulipCloseBehavior: 0
   starAnimator: {fileID: 0}
   count: 0
+  indicatorLamp: {fileID: 0}
+  indicatorLamp2: {fileID: 0}
 --- !u!1 &7230310967961334912
 GameObject:
   m_ObjectHideFlags: 0
@@ -1648,6 +1656,8 @@ MonoBehaviour:
   tulipCloseBehavior: 0
   starAnimator: {fileID: 0}
   count: 0
+  indicatorLamp: {fileID: 0}
+  indicatorLamp2: {fileID: 0}
 --- !u!1 &8945116865445919481
 GameObject:
   m_ObjectHideFlags: 0

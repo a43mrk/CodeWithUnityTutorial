@@ -39,6 +39,9 @@ public class GameManager : MonoBehaviour
     private AudioSource shootingAudioFx;
     public Animator leverAnimator;
     private GameObject[] allTulips;
+    public GameObject QueenLamp;
+    public GameObject KingLamp;
+    public GameObject ShootingChamberLamp;
 
     void Awake()
     {
@@ -52,7 +55,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         StartCoroutine(SpawnAndShoot());
-        ExecutePayout();
     }
 
     // Update is called once per frame
@@ -141,7 +143,7 @@ public class GameManager : MonoBehaviour
             }
 
             Vector3 direction = jackpotStartPointAndDirection.transform.up;
-            rb.AddForce(direction * 100, ForceMode.Impulse);
+            rb.AddForce(direction * 50, ForceMode.Impulse);
         }
 
     }

@@ -1,9 +1,9 @@
 # Nishijin Power Flash Thunderbird
 ## Balls out
 [x] The Queen lamp should light when the balls are out of stock from the balls feed on top of the machine.
-[] you win flag appears if the prize total balls was all paid
-[] Add prize total balls
-[] subtract the prize total balls after payout
+[x] you win flag appears if the prize total balls was all paid
+[x] Add jackpot total reserve(reserve of balls that the machine can hold to do the payouts)
+[x] subtract the prize total balls after payout
 
 ## Not Enough balls to Start Playing
 [] the lamp should lights if there is no balls to throw from the white tray that go to the shooting point.

@@ -519,7 +519,7 @@ MonoBehaviour:
   startPointAndDirection: {fileID: 390779115}
   jackpotStartPointAndDirection: {fileID: 282834042}
   startCredits: 100
-  jackpotReserve: 200
+  jackpotReserve: 1000
   interval: 1
   initialForce: 280
   maxForce: 480

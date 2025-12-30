@@ -5,6 +5,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public enum GameDifficulty
@@ -16,12 +17,20 @@ public enum GameDifficulty
 
 public enum GameActionType
 {
-    Play,
+    ChooseDificulty,
     Pause,
     Resume,
     Restart,
     ExitToMenu,
     QuitGame
+}
+
+public enum GameState
+{
+    Waiting,
+    Playing,
+    Paused,
+    GameOver
 }
 
 public class GameManager : MonoBehaviour
@@ -71,6 +80,7 @@ public class GameManager : MonoBehaviour
     private UIManager uiManager;
     private GameDifficulty gameDifficulty;
     private bool isGameRunning = false;
+    public GameState State { get; private set; }
 
     void Awake()
     {
@@ -82,12 +92,12 @@ public class GameManager : MonoBehaviour
         kingsLamp = KingLamp.GetComponent<GlowingLamp>();
         uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
 
+        State = GameState.Waiting;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        StartCoroutine(SpawnAndShoot());
     }
 
     // Update is called once per frame
@@ -220,33 +230,48 @@ public class GameManager : MonoBehaviour
     {
         gameDifficulty = GameDifficulty.Easy;
         gameDifficultyChannel.Invoke(gameDifficulty);
+
+        StartGame();
     }
     public void SetGameDifficutyToNormal()
     {
         gameDifficulty = GameDifficulty.Normal;
         gameDifficultyChannel.Invoke(gameDifficulty);
+
+        StartGame();
     }
     public void SetGameDifficutyToHard()
     {
         gameDifficulty = GameDifficulty.Hard;
         gameDifficultyChannel.Invoke(gameDifficulty);
+
+        StartGame();
+    }
+
+    public void Play()
+    {
+        gameActionChannel.Invoke(GameActionType.ChooseDificulty);
     }
 
     public void StartGame()
     {
-        gameActionChannel.Invoke(GameActionType.Play);
+        State = GameState.Playing;
+        StartCoroutine(SpawnAndShoot());
     }
 
     public void RestartGame()
     {
         gameActionChannel.Invoke(GameActionType.Restart);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void PauseGame()
     {
+        Time.timeScale = 0f;
         gameActionChannel.Invoke(GameActionType.Pause);
     }
     public void ResumeGame()
     {
+        Time.timeScale = 1f;
         gameActionChannel.Invoke(GameActionType.Resume);
     }
 

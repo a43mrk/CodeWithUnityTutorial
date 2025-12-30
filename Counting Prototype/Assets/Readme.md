@@ -56,11 +56,12 @@
 [] Add Game Menu
     [x] difficulty menu
     [] restart option
-    [] pause mechanism
-    [] start paused
-    [] start game after choose difficulty
-    [] hide main menu after choose difficulty
-    [] show game menu on game start
+    [x] pause mechanism
+    [x] start game paused(not shooting balls)
+    [x] start game after choose difficulty
+    [x] hide main menu after choose difficulty
+    [x] show game menu on game start
+    [] hide the game panel before game starts
 [x] Add Entering the ball lose hole audio
 [] Add Wing switching Audio
 [x] Add ball enter top most pocket Audio
@@ -97,3 +98,4 @@
 [] put the audio source on the nail not on the balls(performance)
 [x] Fix failing jackpot sound and lamp fx
 []Fix the broken king lamp is always on
+[] Add an Queue for the jackpot payout to not cutoff the soundfx

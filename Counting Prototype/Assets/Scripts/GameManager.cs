@@ -4,7 +4,25 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
+
+public enum GameDifficulty
+{
+    Easy,
+    Normal,
+    Hard
+}
+
+public enum GameActionType
+{
+    Play,
+    Pause,
+    Resume,
+    Restart,
+    ExitToMenu,
+    QuitGame
+}
 
 public class GameManager : MonoBehaviour
 {
@@ -19,8 +37,6 @@ public class GameManager : MonoBehaviour
 
     [UnitHeaderInspectable("Gravity Settings")]
     public Vector3 gravity = new Vector3(0f, -9.81f, 0f);
-    public Text CounterText;
-    public Text LostBallsText;
 
     private int totalScore = 0;
 
@@ -46,8 +62,15 @@ public class GameManager : MonoBehaviour
     public GameObject ShootingChamberLamp;
     public GameObject victoryLamp;
     public GameObject victorySign;
+
+    public GameActionChannel gameActionChannel;
+    public GameDifficultyChannel gameDifficultyChannel;
+
     private GlowingLamp queensLamp;
     private GlowingLamp kingsLamp;
+    private UIManager uiManager;
+    private GameDifficulty gameDifficulty;
+    private bool isGameRunning = false;
 
     void Awake()
     {
@@ -57,6 +80,8 @@ public class GameManager : MonoBehaviour
         allTulips = GameObject.FindGameObjectsWithTag("Tulip");
         queensLamp = QueenLamp.GetComponent<GlowingLamp>();
         kingsLamp = KingLamp.GetComponent<GlowingLamp>();
+        uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -114,13 +139,13 @@ public class GameManager : MonoBehaviour
     public void UpdateScore(int points)
     {
         totalScore += points;
-        CounterText.text = "Count : " + totalScore;
+        uiManager.SetScore(points);
     }
 
     public void IncrementBallsLost()
     {
         ++ballsLost;
-        LostBallsText.text = $"Lost: {ballsLost}";
+        uiManager.SetBallsLost(ballsLost);
     }
 
     public void PushJackPocketTime()
@@ -190,5 +215,41 @@ public class GameManager : MonoBehaviour
             tulip.CloseArms();
         }
     }
+
+    public void SetGameDifficutyToEasy()
+    {
+        gameDifficulty = GameDifficulty.Easy;
+        gameDifficultyChannel.Invoke(gameDifficulty);
+    }
+    public void SetGameDifficutyToNormal()
+    {
+        gameDifficulty = GameDifficulty.Normal;
+        gameDifficultyChannel.Invoke(gameDifficulty);
+    }
+    public void SetGameDifficutyToHard()
+    {
+        gameDifficulty = GameDifficulty.Hard;
+        gameDifficultyChannel.Invoke(gameDifficulty);
+    }
+
+    public void StartGame()
+    {
+        gameActionChannel.Invoke(GameActionType.Play);
+    }
+
+    public void RestartGame()
+    {
+        gameActionChannel.Invoke(GameActionType.Restart);
+    }
+    public void PauseGame()
+    {
+        gameActionChannel.Invoke(GameActionType.Pause);
+    }
+    public void ResumeGame()
+    {
+        gameActionChannel.Invoke(GameActionType.Resume);
+    }
+
+    public GameDifficulty GetGameDifficulty() => gameDifficulty;
 
 }

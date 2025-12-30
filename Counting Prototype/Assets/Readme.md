@@ -54,6 +54,13 @@
 [x] Add Wings Balls collector box collider as trigger and counter script
 [] Add free camera
 [] Add Game Menu
+    [x] difficulty menu
+    [] restart option
+    [] pause mechanism
+    [] start paused
+    [] start game after choose difficulty
+    [] hide main menu after choose difficulty
+    [] show game menu on game start
 [x] Add Entering the ball lose hole audio
 [] Add Wing switching Audio
 [x] Add ball enter top most pocket Audio

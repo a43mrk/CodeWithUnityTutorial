@@ -53,15 +53,15 @@
 [x] Add Tulips closing sound effects
 [x] Add Wings Balls collector box collider as trigger and counter script
 [] Add free camera
-[] Add Game Menu
+[x] Add Game Menu
     [x] difficulty menu
-    [] restart option
+    [x] restart option
     [x] pause mechanism
     [x] start game paused(not shooting balls)
     [x] start game after choose difficulty
     [x] hide main menu after choose difficulty
     [x] show game menu on game start
-    [] hide the game panel before game starts
+    [x] hide the game panel before game starts
 [x] Add Entering the ball lose hole audio
 [] Add Wing switching Audio
 [x] Add ball enter top most pocket Audio
@@ -101,3 +101,9 @@
 [] Add an Queue for the jackpot payout to not cutoff the soundfx
 [] don't play the payout sound fx if there is no jackpot reserves
 [] Game just shoot once and stops after restarting the game
+[] make long press call many times collect balls
+[] make long press call many times use balls
+[] Add move balls to basquet on action input
+[] Make the use of balls add credits and poweroff the queens light
+[] Add Start Auto shoot switch on the panel
+[] Add Manual Shoot input Action

@@ -21,6 +21,7 @@ public class UIManager : MonoBehaviour
         difficultyMenu.SetActive(false);
         restartBtn.SetActive(false);
         resumeBtn.SetActive(false);
+        gamePanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -59,6 +60,7 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log("difficulty: " + difficulty);
         difficultyMenu.SetActive(false);
+        gamePanel.SetActive(true);
         // Start Game
     }
 

@@ -22,7 +22,8 @@ public enum GameActionType
     Resume,
     Restart,
     ExitToMenu,
-    QuitGame
+    QuitGame,
+    StartGame
 }
 
 public enum GameState

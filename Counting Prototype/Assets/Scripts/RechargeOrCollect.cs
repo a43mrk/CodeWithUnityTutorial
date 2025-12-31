@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class RechargeOrCollect : MonoBehaviour
 {
@@ -17,18 +18,6 @@ public class RechargeOrCollect : MonoBehaviour
     void Update()
     {
         
-        // c to collect
-        if(Input.GetKeyDown(KeyCode.C))
-        {
-            if(objectsInContact.Any())
-                CollectPayout(objectsInContact.FirstOrDefault());
-        }
-        // r to use the available balls into credits
-        else if(Input.GetKeyDown(KeyCode.R))
-        {
-            // TODO: Add to credits
-            // Destroy(other.gameObject);
-        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -44,11 +33,27 @@ public class RechargeOrCollect : MonoBehaviour
         objectsInContact.Remove(other.gameObject);
     }
 
+    public void OnCollectAction(InputAction.CallbackContext context)
+    {
+        if(objectsInContact.Any())
+            CollectPayout(objectsInContact.FirstOrDefault());
+    }
+
+    public GameObject TakeABall()
+    {
+        var item = objectsInContact.FirstOrDefault();
+        if(item != null)
+        {
+            objectsInContact.Remove(item);
+            return item;
+        }
+        else
+            return null;
+    }
+
     private void CollectPayout(GameObject ball)
     {
         ball.transform.position = collectorsSpawnDirection.transform.position;
-
-        Debug.Log("instantiating payout ball: " + ball.gameObject.GetInstanceID());
 
         Rigidbody rb = ball.GetComponent<Rigidbody>();
         if(rb == null)

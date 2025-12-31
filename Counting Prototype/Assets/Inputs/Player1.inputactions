@@ -1,0 +1,115 @@
+{
+    "version": 1,
+    "name": "Player1",
+    "maps": [
+        {
+            "name": "In Game",
+            "id": "62a82b6b-89fe-472f-b9fa-d1e417477d12",
+            "actions": [
+                {
+                    "name": "Open Main Menu",
+                    "type": "Button",
+                    "id": "9d1466e2-cafd-4ba3-8f96-c8be03b6dd2e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Collect Ball",
+                    "type": "Button",
+                    "id": "22856029-4e68-4b63-8b27-891e28125f86",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Use Ball",
+                    "type": "Button",
+                    "id": "334519c5-cdbd-42bb-8715-0540c5a672ca",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "551e6986-3816-42a7-ab41-fda11b10db48",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Open Main Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "03449448-886a-4ad3-af93-dfda052edf7f",
+                    "path": "<Keyboard>/c",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Collect Ball",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "53426a81-20af-4ab3-8bbe-c8e6ba750c4b",
+                    "path": "<Keyboard>/u",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Use Ball",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "On Menu",
+            "id": "fc11f9f3-1672-4fa3-88a4-3e7852d07876",
+            "actions": [
+                {
+                    "name": "Escape Menu",
+                    "type": "Button",
+                    "id": "703a8c94-d1eb-44a2-824c-0a54cc239f6a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a22db52c-eca3-4806-af58-fa54da505e16",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Escape Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Keyboard",
+            "bindingGroup": "Keyboard",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}

@@ -74,6 +74,7 @@ public class GameManager : MonoBehaviour
 
     public GameActionChannel gameActionChannel;
     public GameDifficultyChannel gameDifficultyChannel;
+    public PachinkoMachineManager pachinkoMachine;
 
     private GlowingLamp queensLamp;
     private GlowingLamp kingsLamp;
@@ -81,6 +82,7 @@ public class GameManager : MonoBehaviour
     private GameDifficulty gameDifficulty;
     private bool isGameRunning = false;
     public GameState State { get; private set; }
+
 
     void Awake()
     {
@@ -98,7 +100,9 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        CheckCredits();
     }
+
 
     // Update is called once per frame
     void Update()
@@ -108,10 +112,6 @@ public class GameManager : MonoBehaviour
             UpdateJackPockCountdown();
         }
 
-        if(startCredits <= 0)
-        {
-            queensLamp.EnableGlow();
-        }
 
     }
     private IEnumerator SpawnAndShoot()
@@ -121,6 +121,8 @@ public class GameManager : MonoBehaviour
             ShootBall();
             startCredits--;
             yield return new WaitForSeconds(interval);
+
+            CheckCredits();
         }
     }
 
@@ -257,6 +259,7 @@ public class GameManager : MonoBehaviour
     {
         State = GameState.Playing;
         StartCoroutine(SpawnAndShoot());
+        pachinkoMachine.SetupActionMap();
     }
 
     public void RestartGame()
@@ -277,4 +280,11 @@ public class GameManager : MonoBehaviour
 
     public GameDifficulty GetGameDifficulty() => gameDifficulty;
 
+    private void CheckCredits()
+    {
+        if (startCredits <= 0)
+        {
+            queensLamp.EnableGlow();
+        }
+    }
 }

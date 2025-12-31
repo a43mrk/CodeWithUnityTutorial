@@ -99,3 +99,5 @@
 [x] Fix failing jackpot sound and lamp fx
 []Fix the broken king lamp is always on
 [] Add an Queue for the jackpot payout to not cutoff the soundfx
+[] don't play the payout sound fx if there is no jackpot reserves
+[] Game just shoot once and stops after restarting the game

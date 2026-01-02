@@ -105,5 +105,6 @@
 [] make long press call many times use balls
 [] Add move balls to basquet on action input
 [] Make the use of balls add credits and poweroff the queens light
-[] Add Start Auto shoot switch on the panel
+[x] Add Start Auto shoot switch on the panel
+[x] make auto shoot shoots if is on
 [] Add Manual Shoot input Action

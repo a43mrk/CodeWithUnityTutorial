@@ -90,13 +90,13 @@ public class ToggleSwitch : MonoBehaviour, IPointerClickHandler
     {
         CurrentValue = v;
 
-        // publish the current value
-        onToggle?.Invoke(CurrentValue);
-
         if(_animateSliderCoroutine != null)
             StopCoroutine(_animateSliderCoroutine);
         
         _animateSliderCoroutine = StartCoroutine(AnimateSlider());
+
+        // publish the current value
+        onToggle?.Invoke(v);
     }
 
     private System.Collections.IEnumerator AnimateSlider()

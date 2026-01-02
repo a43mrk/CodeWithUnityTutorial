@@ -3342,38 +3342,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Auto toggler
       objectReference: {fileID: 0}
-    - target: {fileID: 8279052471601419486, guid: 771b6726d25573890853caf814f58d67, type: 3}
-      propertyPath: onToggle.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8279052471601419486, guid: 771b6726d25573890853caf814f58d67, type: 3}
-      propertyPath: onToggle.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8279052471601419486, guid: 771b6726d25573890853caf814f58d67, type: 3}
-      propertyPath: onToggle.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1134716025}
-    - target: {fileID: 8279052471601419486, guid: 771b6726d25573890853caf814f58d67, type: 3}
-      propertyPath: onToggle.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8279052471601419486, guid: 771b6726d25573890853caf814f58d67, type: 3}
-      propertyPath: onToggle.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetAutoShoot
-      objectReference: {fileID: 0}
-    - target: {fileID: 8279052471601419486, guid: 771b6726d25573890853caf814f58d67, type: 3}
-      propertyPath: onToggle.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: GameManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8279052471601419486, guid: 771b6726d25573890853caf814f58d67, type: 3}
-      propertyPath: onToggle.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8279052471601419486, guid: 771b6726d25573890853caf814f58d67, type: 3}
-      propertyPath: onToggle.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 8663692565478089323, guid: 771b6726d25573890853caf814f58d67, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

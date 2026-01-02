@@ -84,6 +84,9 @@ public class GameManager : MonoBehaviour
     private bool isGameRunning = false;
     public GameState State { get; private set; }
 
+    private Coroutine Shooter;
+    private bool isAutoShoot = false;
+
 
     void Awake()
     {
@@ -259,7 +262,9 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         State = GameState.Playing;
-        StartCoroutine(SpawnAndShoot());
+        if(Shooter == null && isAutoShoot)
+            Shooter = StartCoroutine(SpawnAndShoot());
+
         pachinkoMachine.SetupActionMap();
     }
 
@@ -288,4 +293,28 @@ public class GameManager : MonoBehaviour
             queensLamp.EnableGlow();
         }
     }
+
+    public bool ToggleAutoShoot()
+    {
+        isAutoShoot = !isAutoShoot;
+
+        return isAutoShoot;
+    }
+
+    public void SetAutoShoot(bool val)
+    {
+        Debug.Log("SetAutoShoot: " + val);
+        isAutoShoot = val;
+
+        if(Shooter == null && isAutoShoot)
+        {
+            Shooter = StartCoroutine(SpawnAndShoot());
+        }
+        else if(Shooter != null && !isAutoShoot)
+        {
+            StopCoroutine(Shooter);
+        }
+    }
+
+    public bool IsAutoShoot() => isAutoShoot;
 }

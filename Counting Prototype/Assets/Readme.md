@@ -66,7 +66,7 @@
 [] Add Wing switching Audio
 [x] Add ball enter top most pocket Audio
 [x] Ball and Nail Collision Sound Effects
-[] Add option to the player to use auto shoot or manual shoot
+[x] Add option to the player to use auto shoot or manual shoot
 [x] Add an individual Count for every pocket too
 [] replace the metal material
 [x] Add lights on Queen
@@ -109,3 +109,6 @@
 [x] Add Start Auto shoot switch on the panel
 [x] make auto shoot shoots if is on
 [] Add Manual Shoot input Action
+[] fix zoom out(scrolling is not taking effect)
+[x] fix auto shoot not starting
+[] fix animation of manual shoot

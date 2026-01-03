@@ -63,9 +63,10 @@ public class PachinkoMachineManager : MonoBehaviour
     RechargeOrCollect whiteTray;
     private Player1 player1actions;
 
-    private float holdTime;
+    private float holdTimer;
     private bool isHolding;
     private bool holdQualified;
+
     void Awake()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
@@ -88,10 +89,19 @@ public class PachinkoMachineManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(IsJackpotTime())
-        {
-            UpdateJackPockCountdown();
-        }
+        // if(IsJackpotTime())
+        // {
+        //     UpdateJackPockCountdown();
+        // }
+
+        if(!isHolding)
+            return;
+        
+        holdTimer += Time.deltaTime;
+        holdTimer = Mathf.Min(holdTimer, maxHoldTime);
+
+        float normalized = holdTimer / maxHoldTime;
+        leverAnimator.SetFloat("PullAmount", normalized);
 
 
     }
@@ -102,7 +112,11 @@ public class PachinkoMachineManager : MonoBehaviour
         player1actions.InGame.OpenMainMenu.performed += OnOpenMainMenu;
         player1actions.InGame.CollectBall.performed += whiteTray.OnCollectAction;
         player1actions.InGame.UseBall.performed += OnUseBall;
+        player1actions.InGame.PullLever.started += OnPullStarted;
+        player1actions.InGame.PullLever.performed += OnPullPerformed;
+        player1actions.InGame.PullLever.canceled += OnPullCanceled;
     }
+
 
     public Player1 GetPlayerInput() => player1actions;
 
@@ -123,6 +137,9 @@ public class PachinkoMachineManager : MonoBehaviour
         player1actions.InGame.OpenMainMenu.performed -= OnOpenMainMenu;
         player1actions.InGame.CollectBall.performed -= whiteTray.OnCollectAction;
         player1actions.InGame.UseBall.performed -= OnUseBall;
+        player1actions.InGame.PullLever.started -= OnPullStarted;
+        player1actions.InGame.PullLever.performed -= OnPullPerformed;
+        player1actions.InGame.PullLever.canceled -= OnPullCanceled;
     }
 
     private void OnOpenMainMenu(InputAction.CallbackContext context)
@@ -173,7 +190,7 @@ public class PachinkoMachineManager : MonoBehaviour
 
     public void StartGame()
     {
-        if(Shooter == null /*&& isAutoShoot*/)
+        if(Shooter == null && isAutoShoot)
             Shooter = StartCoroutine(SpawnAndShoot());
     }
 
@@ -310,4 +327,68 @@ public class PachinkoMachineManager : MonoBehaviour
     }
 
     public bool IsAutoShoot() => isAutoShoot;
+
+    private void OnPullCanceled(InputAction.CallbackContext context)
+    {
+        if(!holdQualified)
+        {
+            ResetLever();
+            return;
+        }
+
+        FireLever();
+        ResetLever();
+    }
+
+    private void FireLever()
+    {
+        float normalized = Mathf.Clamp01(holdTimer / maxHoldTime);
+        float force = skillCurve.Evaluate(normalized) * maxForce;
+
+
+        shootingAudioFx.Play();
+        leverAnimator.SetTrigger("Pull"); // play lever animation
+
+        GameObject ball = Instantiate(
+            ballPrefab,
+            startPointAndDirection.transform.position,
+            Quaternion.identity
+        );
+
+        Rigidbody rb = ball.GetComponent<Rigidbody>();
+        if(rb == null)
+        {
+            Debug.LogError("Ball prefab must have a Rigidbody.");
+            return;
+        }
+
+        Vector3 direction = startPointAndDirection.transform.up;
+        rb.AddForce(direction * force, ForceMode.Impulse);
+
+        leverAnimator.SetTrigger("Shoot");
+    }
+
+    private void ResetLever()
+    {
+        isHolding = false;
+        holdTimer = 0f;
+
+        leverAnimator.SetBool("Holding", false);
+        leverAnimator.SetFloat("PullAmount", 0f);
+    }
+
+    private void OnPullPerformed(InputAction.CallbackContext context)
+    {
+        // Hold duration reached (long press confirmed)
+        holdQualified = true;
+    }
+
+    private void OnPullStarted(InputAction.CallbackContext context)
+    {
+        isHolding = true;
+        holdQualified = false;
+        holdTimer = 0f;
+
+        leverAnimator.SetBool("Holding", true);
+    }
 }

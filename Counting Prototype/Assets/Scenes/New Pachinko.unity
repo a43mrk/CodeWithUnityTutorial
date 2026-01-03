@@ -2016,8 +2016,6 @@ GameObject:
   - component: {fileID: 1648811352}
   - component: {fileID: 1648811351}
   - component: {fileID: 1648811354}
-  - component: {fileID: 1648811355}
-  - component: {fileID: 1648811356}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2093,11 +2091,11 @@ Transform:
   m_GameObject: {fileID: 1648811350}
   serializedVersion: 2
   m_LocalRotation: {x: -0.00011152912, y: 0.9969323, z: 0.07825695, w: 0.0013790427}
-  m_LocalPosition: {x: -162.91545, y: 50.453278, z: 137.42523}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1668203347}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1648811354
 MonoBehaviour:
@@ -2143,53 +2141,6 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!114 &1648811355
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1648811350}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bb649e38197568e5bdce1125234e124, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DragCameraController
-  pachinkoMachine: {fileID: 262956090}
-  cam: {fileID: 1648811352}
-  panSpeed: 0.01
-  zoomSpeed: 5
-  minZoom: 3
-  maxZoom: 25
-  heightSpeed: 5
---- !u!114 &1648811356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1648811350}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36adf2796de1cc755901011ddb3508ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameStateEventListener
-  eventChannel: {fileID: 11400000, guid: 27caa5b1c68e8ab82b011e6d74af2b9a, type: 2}
-  unityEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1648811355}
-        m_TargetAssemblyTypeName: DragCameraController, Assembly-CSharp
-        m_MethodName: OnGameStateChange
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &1654379449
 GameObject:
   m_ObjectHideFlags: 0
@@ -2425,6 +2376,38 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1668203346
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1668203347}
+  m_Layer: 0
+  m_Name: Camera Pivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1668203347
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1668203346}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1648811353}
+  m_Father: {fileID: 1828296130}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1677284026 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1259088692400575764, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
@@ -2877,6 +2860,99 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1805948963}
   m_CullTransparentMesh: 1
+--- !u!1 &1828296127
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1828296130}
+  - component: {fileID: 1828296129}
+  - component: {fileID: 1828296128}
+  m_Layer: 0
+  m_Name: Camera Rig
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1828296128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828296127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36adf2796de1cc755901011ddb3508ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameStateEventListener
+  eventChannel: {fileID: 11400000, guid: 27caa5b1c68e8ab82b011e6d74af2b9a, type: 2}
+  unityEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: DragCameraController, Assembly-CSharp
+        m_MethodName: OnGameStateChange
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1828296129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828296127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bb649e38197568e5bdce1125234e124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DragCameraController
+  pachinkoMachine: {fileID: 262956090}
+  cam: {fileID: 1648811352}
+  cameraPivot: {fileID: 1668203347}
+  moveSpeed: 10
+  panSpeed: 0.05
+  elevateSpeed: 5
+  rotationSpeed: 0.2
+  minPitch: -80
+  maxPitch: 80
+  zoomSpeed: 5
+  minZoom: 3
+  maxZoom: 25
+  heightSpeed: 5
+  invertY: 0
+  useSensitivityScaling: 1
+  mouseSensitivity: 1
+  touchSensitivity: 0.4
+  useRotationSmoothing: 1
+  rotationSmoothTime: 0.08
+--- !u!4 &1828296130
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828296127}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -162.91545, y: 50.453278, z: 137.42523}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1668203347}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1899638121
 GameObject:
   m_ObjectHideFlags: 0
@@ -3687,7 +3763,7 @@ Animator:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1648811353}
+  - {fileID: 1828296130}
   - {fileID: 250417157}
   - {fileID: 2135679470}
   - {fileID: 426902212}

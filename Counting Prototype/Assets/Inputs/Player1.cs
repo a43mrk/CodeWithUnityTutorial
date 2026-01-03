@@ -154,6 +154,42 @@ public partial class @Player1: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""432c8ba9-f515-49f8-8a11-0517fe124f25"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Rotate"",
+                    ""type"": ""Value"",
+                    ""id"": ""321bf56b-ba23-4f4c-bdc9-57cb52170718"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""RotatePress"",
+                    ""type"": ""Button"",
+                    ""id"": ""cca3ec77-5bff-4c7f-bc48-edbb140dcea1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Elevate"",
+                    ""type"": ""Value"",
+                    ""id"": ""bd6b2a99-e432-46c3-84e9-e6bed3a969f1"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -233,6 +269,127 @@ public partial class @Player1: IInputActionCollection2, IDisposable
                     ""action"": ""Pinch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""9d1849dc-1f45-4b11-80f2-7192b3f155d1"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""c355b742-4474-486e-bde9-64c17c735b24"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""f63df956-d294-4135-a7a8-28cf8b238663"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""0ad950d3-4ef3-4dfc-a5cd-2b0924600245"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""f66780a0-8074-4305-9e87-40da3b5f80a3"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e29bdd76-ed1c-416e-8c61-b0a740e80711"",
+                    ""path"": ""<Pointer>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""69027c70-6bac-4f6b-9e95-2a6ca8e6953b"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotatePress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d55d9f78-ec70-440e-9639-5b311004ea5d"",
+                    ""path"": ""<Touchscreen>/touch*/Press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotatePress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""68f3cb73-473e-4654-8fca-76efcc3c3dbe"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Elevate"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""78ac3c11-d44d-4376-b5ac-257d8f679281"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Elevate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""128da53e-c543-4684-810d-a6898e70e0e8"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Elevate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -288,6 +445,10 @@ public partial class @Player1: IInputActionCollection2, IDisposable
         m_InGame_PointerPress = m_InGame.FindAction("PointerPress", throwIfNotFound: true);
         m_InGame_Zoom = m_InGame.FindAction("Zoom", throwIfNotFound: true);
         m_InGame_Pinch = m_InGame.FindAction("Pinch", throwIfNotFound: true);
+        m_InGame_Move = m_InGame.FindAction("Move", throwIfNotFound: true);
+        m_InGame_Rotate = m_InGame.FindAction("Rotate", throwIfNotFound: true);
+        m_InGame_RotatePress = m_InGame.FindAction("RotatePress", throwIfNotFound: true);
+        m_InGame_Elevate = m_InGame.FindAction("Elevate", throwIfNotFound: true);
         // On Menu
         m_OnMenu = asset.FindActionMap("On Menu", throwIfNotFound: true);
         m_OnMenu_EscapeMenu = m_OnMenu.FindAction("Escape Menu", throwIfNotFound: true);
@@ -379,6 +540,10 @@ public partial class @Player1: IInputActionCollection2, IDisposable
     private readonly InputAction m_InGame_PointerPress;
     private readonly InputAction m_InGame_Zoom;
     private readonly InputAction m_InGame_Pinch;
+    private readonly InputAction m_InGame_Move;
+    private readonly InputAction m_InGame_Rotate;
+    private readonly InputAction m_InGame_RotatePress;
+    private readonly InputAction m_InGame_Elevate;
     /// <summary>
     /// Provides access to input actions defined in input action map "In Game".
     /// </summary>
@@ -418,6 +583,22 @@ public partial class @Player1: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "InGame/Pinch".
         /// </summary>
         public InputAction @Pinch => m_Wrapper.m_InGame_Pinch;
+        /// <summary>
+        /// Provides access to the underlying input action "InGame/Move".
+        /// </summary>
+        public InputAction @Move => m_Wrapper.m_InGame_Move;
+        /// <summary>
+        /// Provides access to the underlying input action "InGame/Rotate".
+        /// </summary>
+        public InputAction @Rotate => m_Wrapper.m_InGame_Rotate;
+        /// <summary>
+        /// Provides access to the underlying input action "InGame/RotatePress".
+        /// </summary>
+        public InputAction @RotatePress => m_Wrapper.m_InGame_RotatePress;
+        /// <summary>
+        /// Provides access to the underlying input action "InGame/Elevate".
+        /// </summary>
+        public InputAction @Elevate => m_Wrapper.m_InGame_Elevate;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -465,6 +646,18 @@ public partial class @Player1: IInputActionCollection2, IDisposable
             @Pinch.started += instance.OnPinch;
             @Pinch.performed += instance.OnPinch;
             @Pinch.canceled += instance.OnPinch;
+            @Move.started += instance.OnMove;
+            @Move.performed += instance.OnMove;
+            @Move.canceled += instance.OnMove;
+            @Rotate.started += instance.OnRotate;
+            @Rotate.performed += instance.OnRotate;
+            @Rotate.canceled += instance.OnRotate;
+            @RotatePress.started += instance.OnRotatePress;
+            @RotatePress.performed += instance.OnRotatePress;
+            @RotatePress.canceled += instance.OnRotatePress;
+            @Elevate.started += instance.OnElevate;
+            @Elevate.performed += instance.OnElevate;
+            @Elevate.canceled += instance.OnElevate;
         }
 
         /// <summary>
@@ -497,6 +690,18 @@ public partial class @Player1: IInputActionCollection2, IDisposable
             @Pinch.started -= instance.OnPinch;
             @Pinch.performed -= instance.OnPinch;
             @Pinch.canceled -= instance.OnPinch;
+            @Move.started -= instance.OnMove;
+            @Move.performed -= instance.OnMove;
+            @Move.canceled -= instance.OnMove;
+            @Rotate.started -= instance.OnRotate;
+            @Rotate.performed -= instance.OnRotate;
+            @Rotate.canceled -= instance.OnRotate;
+            @RotatePress.started -= instance.OnRotatePress;
+            @RotatePress.performed -= instance.OnRotatePress;
+            @RotatePress.canceled -= instance.OnRotatePress;
+            @Elevate.started -= instance.OnElevate;
+            @Elevate.performed -= instance.OnElevate;
+            @Elevate.canceled -= instance.OnElevate;
         }
 
         /// <summary>
@@ -695,6 +900,34 @@ public partial class @Player1: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPinch(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Move" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMove(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Rotate" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRotate(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "RotatePress" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRotatePress(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Elevate" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnElevate(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "On Menu" which allows adding and removing callbacks.

@@ -36,6 +36,7 @@ public class Counter : MonoBehaviour
     public int count = 0;
 
     private GameManager gameManager;
+    private PachinkoMachineManager pachinkoMachine;
     private ManagePocket tulip;
     public GameObject indicatorLamp;
     public GameObject indicatorLamp2;
@@ -47,6 +48,7 @@ public class Counter : MonoBehaviour
     private void Awake()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        pachinkoMachine = gameManager.GetMachine();
         tulip = GetComponent<ManagePocket>();
 
         if(lamp != null)
@@ -129,7 +131,7 @@ public class Counter : MonoBehaviour
                     });
                     break;
                 case TulipsThatCanOpen.All:
-                    gameManager.OpenAllTulips();
+                    pachinkoMachine.OpenAllTulips();
                     break;
                 default:
                     break;
@@ -156,7 +158,7 @@ public class Counter : MonoBehaviour
                     });
                     break;
                 case TulipCloseBehaviorType.All:
-                    gameManager.CloseAllTulips();
+                    pachinkoMachine.CloseAllTulips();
                     break;
                 default:
                     break;
@@ -165,7 +167,7 @@ public class Counter : MonoBehaviour
         }
 
         // Pays the prize
-        gameManager.ExecutePayout(prize);
+        pachinkoMachine.ExecutePayout(prize);
     }
 
     void ProcessPocketForNonTulips()
@@ -179,7 +181,7 @@ public class Counter : MonoBehaviour
                     });
                     break;
                 case TulipsThatCanOpen.All:
-                    gameManager.OpenAllTulips();
+                    pachinkoMachine.OpenAllTulips();
                     break;
                 default:
                     break;
@@ -193,7 +195,7 @@ public class Counter : MonoBehaviour
                     });
                     break;
                 case TulipCloseBehaviorType.All:
-                    gameManager.CloseAllTulips();
+                    pachinkoMachine.CloseAllTulips();
                     break;
                 default:
                     break;
@@ -201,6 +203,6 @@ public class Counter : MonoBehaviour
 
 
         // Pays the prize
-        gameManager.ExecutePayout(prize);
+        pachinkoMachine.ExecutePayout(prize);
     }
 }

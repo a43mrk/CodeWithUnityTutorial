@@ -190,6 +190,15 @@ public partial class @Player1: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""PullLever"",
+                    ""type"": ""Button"",
+                    ""id"": ""a4524dbb-e8a9-488b-bf39-67b2e903779c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -390,6 +399,28 @@ public partial class @Player1: IInputActionCollection2, IDisposable
                     ""action"": ""Elevate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""26a971c4-cc29-4bc2-b879-e6e0cf63b1ea"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PullLever"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e3899caf-22d6-4595-9767-0939e8c0a1e8"",
+                    ""path"": ""<Touchscreen>/Press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PullLever"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -449,6 +480,7 @@ public partial class @Player1: IInputActionCollection2, IDisposable
         m_InGame_Rotate = m_InGame.FindAction("Rotate", throwIfNotFound: true);
         m_InGame_RotatePress = m_InGame.FindAction("RotatePress", throwIfNotFound: true);
         m_InGame_Elevate = m_InGame.FindAction("Elevate", throwIfNotFound: true);
+        m_InGame_PullLever = m_InGame.FindAction("PullLever", throwIfNotFound: true);
         // On Menu
         m_OnMenu = asset.FindActionMap("On Menu", throwIfNotFound: true);
         m_OnMenu_EscapeMenu = m_OnMenu.FindAction("Escape Menu", throwIfNotFound: true);
@@ -544,6 +576,7 @@ public partial class @Player1: IInputActionCollection2, IDisposable
     private readonly InputAction m_InGame_Rotate;
     private readonly InputAction m_InGame_RotatePress;
     private readonly InputAction m_InGame_Elevate;
+    private readonly InputAction m_InGame_PullLever;
     /// <summary>
     /// Provides access to input actions defined in input action map "In Game".
     /// </summary>
@@ -599,6 +632,10 @@ public partial class @Player1: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "InGame/Elevate".
         /// </summary>
         public InputAction @Elevate => m_Wrapper.m_InGame_Elevate;
+        /// <summary>
+        /// Provides access to the underlying input action "InGame/PullLever".
+        /// </summary>
+        public InputAction @PullLever => m_Wrapper.m_InGame_PullLever;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -658,6 +695,9 @@ public partial class @Player1: IInputActionCollection2, IDisposable
             @Elevate.started += instance.OnElevate;
             @Elevate.performed += instance.OnElevate;
             @Elevate.canceled += instance.OnElevate;
+            @PullLever.started += instance.OnPullLever;
+            @PullLever.performed += instance.OnPullLever;
+            @PullLever.canceled += instance.OnPullLever;
         }
 
         /// <summary>
@@ -702,6 +742,9 @@ public partial class @Player1: IInputActionCollection2, IDisposable
             @Elevate.started -= instance.OnElevate;
             @Elevate.performed -= instance.OnElevate;
             @Elevate.canceled -= instance.OnElevate;
+            @PullLever.started -= instance.OnPullLever;
+            @PullLever.performed -= instance.OnPullLever;
+            @PullLever.canceled -= instance.OnPullLever;
         }
 
         /// <summary>
@@ -928,6 +971,13 @@ public partial class @Player1: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnElevate(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "PullLever" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPullLever(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "On Menu" which allows adding and removing callbacks.

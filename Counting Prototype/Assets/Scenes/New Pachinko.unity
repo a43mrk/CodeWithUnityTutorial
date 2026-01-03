@@ -347,7 +347,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4429a9fdea284805a5c2751321ea5e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  ballPrefab: {fileID: 7969750133989016303, guid: 0984ae0bf945a88b4a0f859564b95091, type: 3}
+  startPointAndDirection: {fileID: 390779115}
+  jackpotStartPointAndDirection: {fileID: 282834042}
+  jackpotReserve: 1000
+  interval: 1
+  initialForce: 280
+  maxForce: 480
+  maxHoldTime: 2
+  skillCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   ballCollector: {fileID: 1677284026}
+  jackPointTime: 30
+  isJackpotTimeBased: 0
+  foulBallCount: 0
+  leverAnimator: {fileID: 9002765408288174022}
+  QueenLamp: {fileID: 230547964}
+  KingLamp: {fileID: 1532710899}
+  ShootingChamberLamp: {fileID: 1991400576}
+  victoryLamp: {fileID: 1991400576}
+  victorySign: {fileID: 1197894228}
+  gameActionChannel: {fileID: 11400000, guid: 738753ecd8207aaa1b83c4dc587352b7, type: 2}
+  gameDifficultyChannel: {fileID: 11400000, guid: 8256bce89fb8209a2af82c7b4cb0b72c, type: 2}
+  gameStateChannel: {fileID: 11400000, guid: 27caa5b1c68e8ab82b011e6d74af2b9a, type: 2}
 --- !u!114 &262956093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,6 +450,103 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!82 &262956097
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262956090}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 145a4b8020f9fef888bab2db7a7960f0, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 2000
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &282834042 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4561806355575081676, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
@@ -1358,24 +1499,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02fdb1f6c8ca77e849ba5f99d5d287e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  ballPrefab: {fileID: 7969750133989016303, guid: 0984ae0bf945a88b4a0f859564b95091, type: 3}
-  startPointAndDirection: {fileID: 390779115}
-  jackpotStartPointAndDirection: {fileID: 282834042}
+  machine: {fileID: 262956090}
   startCredits: 100
-  jackpotReserve: 1000
-  interval: 1
-  initialForce: 280
-  maxForce: 480
   gravity: {x: 0, y: -15, z: 0}
-  jackPointTime: 30
-  isJackpotTimeBased: 1
-  foulBallCount: 0
-  leverAnimator: {fileID: 9002765408288174022}
-  QueenLamp: {fileID: 230547964}
-  KingLamp: {fileID: 1532710899}
-  ShootingChamberLamp: {fileID: 1991400576}
-  victoryLamp: {fileID: 1991400576}
-  victorySign: {fileID: 1197894228}
+  isJackpotTimeBased: 0
   gameActionChannel: {fileID: 11400000, guid: 738753ecd8207aaa1b83c4dc587352b7, type: 2}
   gameDifficultyChannel: {fileID: 11400000, guid: 8256bce89fb8209a2af82c7b4cb0b72c, type: 2}
   gameStateChannel: {fileID: 11400000, guid: 27caa5b1c68e8ab82b011e6d74af2b9a, type: 2}
@@ -3717,7 +3844,7 @@ PrefabInstance:
       objectReference: {fileID: 4300000, guid: 16a8b53c8d3a0a60a848856d7b23c4a0, type: 2}
     - target: {fileID: 6825580673624011773, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: m_VersionIndex
-      value: 1551
+      value: 1552
       objectReference: {fileID: 0}
     - target: {fileID: 7073807983818781089, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: m_VersionIndex
@@ -3744,6 +3871,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5276400318553131493, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 262956095}
+    - targetCorrespondingSourceObject: {fileID: 5276400318553131493, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 262956097}
     - targetCorrespondingSourceObject: {fileID: 2377097957420352305, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1532710904}

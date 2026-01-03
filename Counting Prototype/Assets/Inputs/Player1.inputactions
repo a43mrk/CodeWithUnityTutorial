@@ -104,6 +104,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "PullLever",
+                    "type": "Button",
+                    "id": "a4524dbb-e8a9-488b-bf39-67b2e903779c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -304,6 +313,28 @@
                     "action": "Elevate",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "26a971c4-cc29-4bc2-b879-e6e0cf63b1ea",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PullLever",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e3899caf-22d6-4595-9767-0939e8c0a1e8",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PullLever",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

@@ -52,7 +52,7 @@
 [x] Add Tulips opening sound effects
 [x] Add Tulips closing sound effects
 [x] Add Wings Balls collector box collider as trigger and counter script
-[] Add free camera
+[x] Add free camera
 [x] Add Game Menu
     [x] difficulty menu
     [x] restart option
@@ -72,7 +72,8 @@
 [x] Add lights on Queen
 [x] Add lights on King
 [x] Add lights on the Victory Lamp
-[] Separate the machine state into a Single Machine Manager
+[x] Separate the machine state into a Single Machine Manager
+    [] eliminate game manager tight copling
 [x] Animate the lever when shooting
 [] Count missed balls
 [] Fix missed balls that comeback to the shooting place

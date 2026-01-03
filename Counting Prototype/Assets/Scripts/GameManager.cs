@@ -26,7 +26,7 @@ public enum GameActionType
     StartGame
 }
 
-public enum GameState
+public enum GameStateType
 {
     Waiting,
     Playing,
@@ -75,14 +75,14 @@ public class GameManager : MonoBehaviour
 
     public GameActionChannel gameActionChannel;
     public GameDifficultyChannel gameDifficultyChannel;
-    public PachinkoMachineManager pachinkoMachine;
+    public GameStateChannel gameStateChannel;
 
     private GlowingLamp queensLamp;
     private GlowingLamp kingsLamp;
     private UIManager uiManager;
     private GameDifficulty gameDifficulty;
     private bool isGameRunning = false;
-    public GameState State { get; private set; }
+    public GameStateType State { get; private set; }
 
     private Coroutine Shooter;
     private bool isAutoShoot = false;
@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
         kingsLamp = KingLamp.GetComponent<GlowingLamp>();
         uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
 
-        State = GameState.Waiting;
+        State = GameStateType.Waiting;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -261,11 +261,11 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        State = GameState.Playing;
+        State = GameStateType.Playing;
         if(Shooter == null && isAutoShoot)
             Shooter = StartCoroutine(SpawnAndShoot());
 
-        pachinkoMachine.SetupActionMap();
+        gameStateChannel.Invoke(GameStateType.Playing);
     }
 
     public void RestartGame()

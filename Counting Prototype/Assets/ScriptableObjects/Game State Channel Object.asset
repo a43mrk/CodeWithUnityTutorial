@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4525ec3f1f31a8c668b0ec53a5172c24, type: 3}
-  m_Name: Game Difficulty Channel
-  m_EditorClassIdentifier: Assembly-CSharp::GameDifficultyChannel
+  m_Script: {fileID: 11500000, guid: c274ae3f316f7c6a8bf5aadfa09c32e9, type: 3}
+  m_Name: Game State Channel Object
+  m_EditorClassIdentifier: Assembly-CSharp::GameStateChannel

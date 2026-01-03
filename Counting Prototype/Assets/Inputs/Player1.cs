@@ -118,6 +118,42 @@ public partial class @Player1: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PointerDelta"",
+                    ""type"": ""Value"",
+                    ""id"": ""0527af93-6e11-48a7-85a7-81ca8dda518b"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""PointerPress"",
+                    ""type"": ""Button"",
+                    ""id"": ""72b920bc-06cc-4d19-85e7-3603a4d29289"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Zoom"",
+                    ""type"": ""Value"",
+                    ""id"": ""efbdfcf2-cbf3-433a-9c2e-89cfe24fe64b"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Pinch"",
+                    ""type"": ""Value"",
+                    ""id"": ""666a85f6-27fc-4914-8c6c-434e783fb370"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -151,6 +187,50 @@ public partial class @Player1: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Use Ball"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3a135ecb-c041-4269-bd3a-b9d0b86e0917"",
+                    ""path"": ""<Pointer>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PointerDelta"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e0c77684-57a8-40e8-92d7-83831ac7eaa3"",
+                    ""path"": ""<Pointer>/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PointerPress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d127514b-87ca-4175-9ea4-cc1dab634ed7"",
+                    ""path"": ""<Mouse>/scroll/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""47255503-3650-45e6-b0fb-48f79b1ace52"",
+                    ""path"": ""<Touchscreen>/primaryTouch/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pinch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -204,6 +284,10 @@ public partial class @Player1: IInputActionCollection2, IDisposable
         m_InGame_OpenMainMenu = m_InGame.FindAction("Open Main Menu", throwIfNotFound: true);
         m_InGame_CollectBall = m_InGame.FindAction("Collect Ball", throwIfNotFound: true);
         m_InGame_UseBall = m_InGame.FindAction("Use Ball", throwIfNotFound: true);
+        m_InGame_PointerDelta = m_InGame.FindAction("PointerDelta", throwIfNotFound: true);
+        m_InGame_PointerPress = m_InGame.FindAction("PointerPress", throwIfNotFound: true);
+        m_InGame_Zoom = m_InGame.FindAction("Zoom", throwIfNotFound: true);
+        m_InGame_Pinch = m_InGame.FindAction("Pinch", throwIfNotFound: true);
         // On Menu
         m_OnMenu = asset.FindActionMap("On Menu", throwIfNotFound: true);
         m_OnMenu_EscapeMenu = m_OnMenu.FindAction("Escape Menu", throwIfNotFound: true);
@@ -291,6 +375,10 @@ public partial class @Player1: IInputActionCollection2, IDisposable
     private readonly InputAction m_InGame_OpenMainMenu;
     private readonly InputAction m_InGame_CollectBall;
     private readonly InputAction m_InGame_UseBall;
+    private readonly InputAction m_InGame_PointerDelta;
+    private readonly InputAction m_InGame_PointerPress;
+    private readonly InputAction m_InGame_Zoom;
+    private readonly InputAction m_InGame_Pinch;
     /// <summary>
     /// Provides access to input actions defined in input action map "In Game".
     /// </summary>
@@ -314,6 +402,22 @@ public partial class @Player1: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "InGame/UseBall".
         /// </summary>
         public InputAction @UseBall => m_Wrapper.m_InGame_UseBall;
+        /// <summary>
+        /// Provides access to the underlying input action "InGame/PointerDelta".
+        /// </summary>
+        public InputAction @PointerDelta => m_Wrapper.m_InGame_PointerDelta;
+        /// <summary>
+        /// Provides access to the underlying input action "InGame/PointerPress".
+        /// </summary>
+        public InputAction @PointerPress => m_Wrapper.m_InGame_PointerPress;
+        /// <summary>
+        /// Provides access to the underlying input action "InGame/Zoom".
+        /// </summary>
+        public InputAction @Zoom => m_Wrapper.m_InGame_Zoom;
+        /// <summary>
+        /// Provides access to the underlying input action "InGame/Pinch".
+        /// </summary>
+        public InputAction @Pinch => m_Wrapper.m_InGame_Pinch;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -349,6 +453,18 @@ public partial class @Player1: IInputActionCollection2, IDisposable
             @UseBall.started += instance.OnUseBall;
             @UseBall.performed += instance.OnUseBall;
             @UseBall.canceled += instance.OnUseBall;
+            @PointerDelta.started += instance.OnPointerDelta;
+            @PointerDelta.performed += instance.OnPointerDelta;
+            @PointerDelta.canceled += instance.OnPointerDelta;
+            @PointerPress.started += instance.OnPointerPress;
+            @PointerPress.performed += instance.OnPointerPress;
+            @PointerPress.canceled += instance.OnPointerPress;
+            @Zoom.started += instance.OnZoom;
+            @Zoom.performed += instance.OnZoom;
+            @Zoom.canceled += instance.OnZoom;
+            @Pinch.started += instance.OnPinch;
+            @Pinch.performed += instance.OnPinch;
+            @Pinch.canceled += instance.OnPinch;
         }
 
         /// <summary>
@@ -369,6 +485,18 @@ public partial class @Player1: IInputActionCollection2, IDisposable
             @UseBall.started -= instance.OnUseBall;
             @UseBall.performed -= instance.OnUseBall;
             @UseBall.canceled -= instance.OnUseBall;
+            @PointerDelta.started -= instance.OnPointerDelta;
+            @PointerDelta.performed -= instance.OnPointerDelta;
+            @PointerDelta.canceled -= instance.OnPointerDelta;
+            @PointerPress.started -= instance.OnPointerPress;
+            @PointerPress.performed -= instance.OnPointerPress;
+            @PointerPress.canceled -= instance.OnPointerPress;
+            @Zoom.started -= instance.OnZoom;
+            @Zoom.performed -= instance.OnZoom;
+            @Zoom.canceled -= instance.OnZoom;
+            @Pinch.started -= instance.OnPinch;
+            @Pinch.performed -= instance.OnPinch;
+            @Pinch.canceled -= instance.OnPinch;
         }
 
         /// <summary>
@@ -539,6 +667,34 @@ public partial class @Player1: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnUseBall(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "PointerDelta" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPointerDelta(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "PointerPress" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPointerPress(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Zoom" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnZoom(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Pinch" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPinch(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "On Menu" which allows adding and removing callbacks.

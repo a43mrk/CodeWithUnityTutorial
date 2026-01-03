@@ -37,6 +37,8 @@ public class PachinkoMachineManager : MonoBehaviour
         player1actions.InGame.UseBall.performed += OnUseBall;
     }
 
+    public Player1 GetPlayerInput() => player1actions;
+
     private void OnUseBall(InputAction.CallbackContext context)
     {
         var ball = whiteTray.TakeABall();
@@ -72,15 +74,31 @@ public class PachinkoMachineManager : MonoBehaviour
 
     public void SetupActionMap()
     {
-        if (gameManager.State == GameState.Waiting)
+        if (gameManager.State == GameStateType.Waiting)
         {
             player1actions.InGame.Disable();
             player1actions.OnMenu.Enable();
         }
-        else if (gameManager.State == GameState.Playing)
+        else if (gameManager.State == GameStateType.Playing)
         {
             player1actions.OnMenu.Disable();
             player1actions.InGame.Enable();
+        }
+    }
+
+    public void OnGameStateChange(GameStateType state)
+    {
+        switch(state)
+        {
+            case GameStateType.Waiting:
+                player1actions.InGame.Disable();
+                player1actions.OnMenu.Enable();
+                break;
+
+            case GameStateType.Playing:
+                player1actions.OnMenu.Disable();
+                player1actions.InGame.Enable();
+                break;
         }
     }
 }

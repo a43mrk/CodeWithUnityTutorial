@@ -8,15 +8,17 @@ using UnityEngine.InputSystem;
 public class RechargeOrCollect : MonoBehaviour
 {
     public GameObject collectorsSpawnDirection;
+    public GameObject ballCollectorSwitch;
     private bool isHolding;
     private Coroutine holdCoroutine;
     [Header("Hold Action Settings")]
     [SerializeField] private float repeatInterval = 0.1f;
     private readonly HashSet<GameObject> objectsInContact = new HashSet<GameObject>();
+    private Animator collectorSwitchAnimator;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        collectorSwitchAnimator = ballCollectorSwitch.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -48,6 +50,8 @@ public class RechargeOrCollect : MonoBehaviour
     {
         isHolding = true;
 
+        collectorSwitchAnimator.SetBool("IsSlided", true);
+
         holdCoroutine = StartCoroutine(HoldLoop());
     }
 
@@ -76,6 +80,7 @@ public class RechargeOrCollect : MonoBehaviour
             return;
 
         isHolding = false;
+        collectorSwitchAnimator.SetBool("IsSlided", false);
 
         if(holdCoroutine != null)
         {

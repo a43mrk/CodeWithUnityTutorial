@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
@@ -80,6 +79,8 @@ public class PachinkoMachineManager : MonoBehaviour
 
     private Coroutine orangeBtnHoldCoroutine;
     public Camera mainCamera;
+    private bool isHoldingUseBall = false;
+    private Coroutine holdUseBallCoroutine;
     private static readonly int IsPressedHash = Animator.StringToHash("IsPressed");
 
     void Awake()
@@ -121,12 +122,16 @@ public class PachinkoMachineManager : MonoBehaviour
 
     }
 
+    public Player1 GetPlayerInput() => player1actions;
+
     void OnEnable()
     {
         player1actions.OnMenu.EscapeMenu.performed += OnEscapeMenu;
         player1actions.InGame.OpenMainMenu.performed += OnOpenMainMenu;
-        player1actions.InGame.CollectBall.performed += whiteTray.OnCollectAction;
-        player1actions.InGame.UseBall.performed += OnUseBall;
+        player1actions.InGame.CollectBall.performed += whiteTray.OnCollectStarted;
+        player1actions.InGame.CollectBall.canceled += whiteTray.OnCollectCanceled;
+        player1actions.InGame.UseBall.performed += OnUseBallStarted;
+        player1actions.InGame.UseBall.canceled += OnUseBallCanceled;
         player1actions.InGame.PullLever.started += OnPullStarted;
         player1actions.InGame.PullLever.performed += OnPullPerformed;
         player1actions.InGame.PullLever.canceled += OnPullCanceled;
@@ -135,7 +140,20 @@ public class PachinkoMachineManager : MonoBehaviour
     }
 
 
-    public Player1 GetPlayerInput() => player1actions;
+    void OnDisable()
+    {
+        player1actions.OnMenu.EscapeMenu.performed -= OnEscapeMenu;
+        player1actions.InGame.OpenMainMenu.performed -= OnOpenMainMenu;
+        player1actions.InGame.CollectBall.performed -= whiteTray.OnCollectStarted;
+        player1actions.InGame.CollectBall.canceled -= whiteTray.OnCollectCanceled;
+        player1actions.InGame.UseBall.performed -= OnUseBallStarted;
+        player1actions.InGame.UseBall.canceled -= OnUseBallCanceled;
+        player1actions.InGame.PullLever.started -= OnPullStarted;
+        player1actions.InGame.PullLever.performed -= OnPullPerformed;
+        player1actions.InGame.PullLever.canceled -= OnPullCanceled;
+        player1actions.InGame.PressOrangeButton.started -= OnPressStarted;
+        player1actions.InGame.PressOrangeButton.canceled -= OnPressCanceled;
+    }
 
     private void OnUseBall(InputAction.CallbackContext context)
     {
@@ -148,17 +166,50 @@ public class PachinkoMachineManager : MonoBehaviour
         }
     }
 
-    void OnDisable()
+    private void OnUseBallStarted(InputAction.CallbackContext context)
     {
-        player1actions.OnMenu.EscapeMenu.performed -= OnEscapeMenu;
-        player1actions.InGame.OpenMainMenu.performed -= OnOpenMainMenu;
-        player1actions.InGame.CollectBall.performed -= whiteTray.OnCollectAction;
-        player1actions.InGame.UseBall.performed -= OnUseBall;
-        player1actions.InGame.PullLever.started -= OnPullStarted;
-        player1actions.InGame.PullLever.performed -= OnPullPerformed;
-        player1actions.InGame.PullLever.canceled -= OnPullCanceled;
-        player1actions.InGame.PressOrangeButton.started -= OnPressStarted;
-        player1actions.InGame.PressOrangeButton.canceled -= OnPressCanceled;
+        isHoldingUseBall = true;
+
+        holdUseBallCoroutine = StartCoroutine(HoldUseBall());
+    }
+    private void OnUseBallCanceled(InputAction.CallbackContext context)
+    {
+        if(!isHoldingUseBall)
+            return;
+
+        isHoldingUseBall = false;
+
+        if(holdUseBallCoroutine != null)
+        {
+            StopCoroutine(holdUseBallCoroutine);
+            holdUseBallCoroutine = null;
+        }
+
+    }
+
+    private IEnumerator HoldUseBall()
+    {
+        while(isHoldingUseBall)
+        {
+            UseBall();
+
+            if(repeatInterval <= 0f)
+                yield return null;
+            else
+                yield return new WaitForSeconds(repeatInterval);
+        }
+    }
+
+
+    private void UseBall()
+    {
+        var ball = whiteTray.TakeABall();
+        if(ball != null)
+        {
+            Destroy(ball);
+            ++gameManager.startCredits;
+            Debug.Log("Adding ball to credits");
+        }
     }
 
     private void OnOpenMainMenu(InputAction.CallbackContext context)
@@ -342,6 +393,7 @@ public class PachinkoMachineManager : MonoBehaviour
         else if(Shooter != null && !isAutoShoot)
         {
             StopCoroutine(Shooter);
+            Shooter = null;
         }
     }
 

@@ -87,8 +87,8 @@
 [x] fix auto shoot not starting
 
 ## Functional and Features
-[] make long press call many times collect balls
-[] make long press call many times use balls
+[x] make long press call many times collect balls
+[x] make long press call many times use balls
 [] Count missed balls
 [] Add payout collector
 [] Add payout exit to collect tray
@@ -107,6 +107,7 @@
 
 ## Visual
 [] replace the metal material
+[] Animate the collect white switch
 
 ## Sound Fx
 [] Add Wing switching Audio

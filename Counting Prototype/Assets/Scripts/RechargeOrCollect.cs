@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -6,7 +8,10 @@ using UnityEngine.InputSystem;
 public class RechargeOrCollect : MonoBehaviour
 {
     public GameObject collectorsSpawnDirection;
-
+    private bool isHolding;
+    private Coroutine holdCoroutine;
+    [Header("Hold Action Settings")]
+    [SerializeField] private float repeatInterval = 0.1f;
     private readonly HashSet<GameObject> objectsInContact = new HashSet<GameObject>();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -37,6 +42,46 @@ public class RechargeOrCollect : MonoBehaviour
     {
         if(objectsInContact.Any())
             CollectPayout(objectsInContact.FirstOrDefault());
+    }
+
+    public void OnCollectStarted(InputAction.CallbackContext context)
+    {
+        isHolding = true;
+
+        holdCoroutine = StartCoroutine(HoldLoop());
+    }
+
+    private IEnumerator HoldLoop()
+    {
+        while(isHolding)
+        {
+            Collect();
+
+            if(repeatInterval <= 0f)
+                yield return null;
+            else 
+                yield return new WaitForSeconds(repeatInterval);
+        }
+    }
+
+    private void Collect()
+    {
+        if (objectsInContact.Any())
+            CollectPayout(objectsInContact.FirstOrDefault());
+    }
+
+    public void OnCollectCanceled(InputAction.CallbackContext context)
+    {
+        if(!isHolding)
+            return;
+
+        isHolding = false;
+
+        if(holdCoroutine != null)
+        {
+            StopCoroutine(holdCoroutine);
+            holdCoroutine = null;
+        }
     }
 
     public GameObject TakeABall()

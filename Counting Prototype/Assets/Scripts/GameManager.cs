@@ -71,8 +71,6 @@ public class GameManager : MonoBehaviour
         State = GameStateType.Waiting;
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-
     public void UpdateScore(int points)
     {
         totalScore += points;

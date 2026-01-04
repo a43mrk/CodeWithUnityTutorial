@@ -63,55 +63,68 @@
     [x] show game menu on game start
     [x] hide the game panel before game starts
 [x] Add Entering the ball lose hole audio
-[] Add Wing switching Audio
 [x] Add ball enter top most pocket Audio
 [x] Ball and Nail Collision Sound Effects
 [x] Add option to the player to use auto shoot or manual shoot
 [x] Add an individual Count for every pocket too
-[] replace the metal material
 [x] Add lights on Queen
 [x] Add lights on King
 [x] Add lights on the Victory Lamp
 [x] Separate the machine state into a Single Machine Manager
-    [] eliminate game manager tight copling
 [x] Animate the lever when shooting
-[] Count missed balls
-[] Fix missed balls that comeback to the shooting place
 [x] wire the King lamp to light when a jackpot is underway
 [x] Add payout spot
-[] Add payout collector
-[] Add payout exit to collect tray
 [x] Add Collect btn
-[] Add Recharge credits btn
-[] Display available credits
 [x] Add missing tulips card identities on prefab
 [x] Animate the collect btn(orange)
-[] change the count, lost text color
-[] Change the count, lost into an new panel
 [x] replace the close and open of the tulips by Animation to reduce errors
-[] BUG: review if the ball is counted twice or more
 [x] Add basket of balls
 [x] make shoot if player clicks the lever
+[x] Fix failing jackpot sound and lamp fx
+[x] Add Start Auto shoot switch on the panel
+[x] make auto shoot shoots if is on
+[x] Add Manual Shoot input Action
+[x] fix auto shoot not starting
+
+## Functional and Features
+[] make long press call many times collect balls
+[] make long press call many times use balls
+[] Count missed balls
+[] Add payout collector
+[] Add payout exit to collect tray
+[] Add Recharge credits btn
+[] Display available credits
+[] change the count, lost text color
+[] Change the count, lost into an new panel
 [] make the orange btn on the machine transfer the balls to a basket
 [] Create Various Levels and the their Various payouts settings
 [] instantiate baskets after collecting n balls on a visible place
 [] put balls that escaped/falled from the machine into the basket
-[] put the audio source on the nail not on the balls(performance)
-[x] Fix failing jackpot sound and lamp fx
-[]Fix the broken king lamp is always on
-[] Add an Queue for the jackpot payout to not cutoff the soundfx
-[] don't play the payout sound fx if there is no jackpot reserves
 [] Game just shoot once and stops after restarting the game
-[] make long press call many times collect balls
-[] make long press call many times use balls
 [] Add move balls to basquet on action input
 [] Make the use of balls add credits and poweroff the queens light
-[x] Add Start Auto shoot switch on the panel
-[x] make auto shoot shoots if is on
-[x] Add Manual Shoot input Action
+[] Make add the balls on basquet to the credits
+
+## Visual
+[] replace the metal material
+
+## Sound Fx
+[] Add Wing switching Audio
+
+## Bugs
+[] Add an Queue for the jackpot payout to not cutoff the soundfx
+[] don't play the payout sound fx if there is no jackpot reserves
+[] BUG: review if the ball is counted twice or more
+[] Fix the broken king lamp is always on
 [] fix zoom out(scrolling is not taking effect)
-[x] fix auto shoot not starting
 [] fix animation of manual shoot
+[] Fix the animation of long pressing orange btn when released
+[] Fix missed balls that comeback to the shooting place
+
+## Performance
+[] put the audio source on the nail not on the balls(performance)
+
+## Code Improvements & Refactories
+[] eliminate game manager tight copling
 [] Separate the btn logic from the machine?
 [] Separate the lever logic from the machine?
-[] Fix the animation of long pressing orange btn when released

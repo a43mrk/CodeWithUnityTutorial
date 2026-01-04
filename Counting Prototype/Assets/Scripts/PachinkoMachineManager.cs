@@ -19,6 +19,9 @@ public class PachinkoMachineManager : MonoBehaviour
     private AnimationCurve skillCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
     public GameObject ballCollector;
 
+    [Header("Hold Action Settings")]
+    [SerializeField] private float repeatInterval = 0.1f;
+
 
     private int ballsLost = 0;
     // Payout amount is fixed (e.g., 10, 15, or 20 balls).
@@ -36,6 +39,10 @@ public class PachinkoMachineManager : MonoBehaviour
     public int foulBallCount = 0; // Foul ball pockets: These collect balls that don’t count toward scoring but may accumulate until released.
     private AudioSource shootingAudioFx;
     public Animator leverAnimator;
+    [Header("Button References")]
+    public Animator orangeBtnAnimator;
+    [SerializeField] private Transform orangeBtnTransform;
+
     private GameObject[] allTulips;
     public GameObject QueenLamp;
     public GameObject KingLamp;
@@ -64,8 +71,14 @@ public class PachinkoMachineManager : MonoBehaviour
     private Player1 player1actions;
 
     private float holdTimer;
-    private bool isHolding;
+    private bool isHoldingShootingLever;
     private bool holdQualified;
+
+    private bool isHoldingOrangeBtn;
+
+    private Coroutine orangeBtnHoldCoroutine;
+    public Camera mainCamera;
+    private static readonly int IsPressedHash = Animator.StringToHash("IsPressed");
 
     void Awake()
     {
@@ -94,7 +107,7 @@ public class PachinkoMachineManager : MonoBehaviour
         //     UpdateJackPockCountdown();
         // }
 
-        if(!isHolding)
+        if(!isHoldingShootingLever)
             return;
         
         holdTimer += Time.deltaTime;
@@ -115,6 +128,8 @@ public class PachinkoMachineManager : MonoBehaviour
         player1actions.InGame.PullLever.started += OnPullStarted;
         player1actions.InGame.PullLever.performed += OnPullPerformed;
         player1actions.InGame.PullLever.canceled += OnPullCanceled;
+        player1actions.InGame.PressOrangeButton.started += OnPressStarted;
+        player1actions.InGame.PressOrangeButton.canceled += OnPressCanceled;
     }
 
 
@@ -140,6 +155,8 @@ public class PachinkoMachineManager : MonoBehaviour
         player1actions.InGame.PullLever.started -= OnPullStarted;
         player1actions.InGame.PullLever.performed -= OnPullPerformed;
         player1actions.InGame.PullLever.canceled -= OnPullCanceled;
+        player1actions.InGame.PressOrangeButton.started -= OnPressStarted;
+        player1actions.InGame.PressOrangeButton.canceled -= OnPressCanceled;
     }
 
     private void OnOpenMainMenu(InputAction.CallbackContext context)
@@ -370,7 +387,7 @@ public class PachinkoMachineManager : MonoBehaviour
 
     private void ResetLever()
     {
-        isHolding = false;
+        isHoldingShootingLever = false;
         holdTimer = 0f;
 
         leverAnimator.SetBool("Holding", false);
@@ -385,10 +402,106 @@ public class PachinkoMachineManager : MonoBehaviour
 
     private void OnPullStarted(InputAction.CallbackContext context)
     {
-        isHolding = true;
+        isHoldingShootingLever = true;
         holdQualified = false;
         holdTimer = 0f;
 
         leverAnimator.SetBool("Holding", true);
+    }
+
+    void OnOrangeBtnPressStarted()
+    {
+        orangeBtnAnimator.SetBool("IsPressed", true);
+    }
+
+    void OnOrangeBtnPressCanceled()
+    {
+        orangeBtnAnimator.SetBool("IsPressed", false);
+    }
+
+    public void PressOrangeBtn()
+    {
+        orangeBtnAnimator.SetTrigger("Push");
+    }
+
+
+    private void OnPressCanceled(InputAction.CallbackContext context)
+    {
+        if (!isHoldingOrangeBtn)
+            return;
+
+        isHoldingOrangeBtn = false;
+        orangeBtnAnimator.SetBool(IsPressedHash, false);
+
+        if(orangeBtnHoldCoroutine != null)
+        {
+            StopCoroutine(orangeBtnHoldCoroutine);
+            orangeBtnHoldCoroutine = null;
+        }
+
+        OnButtonReleased();
+    }
+
+
+    private void OnPressStarted(InputAction.CallbackContext context)
+    {
+        if(!PointerHitsThisButton(context))
+            return;
+
+        isHoldingOrangeBtn = true;
+        orangeBtnAnimator.SetBool(IsPressedHash, true);
+
+        orangeBtnHoldCoroutine = StartCoroutine(HoldLoop());
+    }
+
+    private IEnumerator HoldLoop()
+    {
+        while(isHoldingOrangeBtn)
+        {
+            OnButtonHeld();
+
+            if(repeatInterval <= 0f)
+                yield return null;
+            else
+                yield return new WaitForSeconds(repeatInterval);
+        }
+    }
+
+    // ====================
+    // Gameplay hooks
+    // ====================
+    private void OnButtonHeld()
+    {
+        Debug.Log("Button held");
+    }
+    private void OnButtonReleased()
+    {
+        Debug.Log("Button released");
+    }
+
+    /// <summary>
+    /// HIT TEST
+    /// </summary>
+    /// <param name="context"></param>
+    /// <returns></returns>
+    private bool PointerHitsThisButton(InputAction.CallbackContext context)
+    {
+        // Gamepad / keyboard: no pointer, accept input
+        if(context.control.device is Gamepad || context.control.device is Keyboard)
+            return true;
+        
+        if(!(context.control.device is Pointer))
+            return false;
+
+        Vector2 screenPos = Pointer.current.position.ReadValue();
+        Ray ray = mainCamera.ScreenPointToRay(screenPos);
+
+        if(Physics.Raycast(ray, out RaycastHit hit))
+        {
+            return hit.transform == orangeBtnTransform
+                || hit.transform.IsChildOf(orangeBtnTransform);
+        }
+
+        return false;
     }
 }

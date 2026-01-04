@@ -199,6 +199,15 @@ public partial class @Player1: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PressOrangeButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""4f009995-bf42-409c-bebb-3bb08ebedee9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -421,6 +430,50 @@ public partial class @Player1: IInputActionCollection2, IDisposable
                     ""action"": ""PullLever"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8a3b5d81-a4d0-42ed-bb0c-bd5f8678b095"",
+                    ""path"": ""<Keyboard>/o"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PressOrangeButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""281e5c11-7550-418b-955a-55318ef5bddb"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PressOrangeButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""833f7a28-d215-45d3-90ef-63612899db95"",
+                    ""path"": ""<Touchscreen>/Press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PressOrangeButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4fc293bf-2ab6-4537-8dc0-ef7604d11826"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PressOrangeButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -481,6 +534,7 @@ public partial class @Player1: IInputActionCollection2, IDisposable
         m_InGame_RotatePress = m_InGame.FindAction("RotatePress", throwIfNotFound: true);
         m_InGame_Elevate = m_InGame.FindAction("Elevate", throwIfNotFound: true);
         m_InGame_PullLever = m_InGame.FindAction("PullLever", throwIfNotFound: true);
+        m_InGame_PressOrangeButton = m_InGame.FindAction("PressOrangeButton", throwIfNotFound: true);
         // On Menu
         m_OnMenu = asset.FindActionMap("On Menu", throwIfNotFound: true);
         m_OnMenu_EscapeMenu = m_OnMenu.FindAction("Escape Menu", throwIfNotFound: true);
@@ -577,6 +631,7 @@ public partial class @Player1: IInputActionCollection2, IDisposable
     private readonly InputAction m_InGame_RotatePress;
     private readonly InputAction m_InGame_Elevate;
     private readonly InputAction m_InGame_PullLever;
+    private readonly InputAction m_InGame_PressOrangeButton;
     /// <summary>
     /// Provides access to input actions defined in input action map "In Game".
     /// </summary>
@@ -636,6 +691,10 @@ public partial class @Player1: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "InGame/PullLever".
         /// </summary>
         public InputAction @PullLever => m_Wrapper.m_InGame_PullLever;
+        /// <summary>
+        /// Provides access to the underlying input action "InGame/PressOrangeButton".
+        /// </summary>
+        public InputAction @PressOrangeButton => m_Wrapper.m_InGame_PressOrangeButton;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -698,6 +757,9 @@ public partial class @Player1: IInputActionCollection2, IDisposable
             @PullLever.started += instance.OnPullLever;
             @PullLever.performed += instance.OnPullLever;
             @PullLever.canceled += instance.OnPullLever;
+            @PressOrangeButton.started += instance.OnPressOrangeButton;
+            @PressOrangeButton.performed += instance.OnPressOrangeButton;
+            @PressOrangeButton.canceled += instance.OnPressOrangeButton;
         }
 
         /// <summary>
@@ -745,6 +807,9 @@ public partial class @Player1: IInputActionCollection2, IDisposable
             @PullLever.started -= instance.OnPullLever;
             @PullLever.performed -= instance.OnPullLever;
             @PullLever.canceled -= instance.OnPullLever;
+            @PressOrangeButton.started -= instance.OnPressOrangeButton;
+            @PressOrangeButton.performed -= instance.OnPressOrangeButton;
+            @PressOrangeButton.canceled -= instance.OnPressOrangeButton;
         }
 
         /// <summary>
@@ -978,6 +1043,13 @@ public partial class @Player1: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPullLever(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "PressOrangeButton" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPressOrangeButton(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "On Menu" which allows adding and removing callbacks.

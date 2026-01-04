@@ -85,7 +85,7 @@
 [] Add Recharge credits btn
 [] Display available credits
 [x] Add missing tulips card identities on prefab
-[] Animate the collect btn
+[x] Animate the collect btn(orange)
 [] change the count, lost text color
 [] Change the count, lost into an new panel
 [] replace the close and open of the tulips by Animation to reduce errors
@@ -108,7 +108,7 @@
 [] Make the use of balls add credits and poweroff the queens light
 [x] Add Start Auto shoot switch on the panel
 [x] make auto shoot shoots if is on
-[] Add Manual Shoot input Action
+[x] Add Manual Shoot input Action
 [] fix zoom out(scrolling is not taking effect)
 [x] fix auto shoot not starting
 [] fix animation of manual shoot

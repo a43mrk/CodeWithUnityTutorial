@@ -433,6 +433,17 @@ public partial class @Player1: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""adf6c25f-74f9-4ff7-93d4-df7794017e85"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PullLever"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""8a3b5d81-a4d0-42ed-bb0c-bd5f8678b095"",
                     ""path"": ""<Keyboard>/o"",
                     ""interactions"": """",

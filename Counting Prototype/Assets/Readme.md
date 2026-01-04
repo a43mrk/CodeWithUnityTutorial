@@ -81,17 +81,17 @@
 [x] Add payout spot
 [] Add payout collector
 [] Add payout exit to collect tray
-[] Add Collect btn
+[x] Add Collect btn
 [] Add Recharge credits btn
 [] Display available credits
 [x] Add missing tulips card identities on prefab
 [x] Animate the collect btn(orange)
 [] change the count, lost text color
 [] Change the count, lost into an new panel
-[] replace the close and open of the tulips by Animation to reduce errors
+[x] replace the close and open of the tulips by Animation to reduce errors
 [] BUG: review if the ball is counted twice or more
 [x] Add basket of balls
-[] make shoot if player clicks the lever
+[x] make shoot if player clicks the lever
 [] make the orange btn on the machine transfer the balls to a basket
 [] Create Various Levels and the their Various payouts settings
 [] instantiate baskets after collecting n balls on a visible place
@@ -112,3 +112,6 @@
 [] fix zoom out(scrolling is not taking effect)
 [x] fix auto shoot not starting
 [] fix animation of manual shoot
+[] Separate the btn logic from the machine?
+[] Separate the lever logic from the machine?
+[] Fix the animation of long pressing orange btn when released

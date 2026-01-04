@@ -39,6 +39,8 @@ public class PachinkoMachineManager : MonoBehaviour
     public int foulBallCount = 0; // Foul ball pockets: These collect balls that don’t count toward scoring but may accumulate until released.
     private AudioSource shootingAudioFx;
     public Animator leverAnimator;
+    [SerializeField] private Transform leverTransform;
+
     [Header("Button References")]
     public Animator orangeBtnAnimator;
     [SerializeField] private Transform orangeBtnTransform;
@@ -402,6 +404,10 @@ public class PachinkoMachineManager : MonoBehaviour
 
     private void OnPullStarted(InputAction.CallbackContext context)
     {
+
+        if(!PointerHitsThisButton(context, leverTransform))
+            return;
+
         isHoldingShootingLever = true;
         holdQualified = false;
         holdTimer = 0f;
@@ -445,7 +451,7 @@ public class PachinkoMachineManager : MonoBehaviour
 
     private void OnPressStarted(InputAction.CallbackContext context)
     {
-        if(!PointerHitsThisButton(context))
+        if(!PointerHitsThisButton(context, orangeBtnTransform))
             return;
 
         isHoldingOrangeBtn = true;
@@ -484,7 +490,7 @@ public class PachinkoMachineManager : MonoBehaviour
     /// </summary>
     /// <param name="context"></param>
     /// <returns></returns>
-    private bool PointerHitsThisButton(InputAction.CallbackContext context)
+    private bool PointerHitsThisButton(InputAction.CallbackContext context, Transform target)
     {
         // Gamepad / keyboard: no pointer, accept input
         if(context.control.device is Gamepad || context.control.device is Keyboard)
@@ -498,8 +504,8 @@ public class PachinkoMachineManager : MonoBehaviour
 
         if(Physics.Raycast(ray, out RaycastHit hit))
         {
-            return hit.transform == orangeBtnTransform
-                || hit.transform.IsChildOf(orangeBtnTransform);
+            return hit.transform == target
+                || hit.transform.IsChildOf(target);
         }
 
         return false;

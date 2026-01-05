@@ -14,6 +14,10 @@ public class UIManager : MonoBehaviour
 
     public Text CounterText;
     public Text LostBallsText;
+    public Text MissedShootsText;
+    public Text MissedBallsText;
+    public Text ShootingBallsText;
+    public Text CollectedBallsText;
     private GameActionType lastAction;
 
     void Start()
@@ -71,6 +75,26 @@ public class UIManager : MonoBehaviour
 
     public void SetScore(int points)
     {
-        CounterText.text = "Count : " + points;
+        CounterText.text = "Score : " + points;
+    }
+
+    public void SetShootingBalls(int balls)
+    {
+        ShootingBallsText.text = "Shooting Balls :" + balls;
+    }
+
+    public void SetMissedShoots(int amount)
+    {
+        MissedShootsText.text = "Missed Shoots : " + amount;
+    }
+
+    public void SetMissingBalls(int amount)
+    {
+        MissedBallsText.text = "Missed Balls : " + amount;
+    }
+
+    public void SetCollectedBalls(int amount)
+    {
+        CollectedBallsText.text = "Collected Balls : " + amount;
     }
 }

@@ -37,17 +37,19 @@ public enum GameStateType
 public class GameManager : MonoBehaviour
 {
     public GameObject machine;
-    public int startCredits = 100;
+    [SerializeField] private int startCredits = 100;
 
 
     [Header("Gravity Settings")]
     public Vector3 gravity = new Vector3(0f, -9.81f, 0f);
 
     private int totalScore = 0;
-
     private int ballsLost = 0;
-    private int ballsMissed = 0;
-    private int redeemedMissedBalls = 0;
+    private int missedShoots = 0;
+    private int totalCollectedBalls = 0;
+    private int ballsReused = 0;
+    private int missingBalls = 0;
+
     // used to toggle winning light when users redeem the balls
     public bool isJackpotTimeBased = true; // in case of false it will use round based jackpot system.
 
@@ -58,6 +60,7 @@ public class GameManager : MonoBehaviour
     private UIManager uiManager;
     private GameDifficulty gameDifficulty;
     private bool isGameRunning = false;
+
     public GameStateType State { get; private set; }
 
 
@@ -69,6 +72,23 @@ public class GameManager : MonoBehaviour
         uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
 
         State = GameStateType.Waiting;
+    }
+
+    public int TakeABall()
+    {
+        uiManager.SetShootingBalls(--startCredits);
+        return startCredits;
+    }
+
+    public int GetAvailableBalls() => startCredits;
+
+    public int IncrementBall(bool isReused = false)
+    {
+        if(isReused)
+            ++ballsReused;
+
+        uiManager.SetShootingBalls(++startCredits);
+        return startCredits;
     }
 
     public void UpdateScore(int points)
@@ -83,9 +103,16 @@ public class GameManager : MonoBehaviour
         uiManager.SetBallsLost(ballsLost);
     }
 
-    public void IncrementBallsMissed()
+    public void IncrementMissedShoots()
     {
-        ++ballsMissed;
+        ++missedShoots;
+        uiManager.SetMissedShoots(missedShoots);
+    }
+
+    public void IncrementMissingBalls()
+    {
+        ++missingBalls;
+        uiManager.SetMissingBalls(missingBalls);
     }
 
 

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MissedBallDetector : MonoBehaviour
+public class MissingBallDetector : MonoBehaviour
 {
     private GameManager gameManager;
     public GameObject missingBallsTeleportDirection;
@@ -22,7 +22,7 @@ public class MissedBallDetector : MonoBehaviour
         if(!other.CompareTag("Ball"))
             return;
 
-        gameManager.IncrementBallsMissed();
+        gameManager.IncrementMissingBalls();
 
         other.transform.position = missingBallsTeleportDirection.transform.position;
         Rigidbody rb = other.GetComponent<Rigidbody>();
@@ -33,6 +33,8 @@ public class MissedBallDetector : MonoBehaviour
         }
 
         Debug.Log("missed ball speed: " + rb.linearVelocity);
+
+        rb.linearVelocity = Vector3.zero;
 
         Vector3 direction = missingBallsTeleportDirection.transform.up;
         rb.AddForce(direction * 50, ForceMode.Impulse);

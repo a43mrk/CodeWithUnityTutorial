@@ -17,12 +17,12 @@ public class PachinkoMachineManager : MonoBehaviour
     [SerializeField]
     private AnimationCurve skillCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
     public GameObject ballCollector;
+    public GameObject orangeButton;
 
     [Header("Hold Action Settings")]
     [SerializeField] private float repeatInterval = 0.1f;
 
 
-    private int ballsLost = 0;
     // Payout amount is fixed (e.g., 10, 15, or 20 balls).
     // public int jackPotPremium = 15; // normally 15
     // public int sidePocketPremium = 3; // 0 ~ 3 balls
@@ -30,7 +30,6 @@ public class PachinkoMachineManager : MonoBehaviour
     public float jackPointTime = 30.0f; // 30~60 seconds
     private float jackPointTimeLeft = 0;
 
-    private int ballsMissed = 0;
     private int redeemedMissedBalls = 0;
     // used to toggle winning light when users redeem the balls
     private bool isWinningBalls = false;
@@ -39,10 +38,6 @@ public class PachinkoMachineManager : MonoBehaviour
     private AudioSource shootingAudioFx;
     public Animator leverAnimator;
     [SerializeField] private Transform leverTransform;
-
-    [Header("Button References")]
-    public Animator orangeBtnAnimator;
-    [SerializeField] private Transform orangeBtnTransform;
 
     private GameObject[] allTulips;
     public GameObject QueenLamp;
@@ -75,13 +70,10 @@ public class PachinkoMachineManager : MonoBehaviour
     private bool isHoldingShootingLever;
     private bool holdQualified;
 
-    private bool isHoldingOrangeBtn;
-
-    private Coroutine orangeBtnHoldCoroutine;
     public Camera mainCamera;
     private bool isHoldingUseBall = false;
     private Coroutine holdUseBallCoroutine;
-    private static readonly int IsPressedHash = Animator.StringToHash("IsPressed");
+    private PackOrUseBalls orangeBtnMethods;
 
     void Awake()
     {
@@ -93,6 +85,7 @@ public class PachinkoMachineManager : MonoBehaviour
         allTulips = GameObject.FindGameObjectsWithTag("Tulip");
         queensLamp = QueenLamp.GetComponent<GlowingLamp>();
         kingsLamp = KingLamp.GetComponent<GlowingLamp>();
+        orangeBtnMethods = orangeButton.GetComponent<PackOrUseBalls>();
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -135,8 +128,8 @@ public class PachinkoMachineManager : MonoBehaviour
         player1actions.InGame.PullLever.started += OnPullStarted;
         player1actions.InGame.PullLever.performed += OnPullPerformed;
         player1actions.InGame.PullLever.canceled += OnPullCanceled;
-        player1actions.InGame.PressOrangeButton.started += OnPressStarted;
-        player1actions.InGame.PressOrangeButton.canceled += OnPressCanceled;
+        player1actions.InGame.PressOrangeButton.started += orangeBtnMethods.OnPressStarted;
+        player1actions.InGame.PressOrangeButton.canceled += orangeBtnMethods.OnPressCanceled;
     }
 
 
@@ -151,8 +144,8 @@ public class PachinkoMachineManager : MonoBehaviour
         player1actions.InGame.PullLever.started -= OnPullStarted;
         player1actions.InGame.PullLever.performed -= OnPullPerformed;
         player1actions.InGame.PullLever.canceled -= OnPullCanceled;
-        player1actions.InGame.PressOrangeButton.started -= OnPressStarted;
-        player1actions.InGame.PressOrangeButton.canceled -= OnPressCanceled;
+        player1actions.InGame.PressOrangeButton.started -= orangeBtnMethods.OnPressStarted;
+        player1actions.InGame.PressOrangeButton.canceled -= orangeBtnMethods.OnPressCanceled;
     }
 
     private void OnUseBall(InputAction.CallbackContext context)
@@ -161,7 +154,7 @@ public class PachinkoMachineManager : MonoBehaviour
         if(ball != null)
         {
             Destroy(ball);
-            ++gameManager.startCredits;
+            gameManager.IncrementBall(true);
             Debug.Log("Adding ball to credits");
         }
     }
@@ -207,7 +200,9 @@ public class PachinkoMachineManager : MonoBehaviour
         if(ball != null)
         {
             Destroy(ball);
-            ++gameManager.startCredits;
+
+            gameManager.IncrementBall(true);
+
             Debug.Log("Adding ball to credits");
         }
     }
@@ -266,10 +261,10 @@ public class PachinkoMachineManager : MonoBehaviour
 
     private IEnumerator SpawnAndShoot()
     {
-        while(gameManager.startCredits >0)
+        while(gameManager.GetAvailableBalls() >0)
         {
             ShootBall();
-            gameManager.startCredits--;
+            gameManager.TakeABall();
             yield return new WaitForSeconds(interval);
 
             CheckCredits();
@@ -368,7 +363,7 @@ public class PachinkoMachineManager : MonoBehaviour
 
     private void CheckCredits()
     {
-        if (gameManager.startCredits <= 0)
+        if (gameManager.GetAvailableBalls() <= 0)
         {
             queensLamp.EnableGlow();
         }
@@ -467,75 +462,11 @@ public class PachinkoMachineManager : MonoBehaviour
         leverAnimator.SetBool("Holding", true);
     }
 
-    void OnOrangeBtnPressStarted()
-    {
-        orangeBtnAnimator.SetBool("IsPressed", true);
-    }
-
-    void OnOrangeBtnPressCanceled()
-    {
-        orangeBtnAnimator.SetBool("IsPressed", false);
-    }
-
-    public void PressOrangeBtn()
-    {
-        orangeBtnAnimator.SetTrigger("Push");
-    }
 
 
-    private void OnPressCanceled(InputAction.CallbackContext context)
-    {
-        if (!isHoldingOrangeBtn)
-            return;
-
-        isHoldingOrangeBtn = false;
-        orangeBtnAnimator.SetBool(IsPressedHash, false);
-
-        if(orangeBtnHoldCoroutine != null)
-        {
-            StopCoroutine(orangeBtnHoldCoroutine);
-            orangeBtnHoldCoroutine = null;
-        }
-
-        OnButtonReleased();
-    }
 
 
-    private void OnPressStarted(InputAction.CallbackContext context)
-    {
-        if(!PointerHitsThisButton(context, orangeBtnTransform))
-            return;
 
-        isHoldingOrangeBtn = true;
-        orangeBtnAnimator.SetBool(IsPressedHash, true);
-
-        orangeBtnHoldCoroutine = StartCoroutine(HoldLoop());
-    }
-
-    private IEnumerator HoldLoop()
-    {
-        while(isHoldingOrangeBtn)
-        {
-            OnButtonHeld();
-
-            if(repeatInterval <= 0f)
-                yield return null;
-            else
-                yield return new WaitForSeconds(repeatInterval);
-        }
-    }
-
-    // ====================
-    // Gameplay hooks
-    // ====================
-    private void OnButtonHeld()
-    {
-        Debug.Log("Button held");
-    }
-    private void OnButtonReleased()
-    {
-        Debug.Log("Button released");
-    }
 
     /// <summary>
     /// HIT TEST

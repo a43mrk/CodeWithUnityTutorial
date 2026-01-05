@@ -83,6 +83,11 @@ public class GameManager : MonoBehaviour
         uiManager.SetBallsLost(ballsLost);
     }
 
+    public void IncrementBallsMissed()
+    {
+        ++ballsMissed;
+    }
+
 
     public void SetGameDifficutyToEasy()
     {

@@ -90,7 +90,7 @@
 [x] make long press call many times collect balls
 [x] make long press call many times use balls
 [x] catch missed shoots on the shooting chamber
-[] Add missed balls Counter
+[x] Add missed balls Counter
 [] Add payout collector
 [] Add payout exit to collect tray
 [] Add Recharge credits btn
@@ -98,10 +98,10 @@
 [] change the count, lost text color
 [] Change the count, lost into an new panel
 [] make the orange btn on the machine transfer the balls to a basket
-[] Create Various Levels and the their Various payouts settings
+
 [] instantiate baskets after collecting n balls on a visible place
-[] put balls that escaped/falled from the machine into the basket
-[] Game just shoot once and stops after restarting the game
+[] Create Various Levels and the their Various payouts settings
+[x] put balls that escaped/falled from the machine into the green tray
 [] Add move balls to basquet on action input
 [] Make the use of balls add credits and poweroff the queens light
 [] Make add the balls on basquet to the credits
@@ -114,6 +114,7 @@
 [] Add Wing switching Audio
 
 ## Bugs
+[] Game just shoot once and stops after restarting the game
 [] Add an Queue for the jackpot payout to not cutoff the soundfx
 [] don't play the payout sound fx if there is no jackpot reserves
 [] BUG: review if the ball is counted twice or more

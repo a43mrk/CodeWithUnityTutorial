@@ -22,6 +22,8 @@ public class MissedBallDetector : MonoBehaviour
         if(!other.CompareTag("Ball"))
             return;
 
+        gameManager.IncrementBallsMissed();
+
         other.transform.position = missingBallsTeleportDirection.transform.position;
         Rigidbody rb = other.GetComponent<Rigidbody>();
 
@@ -29,6 +31,8 @@ public class MissedBallDetector : MonoBehaviour
         {
             Debug.LogError("Ball prefab must have a Rigidbody.");
         }
+
+        Debug.Log("missed ball speed: " + rb.linearVelocity);
 
         Vector3 direction = missingBallsTeleportDirection.transform.up;
         rb.AddForce(direction * 50, ForceMode.Impulse);

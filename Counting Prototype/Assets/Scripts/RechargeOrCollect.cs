@@ -113,7 +113,7 @@ public class RechargeOrCollect : MonoBehaviour
         }
 
         Vector3 direction = collectorsSpawnDirection.transform.up;
-        rb.AddForce(direction * 100, ForceMode.Impulse);
+        rb.AddForce(direction * 50, ForceMode.Impulse);
     }
 
 }

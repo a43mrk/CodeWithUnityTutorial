@@ -89,7 +89,8 @@
 ## Functional and Features
 [x] make long press call many times collect balls
 [x] make long press call many times use balls
-[] Count missed balls
+[x] catch missed shoots on the shooting chamber
+[] Add missed balls Counter
 [] Add payout collector
 [] Add payout exit to collect tray
 [] Add Recharge credits btn
@@ -107,7 +108,7 @@
 
 ## Visual
 [] replace the metal material
-[] Animate the collect white switch
+[x] Animate the collect white switch
 
 ## Sound Fx
 [] Add Wing switching Audio
@@ -121,6 +122,7 @@
 [] fix animation of manual shoot
 [] Fix the animation of long pressing orange btn when released
 [] Fix missed balls that comeback to the shooting place
+[] Fix the animation flick when releasing the collector switch
 
 ## Performance
 [] put the audio source on the nail not on the balls(performance)

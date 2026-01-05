@@ -1,0 +1,36 @@
+using UnityEngine;
+
+public class MissedBallDetector : MonoBehaviour
+{
+    private GameManager gameManager;
+    public GameObject missingBallsTeleportDirection;
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(!other.CompareTag("Ball"))
+            return;
+
+        other.transform.position = missingBallsTeleportDirection.transform.position;
+        Rigidbody rb = other.GetComponent<Rigidbody>();
+
+        if(rb == null)
+        {
+            Debug.LogError("Ball prefab must have a Rigidbody.");
+        }
+
+        Vector3 direction = missingBallsTeleportDirection.transform.up;
+        rb.AddForce(direction * 50, ForceMode.Impulse);
+    }
+}

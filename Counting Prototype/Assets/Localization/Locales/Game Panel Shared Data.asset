@@ -1,0 +1,216 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Game Panel Shared Data
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
+  m_TableCollectionName: Game Panel
+  m_TableCollectionNameGuidString: debc2c15ea43cf6d0afe28f58f97956b
+  m_Entries:
+  - m_Id: 1
+    m_Key: pachinko
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2
+    m_Key: pachinko_parlor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3
+    m_Key: ball
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4
+    m_Key: exchange_counter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5
+    m_Key: prize
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6
+    m_Key: jackpot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7
+    m_Key: probability_change
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8
+    m_Key: rush_mode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9
+    m_Key: pachislot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10
+    m_Key: parlor_staff
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11
+    m_Key: loan_balls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12
+    m_Key: return_balls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13
+    m_Key: special_prize
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14
+    m_Key: consecutive_hits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15
+    m_Key: dead_ball
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16
+    m_Key: big_hit_count
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17
+    m_Key: current_spin_count
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18
+    m_Key: probability_hit_rate_info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19
+    m_Key: kakuhen_status
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20
+    m_Key: short_time_info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21
+    m_Key: electric_support_info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22
+    m_Key: hold_status_info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23
+    m_Key: round_count_info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24
+    m_Key: payout
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25
+    m_Key: recent_history
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26
+    m_Key: trust_indicator
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27
+    m_Key: cue_notice_info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28
+    m_Key: max_payout
+    m_Metadata:
+      m_Items: []
+  - m_Id: 29
+    m_Key: exchange_rate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54203583594496
+    m_Key: auto_shoot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54402649456640
+    m_Key: score
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54473117958144
+    m_Key: failed_shoots
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54715104133120
+    m_Key: center_pocket
+    m_Metadata:
+      m_Items: []
+  - m_Id: 61524254687232
+    m_Key: upper_tray
+    m_Metadata:
+      m_Items: []
+  - m_Id: 61618173542400
+    m_Key: lower_tray
+    m_Metadata:
+      m_Items: []
+  - m_Id: 61817725943808
+    m_Key: payout_box
+    m_Metadata:
+      m_Items: []
+  - m_Id: 65337782992896
+    m_Key: available_machine
+    m_Metadata:
+      m_Items: []
+  - m_Id: 65501381820416
+    m_Key: consecutive_bonus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68121878102016
+    m_Key: shooting_balls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68661022326784
+    m_Key: balls_in_hold
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68892090728448
+    m_Key: balls_lost
+    m_Metadata:
+      m_Items: []
+  - m_Id: 70581308915712
+    m_Key: balls_won
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72197034508288
+    m_Key: manual_shoot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72653186039808
+    m_Key: handle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72815975366656
+    m_Key: manual
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72881708498944
+    m_Key: collected_balls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 156837342642176
+    m_Key: missing_balls
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 3556435373813137567
+  references:
+    version: 2
+    RefIds:
+    - rid: 3556435373813137567
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1767683505194

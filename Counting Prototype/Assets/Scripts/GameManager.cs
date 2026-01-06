@@ -18,6 +18,7 @@ public enum GameDifficulty
 public enum GameActionType
 {
     ChooseDificulty,
+    ChooseLanguage,
     Pause,
     Resume,
     Restart,
@@ -94,7 +95,7 @@ public class GameManager : MonoBehaviour
     public void UpdateScore(int points)
     {
         totalScore += points;
-        uiManager.SetScore(points);
+        uiManager.SetScore(totalScore);
     }
 
     public void IncrementBallsLost()
@@ -136,6 +137,11 @@ public class GameManager : MonoBehaviour
         gameDifficultyChannel.Invoke(gameDifficulty);
 
         StartGame();
+    }
+
+    public void ChooseLanguage()
+    {
+        gameActionChannel.Invoke(GameActionType.ChooseLanguage);
     }
 
     public void Play()

@@ -91,33 +91,43 @@
 [x] make long press call many times use balls
 [x] catch missed shoots on the shooting chamber
 [x] Add missed balls Counter
-[] Add payout collector
-[] Add payout exit to collect tray
-[] Add Recharge credits btn
+[x] Add payout collector
+[x] Add payout exit to collect tray
+[x] Add Recharge credits btn
 [x] Display available credits
 [x] change the count, lost text color
 [] Redesign panel( the count, lost, etc...)
 [x] make the orange btn on the machine transfer the balls to a basket
 
 [x] instantiate baskets after collecting n balls on a visible place
-[] Create Various Levels and the their Various payouts settings
 [x] put balls that escaped/falled from the machine into the green tray
 [x] Add move balls to basquet on action input
-[] Make the use of balls add credits and poweroff the queens light
-[] Make add the balls on basquet to the credits
 [] Make the machine use the balls of white tray if any
+[] make spawn spendable balls on white tray otherthan add on the game manager on the flair
 
+[] Create Various Levels and the their Various payouts settings
+[] Make add the balls on basquet to the credits(pop dialog to confirm use)
+
+[x] Add Localization Package
+[x] Add language selection
+[x] Fix the non visible Japanese Characters
+[x] Translate Game
+### to add localization to an text: -on text ... menu,
+     choose Add Binding -> Type = Localized String
+      -> Select Entry -> press Add Binding
 
 ## Visual
 [] replace the metal material
 [x] Animate the collect white switch
 [] clicking the collect switch should switch
-[] Add tilt the Machine to balls move
+[] Add tilt the Machine to move balls that are stuck
 
 ## Sound Fx
 [] Add Wing switching Audio
 
 ## Bugs
+[] Fix the null exception if no balls on the green tray
+[] Make the use of balls add credits and poweroff the queens light
 [] Use ball is not updating the Credits
 [] Manual Shoot don't subtract from credits
 [] Manual Shoot can shoot even if credits are zero

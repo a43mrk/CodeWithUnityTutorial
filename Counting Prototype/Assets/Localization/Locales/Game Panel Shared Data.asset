@@ -203,6 +203,222 @@ MonoBehaviour:
     m_Key: missing_balls
     m_Metadata:
       m_Items: []
+  - m_Id: 382292238827520
+    m_Key: number_of_games
+    m_Metadata:
+      m_Items: []
+  - m_Id: 382823355154432
+    m_Key: number_of_big_bonus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 383222929719296
+    m_Key: number_of_regular_bonus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 383564555780096
+    m_Key: first_hit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 391991713628160
+    m_Key: slot.single_hit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 392258811101184
+    m_Key: slot.probabilitychange
+    m_Metadata:
+      m_Items: []
+  - m_Id: 392391523074048
+    m_Key: slot.normal_mode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 392515594780672
+    m_Key: slot.assist_time
+    m_Metadata:
+      m_Items: []
+  - m_Id: 393198351974400
+    m_Key: slot.replay_time
+    m_Metadata:
+      m_Items: []
+  - m_Id: 393419735728128
+    m_Key: slot.small_prizes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 393620777107456
+    m_Key: slot.assist_replay_time
+    m_Metadata:
+      m_Items: []
+  - m_Id: 393945793724416
+    m_Key: slot.unlimited_art
+    m_Metadata:
+      m_Items: []
+  - m_Id: 394423386537984
+    m_Key: slot.number_limited_art
+    m_Metadata:
+      m_Items: []
+  - m_Id: 394629838569472
+    m_Key: slot.continue_rate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 395082475274240
+    m_Key: slot.stock_counts
+    m_Metadata:
+      m_Items: []
+  - m_Id: 395940013309952
+    m_Key: rescue_mode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 403764474839040
+    m_Key: borderline
+    m_Metadata:
+      m_Items: []
+  - m_Id: 403955592495104
+    m_Key: rotation_rate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 404032209846272
+    m_Key: probability_display
+    m_Metadata:
+      m_Items: []
+  - m_Id: 404133288378368
+    m_Key: history
+    m_Metadata:
+      m_Items: []
+  - m_Id: 404198597885952
+    m_Key: slump_graph
+    m_Metadata:
+      m_Items: []
+  - m_Id: 404326901645312
+    m_Key: total_spins
+    m_Metadata:
+      m_Items: []
+  - m_Id: 404400260022272
+    m_Key: current_spins
+    m_Metadata:
+      m_Items: []
+  - m_Id: 404591067299840
+    m_Key: renchan_count
+    m_Metadata:
+      m_Items: []
+  - m_Id: 404683581063168
+    m_Key: first_hits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 404749934952448
+    m_Key: total_hits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 404811947737088
+    m_Key: net_balls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 405026897428480
+    m_Key: time
+    m_Metadata:
+      m_Items: []
+  - m_Id: 405091644899328
+    m_Key: y_axis
+    m_Metadata:
+      m_Items: []
+  - m_Id: 405410395226112
+    m_Key: x_axis
+    m_Metadata:
+      m_Items: []
+  - m_Id: 405509913477120
+    m_Key: jackpot_probability
+    m_Metadata:
+      m_Items: []
+  - m_Id: 407033355993088
+    m_Key: st_count
+    m_Metadata:
+      m_Items: []
+  - m_Id: 407104537526272
+    m_Key: den_sapo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 407167141707776
+    m_Key: kakuhen_rate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 407258518814720
+    m_Key: continuation_rate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 407331235463168
+    m_Key: rounds
+    m_Metadata:
+      m_Items: []
+  - m_Id: 407420007907328
+    m_Key: counts
+    m_Metadata:
+      m_Items: []
+  - m_Id: 407479629938688
+    m_Key: prize_balls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 407597024313344
+    m_Key: payout_balls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 407643774025728
+    m_Key: distribution
+    m_Metadata:
+      m_Items: []
+  - m_Id: 409486080114688
+    m_Key: today
+    m_Metadata:
+      m_Items: []
+  - m_Id: 409561120407552
+    m_Key: no_day_ago
+    m_Metadata:
+      m_Items: []
+  - m_Id: 409795355508736
+    m_Key: highest_number_of_jackpots_ever
+    m_Metadata:
+      m_Items: []
+  - m_Id: 410914068660224
+    m_Key: maximum_number_of_balls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 411186501287936
+    m_Key: time_counter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 411641977536512
+    m_Key: atacker
+    m_Metadata:
+      m_Items: []
+  - m_Id: 414227854032896
+    m_Key: special_time
+    m_Metadata:
+      m_Items: []
+  - m_Id: 414344002699264
+    m_Key: general_prize_hole
+    m_Metadata:
+      m_Items: []
+  - m_Id: 414531135766528
+    m_Key: electric_tulip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 414644369391616
+    m_Key: start_chuck
+    m_Metadata:
+      m_Items: []
+  - m_Id: 414752762789888
+    m_Key: easy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 416342903128064
+    m_Key: light_middle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 416414327930880
+    m_Key: hard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 416637745922048
+    m_Key: middle
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

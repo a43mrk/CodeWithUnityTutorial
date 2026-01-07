@@ -12,10 +12,12 @@
   <Project Path="UnityGLTFEditor.csproj" />
   <Project Path="UnityEditor.UI.csproj" />
   <Project Path="GLTFSerialization.csproj" />
+  <Project Path="Gilzoide.SqliteNet.csproj" />
   <Project Path="Unity.ProBuilder.KdTree.csproj" />
   <Project Path="Unity.ProBuilder.AddOns.Editor.csproj" />
   <Project Path="UnityGLTF.Plugins.Experimental.csproj" />
   <Project Path="UnityGLTF.ShaderGraph.csproj" />
   <Project Path="Unity.ProBuilder.AssetIdRemapUtility.csproj" />
+  <Project Path="Gilzoide.SqliteNet.Editor.csproj" />
   <Project Path="Unity.ProBuilder.Stl.csproj" />
 </Solution>

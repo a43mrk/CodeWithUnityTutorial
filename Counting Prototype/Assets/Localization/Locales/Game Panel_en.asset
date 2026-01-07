@@ -72,7 +72,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 14
-    m_Localized: Consecutive hits
+    m_Localized: 'Consecutive hits : {value}'
     m_Metadata:
       m_Items: []
   - m_Id: 15
@@ -213,6 +213,222 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 3556435373813137575
+  - m_Id: 382292238827520
+    m_Localized: 'Number Of Games : {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 382823355154432
+    m_Localized: 'Big Bonus: {value}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 383222929719296
+    m_Localized: 'Regular Bonus: {value}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 383564555780096
+    m_Localized: 'First Hit : {value}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 391991713628160
+    m_Localized: Single Hit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 392258811101184
+    m_Localized: Probability Change
+    m_Metadata:
+      m_Items: []
+  - m_Id: 392391523074048
+    m_Localized: Normal Mode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 392515594780672
+    m_Localized: 'Assist Time : {value}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 393198351974400
+    m_Localized: 'Replay Time: {value}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 393419735728128
+    m_Localized: Small Prizes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 393620777107456
+    m_Localized: 'Assist Replay Time: {value}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 393945793724416
+    m_Localized: Unlimited ART
+    m_Metadata:
+      m_Items: []
+  - m_Id: 394423386537984
+    m_Localized: '{value} Limited ART'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 394629838569472
+    m_Localized: 'Continue Rate : {value}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 395082475274240
+    m_Localized: 'Stock Count: {value}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 395940013309952
+    m_Localized: Rescue mode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 403764474839040
+    m_Localized: Borderline
+    m_Metadata:
+      m_Items: []
+  - m_Id: 403955592495104
+    m_Localized: Rotation rate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 404032209846272
+    m_Localized: Jackpot probability
+    m_Metadata:
+      m_Items: []
+  - m_Id: 404133288378368
+    m_Localized: Past history
+    m_Metadata:
+      m_Items: []
+  - m_Id: 404198597885952
+    m_Localized: Payout graph
+    m_Metadata:
+      m_Items: []
+  - m_Id: 404326901645312
+    m_Localized: Total spins
+    m_Metadata:
+      m_Items: []
+  - m_Id: 404400260022272
+    m_Localized: Current spin count
+    m_Metadata:
+      m_Items: []
+  - m_Id: 404591067299840
+    m_Localized: Consecutive hits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 404683581063168
+    m_Localized: First hits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 404749934952448
+    m_Localized: Total jackpot count
+    m_Metadata:
+      m_Items: []
+  - m_Id: 404811947737088
+    m_Localized: Net Balls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 405026897428480
+    m_Localized: time
+    m_Metadata:
+      m_Items: []
+  - m_Id: 405091644899328
+    m_Localized: "Y\u2011axis"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 405410395226112
+    m_Localized: "X\u2011axis"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 405509913477120
+    m_Localized: Jackpot probability
+    m_Metadata:
+      m_Items: []
+  - m_Id: 407033355993088
+    m_Localized: ST spins
+    m_Metadata:
+      m_Items: []
+  - m_Id: 407104537526272
+    m_Localized: Electric support count
+    m_Metadata:
+      m_Items: []
+  - m_Id: 407167141707776
+    m_Localized: Kakuhen entry rate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 407258518814720
+    m_Localized: Continuation rate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 407331235463168
+    m_Localized: Round count
+    m_Metadata:
+      m_Items: []
+  - m_Id: 407420007907328
+    m_Localized: Count per round
+    m_Metadata:
+      m_Items: []
+  - m_Id: 407479629938688
+    m_Localized: Prize balls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 407597024313344
+    m_Localized: Payout balls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 407643774025728
+    m_Localized: Distribution
+    m_Metadata:
+      m_Items: []
+  - m_Id: 409486080114688
+    m_Localized: Today
+    m_Metadata:
+      m_Items: []
+  - m_Id: 409561120407552
+    m_Localized: '{value} Day Ago'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 409795355508736
+    m_Localized: The highest number of jackpots ever
+    m_Metadata:
+      m_Items: []
+  - m_Id: 410914068660224
+    m_Localized: Maximum number of balls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 411186501287936
+    m_Localized: Time Counter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 414227854032896
+    m_Localized: Special Time
+    m_Metadata:
+      m_Items: []
+  - m_Id: 411641977536512
+    m_Localized: Atacker
+    m_Metadata:
+      m_Items: []
+  - m_Id: 414344002699264
+    m_Localized: General prize hole
+    m_Metadata:
+      m_Items: []
+  - m_Id: 414531135766528
+    m_Localized: Electric tulip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 414644369391616
+    m_Localized: Start chuck
+    m_Metadata:
+      m_Items: []
+  - m_Id: 414752762789888
+    m_Localized: Easy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 416342903128064
+    m_Localized: Light Middle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 416414327930880
+    m_Localized: Hard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 416637745922048
+    m_Localized: Middle
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

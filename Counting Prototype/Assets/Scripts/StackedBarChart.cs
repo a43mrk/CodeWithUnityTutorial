@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,6 +20,12 @@ public class StackedBarChart : MonoBehaviour
 
     [Header("Segment Spacing")]
     [SerializeField] private float segmentSpacing = 0f;
+    [Header("Subdivision Spacing")]
+    [SerializeField] private float subdivisionSpacing = 0f;
+
+    [Header("Slot Quantization")]
+    [SerializeField] private int slotCount = 10;
+    [SerializeField] private SmallGroupMode smallGroupMode = SmallGroupMode.FractionalSlot;
 
     [Header("Axes (Optional)")]
     [SerializeField] private RectTransform xAxis;
@@ -31,6 +38,16 @@ public class StackedBarChart : MonoBehaviour
     [Header("X Axis Index")]
     [SerializeField] private float xIndexHeight = 10f;
     [SerializeField] private float xIndexYOffset = -12f;
+    [Header("Axis Index")]
+    [SerializeField] private int xAxisIndexStartOffset = 0;
+
+    [Header("Last Status")]
+    [SerializeField] private float lastStatusYOffset = -26f;
+
+
+    [Header("Legend")]
+    [SerializeField] private ChartLegend legend;
+    [SerializeField] private ChartGroupLegendItem[] groupLegendItems;
 
 
     private float calculatedChartWidth;
@@ -46,57 +63,77 @@ public class StackedBarChart : MonoBehaviour
             {
                 segments = new[]{ 30f, 20f, 50f},
                 colors = new[] { Color.red, Color.yellow, Color.green },
-                xIndexColors = new[] { Color.blue }
+                xIndexColors = new[] { Color.blue },
+                lastStatus = "OK",
+                lastStatusBackgroundColor = Color.green
             },
             new StackedBarData
             {
                 segments = new[] { 10f, 40f, 1170f},
                 colors = new[] { Color.blue, Color.cyan, Color.magenta},
-                xIndexColors = new[] { Color.blue }
+                xIndexColors = new[] { Color.blue },
+                lastStatus = "OK",
+                lastStatusBackgroundColor = Color.green
             },
             new StackedBarData {
                 segments = new[]{ 30f, 20f, 50f},
                 colors = new[] { Color.red, Color.yellow, Color.green },
                 xIndexColors = new[] { Color.blue }
+                ,lastStatus = "OK",
+                lastStatusBackgroundColor = Color.green
             },
             new StackedBarData
             {
                 segments = new[] { 10f, 40f, 70f},
                 colors = new[] { Color.blue, Color.cyan, Color.magenta},
                 xIndexColors = new[] { Color.blue }
+                ,lastStatus = "OK",
+                lastStatusBackgroundColor = Color.green
             },
             new StackedBarData {
                 segments = new[]{ 30f, 20f, 50f},
                 colors = new[] { Color.red, Color.yellow, Color.green },
                 xIndexColors = new[] { Color.blue }
+                ,lastStatus = "OK",
+                lastStatusBackgroundColor = Color.green
             },
             new StackedBarData
             {
                 segments = new[] { 10f, 40f, 70f},
                 colors = new[] { Color.blue, Color.cyan, Color.magenta},
                 xIndexColors = new[] { Color.blue }
+                ,lastStatus = "OK",
+                lastStatusBackgroundColor = Color.green
             },
             new StackedBarData {
                 segments = new[]{ 30f, 20f, 50f},
                 colors = new[] { Color.red, Color.yellow, Color.green },
                 xIndexColors = new[] { Color.blue }
+                ,lastStatus = "OK",
+                lastStatusBackgroundColor = Color.green
             },
             new StackedBarData
             {
                 segments = new[] { 10f, 40f, 70f},
                 colors = new[] { Color.blue, Color.cyan, Color.magenta},
                 xIndexColors = new[] { Color.blue }
+                ,lastStatus = "OK",
+                lastStatusBackgroundColor = Color.green
             },
             new StackedBarData {
                 segments = new[]{ 30f, 20f, 50f},
                 colors = new[] { Color.red, Color.yellow, Color.green },
                 xIndexColors = new[] { Color.blue }
+                ,lastStatus = "OK",
+                lastStatusBackgroundColor = Color.green
             },
             new StackedBarData
             {
                 segments = new[] { 10f, 40f, 70f},
                 colors = new[] { Color.blue, Color.cyan, Color.magenta},
                 xIndexColors = new[] { Color.blue }
+                ,lastStatus = "NG",
+                lastStatusBackgroundColor = Color.red
             },
         });
     }
@@ -122,6 +159,14 @@ public class StackedBarChart : MonoBehaviour
 
         // ForceRectTransformSetup();
         SetupAxes();
+
+
+        if(legend != null && groupLegendItems != null)
+        {
+            Debug.Log("***Building the legends...");
+            legend.BuildLegend(groupLegendItems);
+        }
+
 
         foreach(Transform child in barContainer)
             Destroy(child.gameObject);
@@ -155,43 +200,147 @@ public class StackedBarChart : MonoBehaviour
 
             float indexPosition = i* (barWidth + barSpacing);
             CreateXIndex(barContainer, i, indexPosition, data[i]);
+            CreateLastStatus(barContainer, i, indexPosition, data[i]);
 
 
             float offset = 0f;
+            float slotSize = chartHeight / slotCount;
 
             for(int s= 0; s < data[i].segments.Length; s++)
             {
-                float rawSize = (data[i].segments[s] / maxTotal) * chartHeight;
-                float size = Mathf.Max(0f, Mathf.Round(rawSize));
+                float groupValue = data[i].segments[s];
+                float groupRatio = groupValue / maxTotal;
+                float rawSlots = groupRatio * slotCount;
 
-                RectTransform segment = Instantiate(segmentPrefab, bar).GetComponent<RectTransform>();
+                int wholeSlots = Mathf.FloorToInt(rawSlots);
+                float remainder = rawSlots - wholeSlots;
 
-                if(orientation == ChartOrientation.Vertical)
+                if(wholeSlots == 0 && smallGroupMode == SmallGroupMode.ForceFullSlot)
+                    wholeSlots = 1;
+
+                bool isFirstSliceInGroup = true;
+
+                // FRACTIONAL SLICE
+                if (smallGroupMode == SmallGroupMode.FractionalSlot && remainder > 0.001f)
                 {
-
-                segment.anchorMin = new Vector2(0, 0);
-                segment.anchorMax = new Vector2(1, 0);
-                segment.pivot = new Vector2(0.5f, 0);
-                segment.sizeDelta = new Vector2(0, size);
-                segment.anchoredPosition = new Vector2(0, offset);
+                    CreateSlice(
+                        bar,
+                        data[i].colors[s],
+                        slotSize * remainder,
+                        ref offset,
+                        isFirstSliceInGroup
+                        );
+                    isFirstSliceInGroup = false;
                 }
-                else
+
+                // FULL SLOT SLICES
+                for(int k = 0; k < wholeSlots; k++)
                 {
-                    segment.anchorMin = new Vector2(0,0);
-                    segment.anchorMax = new Vector2(0, 1);
-                    segment.pivot = new Vector2(0, 0.5f);
-
-                    segment.sizeDelta = new Vector2(size, 0);
-                    segment.anchoredPosition = new Vector2(offset, 0);
+                    CreateSlice(
+                        bar,
+                        data[i].colors[s],
+                        slotSize,
+                        ref offset,
+                        isFirstSliceInGroup
+                    );
+                    isFirstSliceInGroup = false;
                 }
 
-                Debug.Log($"Segment Y:{segment.anchoredPosition.y} H:{segment.sizeDelta.y}");
-
-                segment.GetComponent<Image>().color = data[i].colors[s];
-
-                offset += size + segmentSpacing;
             }
         }
+    }
+
+    private void CreateLastStatus(RectTransform parent, int index, float position, StackedBarData data)
+    {
+        if(string.IsNullOrEmpty(data.lastStatus))
+            return;
+        
+        RectTransform statusRect = Instantiate(segmentPrefab, parent).GetComponent<RectTransform>();
+
+        Image img = statusRect.GetComponent<Image>();
+        var text = statusRect.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+
+        if(orientation == ChartOrientation.Vertical)
+        {
+            statusRect.anchorMin = new Vector2(0, 0);
+            statusRect.anchorMax = new Vector2(0, 0);
+            statusRect.pivot = new Vector2(0, 1);
+
+            statusRect.sizeDelta = new Vector2(barWidth, xIndexHeight);
+            statusRect.anchoredPosition = new Vector2(position, xIndexYOffset + lastStatusYOffset);
+        }
+        else
+        {
+            statusRect.anchorMin = new Vector2(0,0);
+            statusRect.anchorMax = new Vector2(0, 0);
+            statusRect.pivot = new Vector2(1, 0);
+
+            statusRect.sizeDelta = new Vector2(xIndexHeight, barWidth);
+            statusRect.anchoredPosition = new Vector2(xIndexYOffset + lastStatusYOffset, -position);
+        }
+
+        // Background
+        img.color = data.lastStatusBackgroundColor;
+
+
+        // Text
+        if(text != null)
+        {
+            if(data.lastStatusColor.HasValue)
+            {
+                text.color = data.lastStatusColor.Value;
+            }
+            else
+            {
+                Color bg = data.lastStatusBackgroundColor;
+                text.color = new Color(
+                    1f - bg.r,
+                    1f - bg.g,
+                    1f - bg.b,
+                    1f
+                );
+            }
+
+            text.text = data.lastStatus;
+        }
+    }
+
+    private void CreateSlice(RectTransform bar, Color color, float size, ref float offset, bool isFirstSliceInGroup)
+    {
+        // float rawSize = (data[i].segments[s] / maxTotal) * chartHeight;
+        // float size = Mathf.Max(0f, Mathf.Round(rawSize));
+
+        RectTransform slice = Instantiate(segmentPrefab, bar).GetComponent<RectTransform>();
+
+        if(orientation == ChartOrientation.Vertical)
+        {
+
+        slice.anchorMin = new Vector2(0, 0);
+        slice.anchorMax = new Vector2(1, 0);
+        slice.pivot = new Vector2(0.5f, 0);
+        slice.sizeDelta = new Vector2(0, size);
+        slice.anchoredPosition = new Vector2(0, offset);
+        }
+        else
+        {
+            slice.anchorMin = new Vector2(0,0);
+            slice.anchorMax = new Vector2(0, 1);
+            slice.pivot = new Vector2(0, 0.5f);
+
+            slice.sizeDelta = new Vector2(size, 0);
+            slice.anchoredPosition = new Vector2(offset, 0);
+        }
+
+        Debug.Log($"Segment Y:{slice.anchoredPosition.y} H:{slice.sizeDelta.y}");
+
+        slice.GetComponent<Image>().color = color; //data[i].colors[s];
+
+        // Apply spacing rules
+        float spacing = isFirstSliceInGroup
+            ?subdivisionSpacing // between groups
+            :segmentSpacing; // within group
+
+        offset += size + spacing;
     }
 
     private void ForceRectTransformSetup()
@@ -302,7 +451,7 @@ public class StackedBarChart : MonoBehaviour
         }
         
         if(text !=null)
-            text.text = index.ToString();
+            text.text = (index + xAxisIndexStartOffset).ToString();
     }
 }
 
@@ -320,4 +469,22 @@ public class StackedBarData
 
     [Header("X Axis Index")]
     public Color[] xIndexColors; // [0] background, [1] text (optional)
+
+    [Header("Last Status")]
+    public string lastStatus;
+    public Color? lastStatusColor;
+    public Color lastStatusBackgroundColor;
+}
+
+public enum SmallGroupMode
+{
+    ForceFullSlot,
+    FractionalSlot
+}
+
+[System.Serializable]
+public class ChartGroupLegendItem
+{
+    public string label;
+    public Color color;
 }

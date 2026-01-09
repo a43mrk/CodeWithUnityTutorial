@@ -543,7 +543,7 @@ MonoBehaviour:
   segmentSpacing: 5
   subdivisionSpacing: 0.5
   slotCount: 10
-  smallGroupMode: 0
+  smallGroupMode: 1
   xAxis: {fileID: 1802637779}
   yAxis: {fileID: 933199904}
   axisThickness: 2
@@ -553,6 +553,10 @@ MonoBehaviour:
   xIndexYOffset: -2
   xAxisIndexStartOffset: 1
   lastStatusYOffset: -26
+  showTotals: 1
+  totalTextSpacing: 6
+  totalTextColor: {r: 1, g: 1, b: 1, a: 1}
+  totalTextFontSize: 14
   legend: {fileID: 967684314}
   groupLegendItems:
   - label: Status OK

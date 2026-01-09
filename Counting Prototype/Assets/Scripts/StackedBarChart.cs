@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -43,6 +44,12 @@ public class StackedBarChart : MonoBehaviour
 
     [Header("Last Status")]
     [SerializeField] private float lastStatusYOffset = -26f;
+
+    [Header("Totals")]
+    [SerializeField] private bool showTotals = true;
+    [SerializeField] private float totalTextSpacing = 6f;
+    [SerializeField] private Color totalTextColor = Color.white;
+    [SerializeField] private int totalTextFontSize = 14;
 
 
     [Header("Legend")]
@@ -176,12 +183,12 @@ public class StackedBarChart : MonoBehaviour
 
         foreach(var barData in data)
         {
-            float total = 0f; // sum
+            barData.total = 0f; // sum
             foreach(float v in barData.segments)
-                total += v;
+                barData.total += v;
 
-            if (total > maxTotal)
-                maxTotal = total;
+            if (barData.total > maxTotal)
+                maxTotal = barData.total;
         }
 
         for(int i = 0; i < data.Length; i++)
@@ -245,8 +252,32 @@ public class StackedBarChart : MonoBehaviour
                     );
                     isFirstSliceInGroup = false;
                 }
-
             }
+
+                if(showTotals && orientation != ChartOrientation.Horizontal)
+                {
+                    CreateTotalLabel(
+                        bar,
+                        data[i].total,
+                        new Vector2(
+                            barWidth * 0.5f,
+                            offset + totalTextSpacing
+                            ),
+                        false
+                        );
+                }
+                else if(showTotals && orientation == ChartOrientation.Horizontal)
+                {
+                    CreateTotalLabel(
+                        bar,
+                        data[i].total,
+                        new Vector2(
+                                offset + totalTextSpacing,
+                                bar.anchoredPosition.y
+                            ),
+                        true
+                    );
+                }
         }
     }
 
@@ -453,6 +484,40 @@ public class StackedBarChart : MonoBehaviour
         if(text !=null)
             text.text = (index + xAxisIndexStartOffset).ToString();
     }
+
+    private void CreateTotalLabel(RectTransform parent, float totalValue, Vector2 anchoredPosition, bool horizontal)
+    {
+        GameObject go = new GameObject("TotalLabel", typeof(RectTransform));
+        RectTransform rt = go.GetComponent<RectTransform>();
+        rt.SetParent(parent, false);
+
+
+        TextMeshProUGUI text = go.AddComponent<TMPro.TextMeshProUGUI>();
+        text.text = totalValue.ToString();
+        text.color = totalTextColor;
+        text.fontSize = totalTextFontSize;
+        text.alignment = TMPro.TextAlignmentOptions.MidlineLeft;
+
+        rt.anchorMin = new Vector2(0, 0);
+        rt.anchorMax = new Vector2(0, 0);
+
+        if(horizontal)
+        {
+            // rt.anchorMin = new Vector2(0, 0.5f);
+            // rt.anchorMax = new Vector2(0, 0.5f);
+            rt.pivot = new Vector2(0, 0.5f);
+
+        }
+        else
+        {
+            // rt.anchorMin = new Vector2(0.5f, 0);
+            // rt.anchorMax = new Vector2(0.5f, 0);
+            rt.pivot = new Vector2(0.5f, 0);
+        }
+
+        rt.anchoredPosition = anchoredPosition;
+        rt.sizeDelta = new Vector2(60f, 20f);
+    }
 }
 
 public enum ChartOrientation
@@ -465,6 +530,7 @@ public enum ChartOrientation
 public class StackedBarData
 {
     public float[] segments;
+    public float total = 0f;
     public Color[] colors;
 
     [Header("X Axis Index")]

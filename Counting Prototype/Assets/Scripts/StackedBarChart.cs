@@ -56,9 +56,22 @@ public class StackedBarChart : MonoBehaviour
     [SerializeField] private ChartLegend legend;
     [SerializeField] private ChartGroupLegendItem[] groupLegendItems;
 
+    [Header("Major Grid Lines")]
+    [SerializeField] private bool showMajorLines = true;
+    [SerializeField] private Color majorLineColor = new Color(1f, 1f, 1f, 0.4f);
+    [SerializeField] private float majorLineThickness = 1f;
+    [SerializeField] private float majorLineDashSize = 6f;
+    [SerializeField] private float majorLineGapSize = 6f;
+    [SerializeField] private int maxMajorLines = 3;
+    [SerializeField] private float majorLabelOffset = 6f;
+    [SerializeField] private int majorLabelFontSize = 12;
+    [SerializeField] private RectTransform gridLinesContainer;
+
 
     private float calculatedChartWidth;
     private float calculatedChartHeight;
+    private float chartStartX;
+    private float chartTotalHeight;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -191,6 +204,9 @@ public class StackedBarChart : MonoBehaviour
                 maxTotal = barData.total;
         }
 
+        chartStartX = 0f;
+        float barHeight = 0f;
+
         for(int i = 0; i < data.Length; i++)
         {
             RectTransform bar = Instantiate(barPrefab, barContainer).GetComponent<RectTransform>();
@@ -211,6 +227,7 @@ public class StackedBarChart : MonoBehaviour
 
 
             float offset = 0f;
+            float stackedSize = 0f;
             float slotSize = chartHeight / slotCount;
 
             for(int s= 0; s < data[i].segments.Length; s++)
@@ -252,6 +269,8 @@ public class StackedBarChart : MonoBehaviour
                     );
                     isFirstSliceInGroup = false;
                 }
+
+                stackedSize += slotSize;
             }
 
                 if(showTotals && orientation != ChartOrientation.Horizontal)
@@ -273,11 +292,25 @@ public class StackedBarChart : MonoBehaviour
                         data[i].total,
                         new Vector2(
                                 offset + totalTextSpacing,
-                                bar.anchoredPosition.y
+                                bar.sizeDelta.y - barWidth * 0.5f // center of the row
                             ),
                         true
                     );
+                    barHeight = bar.sizeDelta.y;
                 }
+        }
+
+        chartTotalHeight = data.Length * barHeight + (data.Length - 1) * barSpacing;
+        if(showMajorLines)
+        {
+            float step = GetNiceStep(maxTotal);
+            int count = 0;
+
+            for(float v = step; v < maxTotal && count < maxMajorLines; v += step)
+            {
+                float normalized = v / maxTotal;
+                CreateMajorLine(gridLinesContainer, normalized, v, orientation == ChartOrientation.Horizontal);
+            }
         }
     }
 
@@ -496,16 +529,18 @@ public class StackedBarChart : MonoBehaviour
         text.text = totalValue.ToString();
         text.color = totalTextColor;
         text.fontSize = totalTextFontSize;
-        text.alignment = TMPro.TextAlignmentOptions.MidlineLeft;
 
         rt.anchorMin = new Vector2(0, 0);
         rt.anchorMax = new Vector2(0, 0);
+
+            text.alignment = TMPro.TextAlignmentOptions.Center;
 
         if(horizontal)
         {
             // rt.anchorMin = new Vector2(0, 0.5f);
             // rt.anchorMax = new Vector2(0, 0.5f);
             rt.pivot = new Vector2(0, 0.5f);
+
 
         }
         else
@@ -517,6 +552,86 @@ public class StackedBarChart : MonoBehaviour
 
         rt.anchoredPosition = anchoredPosition;
         rt.sizeDelta = new Vector2(60f, 20f);
+    }
+
+
+    private float GetNiceStep(float maxValue)
+    {
+        float exponent = Mathf.Pow(10, Mathf.Floor(Mathf.Log10(maxValue)));
+        float fraction = maxValue / exponent;
+
+        if(fraction < 2f) return 0.2f * exponent;
+        if(fraction < 5f) return 0.5f * exponent;
+
+        return 1f * exponent;
+    }
+
+
+    private void CreateMajorLine(
+        RectTransform parent,
+        float normalizedPos,
+        float value,
+        bool horizontalMode
+    )
+    {
+        // Line
+        RectTransform line = new GameObject("MajorLine", typeof(RectTransform)).GetComponent<RectTransform>();
+
+        line.SetParent(parent, false);
+
+        Image img = line.gameObject.AddComponent<Image>();
+        img.color = majorLineColor;
+        // img.type = Image.Type.Tiled;
+        // img.sprite = segmentPrefab.GetComponent<Image>().sprite;
+        img.sprite = Sprite.Create(Texture2D.whiteTexture, new Rect(0, 0, 1, 1), new Vector2(0.5f, 0.5f));
+
+        // Label
+        RectTransform label = new GameObject("Label", typeof(RectTransform)).GetComponent<RectTransform>();
+        label.SetParent(parent, false);
+
+        TextMeshProUGUI text = label.gameObject.AddComponent<TMPro.TextMeshProUGUI>();
+        text.text = value.ToString("0");
+        text.fontSize = majorLabelFontSize;
+        text.color = majorLineColor;
+
+        if(!horizontalMode)
+        {
+            // horizontal dotted line
+            float y = normalizedPos * chartHeight;
+
+            line.anchorMin = new Vector2(0, 0);
+            line.anchorMax = new Vector2(1, 0);
+            line.pivot = new Vector2(0, 0);
+            line.sizeDelta = new Vector2(0, majorLineThickness);
+            line.anchoredPosition = new Vector2(0, y);
+
+            label.anchorMin = new Vector2(0, 0);
+            label.anchorMax = new Vector2(0, 0);
+            label.pivot = new Vector2(1, 0.5f);
+            label.anchoredPosition = new Vector2(-majorLabelOffset, y);
+            text.alignment = TMPro.TextAlignmentOptions.MidlineRight;
+        }
+        else
+        {
+
+            // vertical dotted line (horizontal chart)
+            float x = chartStartX + normalizedPos * chartHeight;
+
+            line.anchorMin = new Vector2(0, 0);
+            line.anchorMax = new Vector2(0, 0);
+            line.pivot = new Vector2(0, 0);
+            line.sizeDelta = new Vector2(majorLineThickness, chartTotalHeight);
+            line.anchoredPosition = new Vector2(x, -chartTotalHeight + barWidth);
+
+            // horizontal label logic
+            label.anchorMin = new Vector2(0, 0);
+            label.anchorMax = new Vector2(0, 0);
+            label.pivot = new Vector2(0.5f, 1);
+            label.anchoredPosition = new Vector2(x, -majorLabelOffset + (barWidth * 1.5f) );
+            text.alignment = TMPro.TextAlignmentOptions.Center;
+            text.verticalAlignment = TMPro.VerticalAlignmentOptions.Top;
+        }
+
     }
 }
 

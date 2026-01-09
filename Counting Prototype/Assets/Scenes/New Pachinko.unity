@@ -510,6 +510,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1821463977}
   - {fileID: 967684313}
   - {fileID: 933199904}
   - {fileID: 847241892}
@@ -565,6 +566,15 @@ MonoBehaviour:
     color: {r: 1, g: 0.5490196, b: 0, a: 1}
   - label: Error
     color: {r: 1, g: 0, b: 0, a: 1}
+  showMajorLines: 1
+  majorLineColor: {r: 1, g: 1, b: 1, a: 0.4}
+  majorLineThickness: 2
+  majorLineDashSize: 6
+  majorLineGapSize: 6
+  maxMajorLines: 3
+  majorLabelOffset: 6
+  majorLabelFontSize: 12
+  gridLinesContainer: {fileID: 1821463977}
 --- !u!1 &228778623
 GameObject:
   m_ObjectHideFlags: 0
@@ -5384,6 +5394,41 @@ MonoBehaviour:
   references:
     version: 2
     RefIds: []
+--- !u!1 &1821463976
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1821463977}
+  m_Layer: 5
+  m_Name: GridLines
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1821463977
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1821463976}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 179880002}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
 --- !u!1 &1828296127
 GameObject:
   m_ObjectHideFlags: 0

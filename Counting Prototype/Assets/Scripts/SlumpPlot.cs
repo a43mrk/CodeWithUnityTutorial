@@ -16,6 +16,10 @@ public class SlumpPlot : MonoBehaviour
     public float lineThickness = 2.5f;
     public bool enableGlow = true;
 
+    [Header("Trend Thickness")]
+    public float uptrendThicknessMultiplier = 1.0f;
+    public float downtrendThicknessMultiplier = 1.0f;
+
     [Tooltip("Additive UI material used ONLY for glow duplication")]
     public Material glowMaterial;
 
@@ -60,10 +64,22 @@ public class SlumpPlot : MonoBehaviour
     public Color pivotUpColor = Color.green;
     public Color pivotDownColor = Color.red;
 
+    [Header("Pivot Value Label")]
+    public Font pivotLabelFont;
+    public int pivotLabelFontSize = 12;
+    public Color pivotLabelColor = Color.white;
+    public Vector2 pivotLabelOffset = new Vector2(0f, 14f);
+
+    [Header("UI Sprites")]
+    public Sprite circleSprite;
+
+
+
     [Header("Bonus Markers")]
     public float bonusCircleRadius = 7f;
     public Color bonusCircleColor = new Color(1f, 0.6f, 0.1f);
     public int bonusLabelFontSize = 12;
+    public Color bonusTextColor = Color.black;
 
 
     [Header("Mission Icons")]
@@ -443,7 +459,11 @@ public class SlumpPlot : MonoBehaviour
         Vector3 diff = b - a;
         float length = diff.magnitude;
 
-        rt.sizeDelta = new Vector2(length, lineThickness);
+        float thickness = isUptrend
+            ? lineThickness * uptrendThicknessMultiplier
+            : lineThickness * downtrendThicknessMultiplier;
+
+        rt.sizeDelta = new Vector2(length, thickness);
         rt.anchorMin = Vector2.zero;
         rt.anchorMax = Vector2.zero;
         rt.pivot = new Vector2(0f, 0.5f);
@@ -471,24 +491,66 @@ public class SlumpPlot : MonoBehaviour
         if (Mathf.Sign(slopeBefore) != Mathf.Sign(slopeAfter))
         {
             bool isUpturn = slopeAfter > 0;
-            CreatePivotCircle(pos, isUpturn);
+            CreatePivotCircle(pos, isUpturn, current);
         }
     }
 
-    void CreatePivotCircle(Vector2 pos, bool isUpturn)
+    void CreatePivotCircle(Vector2 pos, bool isUpturn, int value)
     {
-        GameObject g = new GameObject("TrendPivot", typeof(RectTransform), typeof(Image));
-        g.transform.SetParent(plotRoot, false);
+        GameObject root = new GameObject(
+            "TrendPivot"
+            ,typeof(RectTransform)
+            // ,typeof(Image) // Don't add image component or a white square will overshadow the child game objects
+            );
+        root.transform.SetParent(plotRoot, false);
 
-        Image img = g.GetComponent<Image>();
+        RectTransform rootRt = root.GetComponent<RectTransform>();
+        rootRt.anchoredPosition = pos;
+
+        // ---- Circle ----
+        GameObject circle = new GameObject(
+            "Circle",
+            typeof(RectTransform),
+            typeof(Image)
+        );
+        circle.transform.SetParent(root.transform, false);
+
+        Image img = circle.GetComponent<Image>();
         img.material = null;   // FIX
+        img.sprite = circleSprite;      // ✅ REQUIRED
+        img.type = Image.Type.Simple;
         img.color = isUpturn ? pivotUpColor : pivotDownColor;
 
-        RectTransform rt = g.GetComponent<RectTransform>();
-        rt.sizeDelta = Vector2.one * pivotCircleRadius * 2f;
+        RectTransform crt = circle.GetComponent<RectTransform>();
+        crt.sizeDelta = Vector2.one * pivotCircleRadius * 2f;
+        // crt.anchorMin = Vector2.zero;
+        // crt.anchorMax = Vector2.zero;
+        // crt.anchoredPosition = pos;
+
+        RectTransform rt = root.GetComponent<RectTransform>();
+        // rt.sizeDelta = Vector2.one * pivotCircleRadius * 2f;
         rt.anchorMin = Vector2.zero;
         rt.anchorMax = Vector2.zero;
         rt.anchoredPosition = pos;
+
+        // ---- Label ----
+        GameObject label = new GameObject(
+            "ValueLabel",
+            typeof(RectTransform),
+            typeof(Text)
+        );
+        label.transform.SetParent(root.transform, false);
+
+        Text txt = label.GetComponent<Text>();
+        txt.text = value.ToString();
+        txt.font = pivotLabelFont;
+        txt.fontSize = pivotLabelFontSize;
+        txt.color = pivotLabelColor;
+        txt.alignment = TextAnchor.MiddleCenter;
+
+        RectTransform lrt = label.GetComponent<RectTransform>();
+        lrt.anchoredPosition = pivotLabelOffset;
+        lrt.sizeDelta = new Vector2(60f, 20f);
     }
 
     void CreateBonusMarker(Vector2 pos, int bonus)
@@ -519,13 +581,14 @@ public class SlumpPlot : MonoBehaviour
         txt.text = bonus.ToString();
         txt.font = labelFont;
         txt.fontSize = bonusLabelFontSize;
-        txt.color = Color.black;
+        txt.color = bonusTextColor;
         txt.alignment = TextAnchor.MiddleCenter;
 
         RectTransform lrt = label.GetComponent<RectTransform>();
         lrt.anchoredPosition = Vector2.zero;
-        lrt.anchorMin = Vector2.zero; // fix the origin
-        lrt.anchorMax = Vector2.zero; // fix the origin
+        lrt.anchorMin = new Vector2(0,0);
+        lrt.anchorMax = new Vector2(1,1);
+        lrt.pivot = new Vector2(0.5f, 0.5f);
         lrt.sizeDelta = crt.sizeDelta;
     }
 

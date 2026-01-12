@@ -3447,6 +3447,8 @@ MonoBehaviour:
   lineMaterial: {fileID: 2100000, guid: 5d72d3da1170b439eb2f30079bb69d53, type: 2}
   lineThickness: 2.5
   enableGlow: 1
+  uptrendThicknessMultiplier: 1
+  downtrendThicknessMultiplier: 2.5
   glowMaterial: {fileID: 2100000, guid: c4afe1cf75b926a29b0437148804f6dc, type: 2}
   glowAlpha: 0.25
   glowThicknessMultiplier: 3
@@ -3464,13 +3466,19 @@ MonoBehaviour:
   daySeparatorWidth: 2
   dayLabelOffsetY: 24
   dataSets: []
-  overlayMode: 3
+  overlayMode: 2
   pivotCircleRadius: 6
   pivotUpColor: {r: 0, g: 1, b: 0, a: 1}
   pivotDownColor: {r: 1, g: 0, b: 0, a: 1}
+  pivotLabelFont: {fileID: 12800000, guid: d2af8c7e8b712bb4a956d8ddca140d02, type: 3}
+  pivotLabelFontSize: 12
+  pivotLabelColor: {r: 1, g: 0, b: 0, a: 1}
+  pivotLabelOffset: {x: 0, y: 14}
+  circleSprite: {fileID: -2413806693520163455, guid: 2cc5af60f8d1b2d04800ea5d80fecdb0, type: 3}
   bonusCircleRadius: 7
   bonusCircleColor: {r: 1, g: 0.6, b: 0.1, a: 1}
   bonusLabelFontSize: 12
+  bonusTextColor: {r: 0, g: 0, b: 0, a: 1}
   starSprite: {fileID: 21300000, guid: 32e5ad17cf1584d7ea8a061a9d46aba2, type: 3}
   starSize: 15
   starSpacing: 15

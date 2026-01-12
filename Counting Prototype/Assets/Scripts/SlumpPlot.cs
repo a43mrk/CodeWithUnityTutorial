@@ -12,6 +12,10 @@ public class SlumpPlot : MonoBehaviour
     public Font labelFont;
     public Material lineMaterial;
 
+    [Header("Display Mode")]
+    [Tooltip("Parallel: All days overlaid on same X-axis. Sequential: Days connected in timeline.")]
+    public DataDisplayMode displayMode = DataDisplayMode.Sequential;
+
     [Header("Line Rendering")]
     public float lineThickness = 2.5f;
     public bool enableGlow = true;
@@ -53,7 +57,6 @@ public class SlumpPlot : MonoBehaviour
     public float dayLabelOffsetY = 24f;
 
     [Header("Data")]
-    // public float[] yValues;
     public SlumpDayData[] dataSets;
 
     [Header("Overlay Display")]
@@ -73,18 +76,15 @@ public class SlumpPlot : MonoBehaviour
     [Header("UI Sprites")]
     public Sprite circleSprite;
 
-
-
     [Header("Bonus Markers")]
     public int bonusLabelFontSize = 12;
     public Color bonusTextColor = Color.black;
+    
     [Header("Consecutive Bonus Marker")]
     public Sprite bonusSprite;
     public Vector2 bonusSpriteSize = new Vector2(18f, 18f);
     public Color bonusSpriteColor = Color.white;
     public Vector2 bonusLabelOffset = new Vector2(0f, -16f);
-
-
 
     [Header("Mission Icons")]
     public Sprite starSprite;
@@ -97,17 +97,13 @@ public class SlumpPlot : MonoBehaviour
     void Awake()
     {
         plotArea = plotArea ? plotArea : GetComponent<RectTransform>();
-
-        // Enforce correct coordinate system
         plotArea.pivot = Vector2.zero;
 
         gridRoot = CreateLayer("Grid");
         plotRoot = CreateLayer("Plot");
 
-        // Sample data
         if (dataSets == null || dataSets.Length == 0)
             GenerateSampleData();
-
     }
 
     void Start()
@@ -122,6 +118,10 @@ public class SlumpPlot : MonoBehaviour
     void DrawDaySeparators()
     {
         if (dataSets == null || dataSets.Length < 3)
+            return;
+
+        // Only show separators in Sequential mode
+        if (displayMode != DataDisplayMode.Sequential)
             return;
 
         int samplesPerDay = dataSets[0].points.Length;
@@ -164,13 +164,12 @@ public class SlumpPlot : MonoBehaviour
         RectTransform rt = g.GetComponent<RectTransform>();
         rt.pivot = new Vector2(0.5f, 0);
         rt.anchoredPosition = topPos + Vector2.up * dayLabelOffsetY;
-        rt.anchorMin = Vector2.zero; // fix the origin
-        rt.anchorMax = Vector2.zero; // fix the origin
+        rt.anchorMin = Vector2.zero;
+        rt.anchorMax = Vector2.zero;
         rt.sizeDelta = new Vector2(120, 30);
     }
 
     #endregion
-
 
     #region Mission Markers
     void CreateMissionMarker(Vector2 pos, MissionCompletedType type)
@@ -205,10 +204,11 @@ public class SlumpPlot : MonoBehaviour
 
         RectTransform rt = g.GetComponent<RectTransform>();
         rt.sizeDelta = Vector2.one * missionPointRadius * 2f;
-        rt.anchorMin = Vector2.zero; // fix the origin
-        rt.anchorMax = Vector2.zero; // fix the origin
+        rt.anchorMin = Vector2.zero;
+        rt.anchorMax = Vector2.zero;
         rt.anchoredPosition = pos;
     }
+    
     void CreateStars(Vector2 pos, int count, Color col)
     {
         float totalWidth = (count - 1) * starSpacing;
@@ -232,11 +232,10 @@ public class SlumpPlot : MonoBehaviour
 
         RectTransform rt = g.GetComponent<RectTransform>();
         rt.sizeDelta = Vector2.one * starSize;
-        rt.anchorMin = Vector2.zero; // fix the origin
-        rt.anchorMax = Vector2.zero; // fix the origin
+        rt.anchorMin = Vector2.zero;
+        rt.anchorMax = Vector2.zero;
         rt.anchoredPosition = pos;
     }
-
 
     Color GetMissionColor(MissionCompletedType type)
     {
@@ -252,19 +251,15 @@ public class SlumpPlot : MonoBehaviour
     #endregion
 
     #region Coordinate Mapping
-    List<SlumpDataPoint> CollectAllDaysFlattened()
+
+    float MapX(int localIndex, int count)
     {
-        List<SlumpDataPoint> result = new List<SlumpDataPoint>();
-
-        foreach (var day in dataSets)   // 3 elements: 2 days ago, yesterday, today
-            result.AddRange(day.points);
-
-        return result;
+        return (localIndex / (float)(count - 1)) * plotArea.rect.width;
     }
 
-    float MapX(int index, int count)
+    float MapXSequential(int globalIndex, int totalCount)
     {
-        return (index / (float)(count - 1)) * plotArea.rect.width;
+        return (globalIndex / (float)(totalCount - 1)) * plotArea.rect.width;
     }
 
     float MapY(float value)
@@ -321,25 +316,44 @@ public class SlumpPlot : MonoBehaviour
     #endregion
 
     #region Plot
+    
     private void DrawAllDataSets()
     {
-        // DrawPlot();
-        // DrawPeakMarker();
-
-        foreach(var day in dataSets)
-            DrawSingleDataSet(day);
+        if (displayMode == DataDisplayMode.Parallel)
+            DrawParallel();
+        else
+            DrawSequential();
     }
 
-    void DrawSingleDataSet(SlumpDayData day)
+    void DrawParallel()
+    {
+        // Each day rendered on the same X-axis range (0 to width)
+        foreach(var day in dataSets)
+            DrawSingleDataSetParallel(day);
+    }
+
+    void DrawSequential()
+    {
+        // All days connected as one continuous timeline
+        int samplesPerDay = dataSets[0].points.Length;
+        int totalSamples = samplesPerDay * dataSets.Length;
+        int globalIndex = 0;
+
+        foreach(var day in dataSets)
+        {
+            DrawSingleDataSetSequential(day, ref globalIndex, totalSamples);
+        }
+    }
+
+    void DrawSingleDataSetParallel(SlumpDayData day)
     {
         int n = day.points.Length;
 
         for (int i = 0; i < n - 1; i++)
         {
             var point = day.points[i];
-
             var previousNet = i > 0 ? day.points[i - 1].NetValue : 0;
-            var nextNet = i < (day.points.Count() - 1) ? day.points[i + 1].NetValue : 0;
+            var nextNet = day.points[i + 1].NetValue;
             var netValue = point.NetValue;
             var isUptrend = (nextNet - netValue) >= 0;
 
@@ -348,116 +362,90 @@ public class SlumpPlot : MonoBehaviour
             Vector2 a = new Vector2(MapX(i, n), MapY(netValue));
             Vector2 b = new Vector2(MapX(i + 1, n), MapY(nextNet));
 
-            // CreateLine(plotRoot, a, b, upTrendColor, lineWidth);
             CreateSegment(a, b, c, isUptrend);
 
-
-
-            // Mission markers
-
             Vector2 currentPos = new Vector2(MapX(i, n), MapY(point.NetValue));
-
-            switch (overlayMode)
-            {
-                case OverlayDisplayMode.Missions:
-                    if (point.missionCompletedType.HasValue)
-                        CreateMissionMarker(currentPos, point.missionCompletedType.Value);
-                    break;
-
-                case OverlayDisplayMode.TrendPivots:
-                    if(i > 0 && i < day.points.Count() - 1)
-                        TryCreateTrendPivot(previousNet, netValue, nextNet, currentPos);
-                    break;
-
-                case OverlayDisplayMode.ConsecutiveBonus:
-                    if (point.consecutiveBonusAmount.HasValue)
-                        CreateBonusMarker(currentPos, point.consecutiveBonusAmount.Value);
-                    break;
-            }
-
+            DrawOverlayMarkers(day, i, previousNet, netValue, nextNet, currentPos);
         }
     }
 
-
-
-    // void DrawPlot()
-    // {
-    //     int n = yValues.Length;
-
-    //     for (int i = 0; i < n - 1; i++)
-    //     {
-    //         float yA = yValues[i];
-    //         float yB = yValues[i + 1];
-
-    //         Color c = (yB - yA) >= 0
-    //             ? upTrendColor
-    //             : downTrendColor;
-
-    //         Vector2 a = new Vector2(MapX(i, n), MapY(yA));
-    //         Vector2 b = new Vector2(MapX(i + 1, n), MapY(yB));
-
-    //         CreateSegment(a, b, c, i);
-    //     }
-    // }
-
-    // void CreateSegment(Vector2 a, Vector2 b, Color col, int idx)
-    // {
-    //     CreateLine(plotRoot, a, b, col, lineWidth);
-
-    //     // Glow for uptrend only (optional)
-    //     if (col == upTrendColor)
-    //         CreateLine(plotRoot, a, b, new Color(col.r, col.g, col.b, 0.25f), lineWidth * 3f);
-    // }
-    void CreateGlow(
-        RectTransform baseSegment,
-        float length,
-        Color baseColor
-    )
+    void DrawSingleDataSetSequential(SlumpDayData day, ref int globalIndex, int totalCount)
     {
-        GameObject glow = new GameObject(
-            "Glow",
-            typeof(RectTransform),
-            typeof(Image)
-        );
+        int n = day.points.Length;
 
+        for (int i = 0; i < n - 1; i++)
+        {
+            var point = day.points[i];
+            var previousNet = i > 0 ? day.points[i - 1].NetValue : 0;
+            var nextNet = day.points[i + 1].NetValue;
+            var netValue = point.NetValue;
+            var isUptrend = (nextNet - netValue) >= 0;
+
+            Color c = isUptrend ? upTrendColor : downTrendColor;
+
+            Vector2 a = new Vector2(MapXSequential(globalIndex, totalCount), MapY(netValue));
+            Vector2 b = new Vector2(MapXSequential(globalIndex + 1, totalCount), MapY(nextNet));
+
+            CreateSegment(a, b, c, isUptrend);
+
+            Vector2 currentPos = new Vector2(MapXSequential(globalIndex, totalCount), MapY(point.NetValue));
+            DrawOverlayMarkers(day, i, previousNet, netValue, nextNet, currentPos);
+
+            globalIndex++;
+        }
+        
+        globalIndex++; // Move to next day's starting position
+    }
+
+    void DrawOverlayMarkers(SlumpDayData day, int localIndex, int previousNet, int netValue, int nextNet, Vector2 currentPos)
+    {
+        var point = day.points[localIndex];
+
+        switch (overlayMode)
+        {
+            case OverlayDisplayMode.Missions:
+                if (point.missionCompletedType.HasValue)
+                    CreateMissionMarker(currentPos, point.missionCompletedType.Value);
+                break;
+
+            case OverlayDisplayMode.TrendPivots:
+                if(localIndex > 0 && localIndex < day.points.Length - 1)
+                    TryCreateTrendPivot(previousNet, netValue, nextNet, currentPos);
+                break;
+
+            case OverlayDisplayMode.ConsecutiveBonus:
+                if (point.consecutiveBonusAmount.HasValue)
+                    CreateBonusMarker(currentPos, point.consecutiveBonusAmount.Value);
+                break;
+        }
+    }
+
+    void CreateGlow(RectTransform baseSegment, float length, Color baseColor)
+    {
+        GameObject glow = new GameObject("Glow", typeof(RectTransform), typeof(Image));
         glow.transform.SetParent(plotRoot, false);
 
         Image glowImg = glow.GetComponent<Image>();
         glowImg.material = glowMaterial;
-        glowImg.color = new Color(
-            baseColor.r,
-            baseColor.g,
-            baseColor.b,
-            glowAlpha
-        );
+        glowImg.color = new Color(baseColor.r, baseColor.g, baseColor.b, glowAlpha);
 
         RectTransform glowRt = glow.GetComponent<RectTransform>();
-
         glowRt.pivot = baseSegment.pivot;
         glowRt.anchorMin = baseSegment.anchorMin;
         glowRt.anchorMax = baseSegment.anchorMax;
         glowRt.anchoredPosition = baseSegment.anchoredPosition;
         glowRt.localRotation = baseSegment.localRotation;
-
-        glowRt.sizeDelta = new Vector2(
-            length,
-            lineThickness * glowThicknessMultiplier
-        );
+        glowRt.sizeDelta = new Vector2(length, lineThickness * glowThicknessMultiplier);
     }
 
     void CreateSegment(Vector3 a, Vector3 b, Color col, bool isUptrend)
     {
-        GameObject go = new GameObject(
-            "Segment",
-            typeof(RectTransform),
-            typeof(Image)
-        );
-
+        GameObject go = new GameObject("Segment", typeof(RectTransform), typeof(Image));
         go.transform.SetParent(plotRoot, false);
 
         Image img = go.GetComponent<Image>();
-        img.material = null;      // FIX
-        img.color = col;          // FIX
+        img.material = null;
+        img.color = col;
 
         RectTransform rt = go.GetComponent<RectTransform>();
         Vector3 diff = b - a;
@@ -476,13 +464,11 @@ public class SlumpPlot : MonoBehaviour
         float angle = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
         rt.localRotation = Quaternion.Euler(0, 0, angle);
 
-        // Glow ONLY here
         if (enableGlow && isUptrend && glowMaterial != null)
         {
             CreateGlow(rt, length, col);
         }
     }
-
 
     void TryCreateTrendPivot(int prev, int current, int next, Vector2 pos)
     {
@@ -501,48 +487,29 @@ public class SlumpPlot : MonoBehaviour
 
     void CreatePivotCircle(Vector2 pos, bool isUpturn, int value)
     {
-        GameObject root = new GameObject(
-            "TrendPivot"
-            ,typeof(RectTransform)
-            // ,typeof(Image) // Don't add image component or a white square will overshadow the child game objects
-            );
+        GameObject root = new GameObject("TrendPivot", typeof(RectTransform));
         root.transform.SetParent(plotRoot, false);
 
         RectTransform rootRt = root.GetComponent<RectTransform>();
         rootRt.anchoredPosition = pos;
+        rootRt.anchorMin = Vector2.zero;
+        rootRt.anchorMax = Vector2.zero;
 
-        // ---- Circle ----
-        GameObject circle = new GameObject(
-            "Circle",
-            typeof(RectTransform),
-            typeof(Image)
-        );
+        // Circle
+        GameObject circle = new GameObject("Circle", typeof(RectTransform), typeof(Image));
         circle.transform.SetParent(root.transform, false);
 
         Image img = circle.GetComponent<Image>();
-        img.material = null;   // FIX
-        img.sprite = circleSprite;      // ✅ REQUIRED
+        img.material = null;
+        img.sprite = circleSprite;
         img.type = Image.Type.Simple;
         img.color = isUpturn ? pivotUpColor : pivotDownColor;
 
         RectTransform crt = circle.GetComponent<RectTransform>();
         crt.sizeDelta = Vector2.one * pivotCircleRadius * 2f;
-        // crt.anchorMin = Vector2.zero;
-        // crt.anchorMax = Vector2.zero;
-        // crt.anchoredPosition = pos;
 
-        RectTransform rt = root.GetComponent<RectTransform>();
-        // rt.sizeDelta = Vector2.one * pivotCircleRadius * 2f;
-        rt.anchorMin = Vector2.zero;
-        rt.anchorMax = Vector2.zero;
-        rt.anchoredPosition = pos;
-
-        // ---- Label ----
-        GameObject label = new GameObject(
-            "ValueLabel",
-            typeof(RectTransform),
-            typeof(Text)
-        );
+        // Label
+        GameObject label = new GameObject("ValueLabel", typeof(RectTransform), typeof(Text));
         label.transform.SetParent(root.transform, false);
 
         Text txt = label.GetComponent<Text>();
@@ -564,8 +531,8 @@ public class SlumpPlot : MonoBehaviour
 
         RectTransform rt = root.GetComponent<RectTransform>();
         rt.anchoredPosition = pos;
-        rt.anchorMin = Vector2.zero; // fix the origin
-        rt.anchorMax = Vector2.zero; // fix the origin
+        rt.anchorMin = Vector2.zero;
+        rt.anchorMax = Vector2.zero;
 
         // Sprite Icon
         GameObject icon = new GameObject("Icon", typeof(RectTransform), typeof(Image));
@@ -600,19 +567,6 @@ public class SlumpPlot : MonoBehaviour
     }
 
     #endregion
-
-    // #region Peak
-
-    // void DrawPeakMarker()
-    // {
-    //     int idx = System.Array.IndexOf(yValues, yValues.Max());
-    //     Vector2 pos = new Vector2(MapX(idx, yValues.Length), MapY(yValues[idx]));
-
-    //     CreateCircle(pos, upTrendColor);
-    //     CreatePeakLabel(pos, yValues[idx]);
-    // }
-
-    // #endregion
 
     #region UI Primitives
 
@@ -649,33 +603,6 @@ public class SlumpPlot : MonoBehaviour
         rt.localRotation = Quaternion.Euler(0, 0, ang);
     }
 
-    void CreateCircle(Vector2 pos, Color col)
-    {
-        GameObject g = new GameObject("Peak", typeof(RectTransform), typeof(Image));
-        g.transform.SetParent(plotRoot, false);
-        g.GetComponent<Image>().color = col;
-
-        RectTransform rt = g.GetComponent<RectTransform>();
-        rt.sizeDelta = Vector2.one * pointRadius * 2;
-        rt.anchoredPosition = pos;
-    }
-
-    void CreatePeakLabel(Vector2 pos, float v)
-    {
-        GameObject g = new GameObject("PeakLabel", typeof(RectTransform), typeof(Text));
-        g.transform.SetParent(plotRoot, false);
-
-        Text t = g.GetComponent<Text>();
-        t.font = labelFont;
-        t.fontSize = 14;
-        t.color = Color.white;
-        t.text = v.ToString("N0");
-
-        RectTransform rt = g.GetComponent<RectTransform>();
-        rt.anchoredPosition = pos + new Vector2(8, 8);
-        rt.sizeDelta = new Vector2(100, 30);
-    }
-
     void CreateYLabel(float v)
     {
         GameObject g = new GameObject("YLabel", typeof(RectTransform), typeof(Text));
@@ -697,11 +624,11 @@ public class SlumpPlot : MonoBehaviour
 
     #endregion
 
-
     #region Sample Data Generator
+    
     void GenerateSampleData()
     {
-        const int samplesPerDay = 24; // e.g. hourly data
+        const int samplesPerDay = 24;
         dataSets = new SlumpDayData[3];
 
         DateTime today = DateTime.Today;
@@ -748,7 +675,6 @@ public class SlumpPlot : MonoBehaviour
 
     MissionCompletedType? GenerateMission(int index)
     {
-        // Sparse, intentional placement
         if (index == 5)  return MissionCompletedType.OneStarMission;
         if (index == 11) return MissionCompletedType.TwoStarMission;
         if (index == 17) return MissionCompletedType.ThreeStarMission;
@@ -758,6 +684,12 @@ public class SlumpPlot : MonoBehaviour
     }
 
     #endregion
+}
+
+public enum DataDisplayMode
+{
+    Parallel,    // All days overlaid on same X-axis
+    Sequential   // Days connected as continuous timeline
 }
 
 [Serializable]

@@ -76,10 +76,14 @@ public class SlumpPlot : MonoBehaviour
 
 
     [Header("Bonus Markers")]
-    public float bonusCircleRadius = 7f;
-    public Color bonusCircleColor = new Color(1f, 0.6f, 0.1f);
     public int bonusLabelFontSize = 12;
     public Color bonusTextColor = Color.black;
+    [Header("Consecutive Bonus Marker")]
+    public Sprite bonusSprite;
+    public Vector2 bonusSpriteSize = new Vector2(18f, 18f);
+    public Color bonusSpriteColor = Color.white;
+    public Vector2 bonusLabelOffset = new Vector2(0f, -16f);
+
 
 
     [Header("Mission Icons")]
@@ -563,15 +567,18 @@ public class SlumpPlot : MonoBehaviour
         rt.anchorMin = Vector2.zero; // fix the origin
         rt.anchorMax = Vector2.zero; // fix the origin
 
-        // Circle
-        GameObject circle = new GameObject("Circle", typeof(RectTransform), typeof(Image));
-        circle.transform.SetParent(root.transform, false);
+        // Sprite Icon
+        GameObject icon = new GameObject("Icon", typeof(RectTransform), typeof(Image));
+        icon.transform.SetParent(root.transform, false);
 
-        Image img = circle.GetComponent<Image>();
-        img.color = bonusCircleColor;
+        Image img = icon.GetComponent<Image>();
+        img.material = null;
+        img.color = bonusSpriteColor;
+        img.sprite = bonusSprite;
+        img.type = Image.Type.Simple;
 
-        RectTransform crt = circle.GetComponent<RectTransform>();
-        crt.sizeDelta = Vector2.one * bonusCircleRadius * 2f;
+        RectTransform irt = icon.GetComponent<RectTransform>();
+        irt.sizeDelta = bonusSpriteSize;
 
         // Label
         GameObject label = new GameObject("Label", typeof(RectTransform), typeof(Text));
@@ -585,11 +592,11 @@ public class SlumpPlot : MonoBehaviour
         txt.alignment = TextAnchor.MiddleCenter;
 
         RectTransform lrt = label.GetComponent<RectTransform>();
-        lrt.anchoredPosition = Vector2.zero;
+        lrt.anchoredPosition = bonusLabelOffset;
         lrt.anchorMin = new Vector2(0,0);
         lrt.anchorMax = new Vector2(1,1);
         lrt.pivot = new Vector2(0.5f, 0.5f);
-        lrt.sizeDelta = crt.sizeDelta;
+        lrt.sizeDelta = irt.sizeDelta;
     }
 
     #endregion

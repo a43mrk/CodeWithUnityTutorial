@@ -3394,6 +3394,86 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1401575668
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1401575669}
+  - component: {fileID: 1401575670}
+  m_Layer: 5
+  m_Name: SlumpGraph
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1401575669
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1401575668}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1899638125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 43, y: 523}
+  m_SizeDelta: {x: 1200, y: 600}
+  m_Pivot: {x: 0, y: 0}
+--- !u!114 &1401575670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1401575668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0503ab271b2fb9934b7489ac38c5fa4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SlumpPlot
+  plotArea: {fileID: 0}
+  labelFont: {fileID: 12800000, guid: 26b84f9316527c0498207087e1eafde2, type: 3}
+  lineMaterial: {fileID: 2100000, guid: 5d72d3da1170b439eb2f30079bb69d53, type: 2}
+  lineThickness: 2.5
+  enableGlow: 1
+  glowMaterial: {fileID: 2100000, guid: c4afe1cf75b926a29b0437148804f6dc, type: 2}
+  glowAlpha: 0.25
+  glowThicknessMultiplier: 3
+  upTrendColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  downTrendColor: {r: 1, g: 0.25, b: 0.25, a: 1}
+  gridColor: {r: 1, g: 1, b: 1, a: 0.08}
+  axisColor: {r: 1, g: 1, b: 1, a: 0.25}
+  yMin: -1500
+  yMax: 1500
+  lineWidth: 2.5
+  gridLineWidth: 1
+  pointRadius: 4
+  missionPointRadius: 6
+  daySeparatorColor: {r: 1, g: 1, b: 1, a: 0.25}
+  daySeparatorWidth: 2
+  dayLabelOffsetY: 24
+  dataSets: []
+  overlayMode: 3
+  pivotCircleRadius: 6
+  pivotUpColor: {r: 0, g: 1, b: 0, a: 1}
+  pivotDownColor: {r: 1, g: 0, b: 0, a: 1}
+  bonusCircleRadius: 7
+  bonusCircleColor: {r: 1, g: 0.6, b: 0.1, a: 1}
+  bonusLabelFontSize: 12
+  starSprite: {fileID: 21300000, guid: 32e5ad17cf1584d7ea8a061a9d46aba2, type: 3}
+  starSize: 15
+  starSpacing: 15
 --- !u!1 &1521505947
 GameObject:
   m_ObjectHideFlags: 0
@@ -5313,6 +5393,7 @@ RectTransform:
   - {fileID: 1366770254}
   - {fileID: 842253346}
   - {fileID: 179880002}
+  - {fileID: 1401575669}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

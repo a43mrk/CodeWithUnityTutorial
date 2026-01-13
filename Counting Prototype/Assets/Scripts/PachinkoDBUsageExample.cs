@@ -27,6 +27,12 @@ public class PachinkoDBUsageExample : MonoBehaviour
 
         // Example 5: Get top performers
         GetTopPerformersExample();
+
+        // Example 6: Sync operations (NEW)
+        SyncOperationsExample();
+
+        // Example 7: Cache management (NEW)
+        CacheManagementExample();
     }
 
     void InsertExampleRecord()
@@ -170,5 +176,94 @@ public class PachinkoDBUsageExample : MonoBehaviour
     {
         // Optional: Close the database connection when the application quits
         PachinkoDBManager.Instance.Close();
+    }
+
+    void SyncOperationsExample()
+    {
+        Debug.Log("=== Sync Operations Example ===");
+        
+        // Get unsynced records count
+        int unsyncedCount = PachinkoDBManager.Instance.GetUnsyncedCount();
+        Debug.Log($"Unsynced records: {unsyncedCount}");
+
+        // Get all unsynced records
+        List<PachinkoData> unsyncedRecords = PachinkoDBManager.Instance.GetUnsyncedRecords();
+        Debug.Log($"Found {unsyncedRecords.Count} records to sync");
+
+        if (unsyncedRecords.Count > 0)
+        {
+            // Simulate syncing to server
+            Debug.Log("Syncing to server...");
+            
+            // After successful sync, mark records as synced
+            List<int> syncedIds = new List<int>();
+            foreach (var record in unsyncedRecords)
+            {
+                syncedIds.Add(record.Id);
+                Debug.Log($"Synced record {record.Id}: {record.UserName} on {record.MachineName}");
+            }
+
+            // Mark multiple records as synced
+            int markedCount = PachinkoDBManager.Instance.MarkMultipleAsSynced(syncedIds);
+            Debug.Log($"Marked {markedCount} records as synced");
+
+            // Alternative: Mark all as synced at once
+            // int result = PachinkoDBManager.Instance.MarkAllAsSynced();
+            // Debug.Log($"Marked {result} records as synced");
+        }
+
+        // Verify sync status
+        unsyncedCount = PachinkoDBManager.Instance.GetUnsyncedCount();
+        Debug.Log($"Remaining unsynced records: {unsyncedCount}");
+    }
+
+    void CacheManagementExample()
+    {
+        Debug.Log("=== Cache Management Example ===");
+        
+        var dbManager = PachinkoDBManager.Instance;
+
+        // Get cache statistics
+        CacheStatistics stats = dbManager.GetCacheStatistics();
+        Debug.Log($"Cache enabled: {stats.IsEnabled}");
+        Debug.Log($"Cached items: {stats.CachedItemCount}");
+        Debug.Log($"All records cached: {stats.IsAllRecordsCached}");
+        Debug.Log($"Cache expired: {stats.IsExpired}");
+        Debug.Log($"Last update: {stats.LastUpdateTime}");
+
+        // Test cache performance
+        System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
+
+        // First call (cache miss - reads from DB)
+        sw.Start();
+        List<PachinkoData> records1 = dbManager.GetAll();
+        sw.Stop();
+        Debug.Log($"First GetAll (cache miss): {sw.ElapsedMilliseconds}ms - {records1.Count} records");
+
+        // Second call (cache hit - reads from memory)
+        sw.Reset();
+        sw.Start();
+        List<PachinkoData> records2 = dbManager.GetAll();
+        sw.Stop();
+        Debug.Log($"Second GetAll (cache hit): {sw.ElapsedMilliseconds}ms - {records2.Count} records");
+
+        // Clear cache
+        dbManager.ClearCache();
+        Debug.Log("Cache cleared");
+
+        // Third call (cache miss again)
+        sw.Reset();
+        sw.Start();
+        List<PachinkoData> records3 = dbManager.GetAll();
+        sw.Stop();
+        Debug.Log($"Third GetAll (after clear): {sw.ElapsedMilliseconds}ms - {records3.Count} records");
+
+        // Disable cache
+        dbManager.SetCacheEnabled(false);
+        Debug.Log("Cache disabled");
+
+        // Enable cache again
+        dbManager.SetCacheEnabled(true);
+        Debug.Log("Cache enabled");
     }
 }

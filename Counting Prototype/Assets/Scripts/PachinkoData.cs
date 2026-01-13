@@ -55,6 +55,9 @@ namespace PachinkoGame.Data
         [MaxLength(100)]
         public string UserName { get; set; }
 
+        [NotNull]
+        public bool IsSynced { get; set; } = false;
+
         // Computed properties for convenience
         [Ignore]
         public int TotalBalls => BallsWon - BallsDeath;

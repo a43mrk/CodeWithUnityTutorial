@@ -35,6 +35,13 @@ namespace PachinkoGame.Data
         private SQLiteConnection _connection;
         private readonly string _dbPath;
 
+        // Cache for frequently accessed data
+        private Dictionary<int, PachinkoData> _cache;
+        private List<PachinkoData> _allRecordsCache;
+        private DateTime _lastCacheUpdate;
+        private readonly float _cacheExpirationSeconds = 60f; // Cache expires after 60 seconds
+        private bool _cacheEnabled = true;
+
         public static PachinkoDBManager Instance
         {
             get
@@ -58,6 +65,14 @@ namespace PachinkoGame.Data
             _dbPath = Path.Combine(Application.persistentDataPath, "PachinkoGame.db");
             Debug.Log($"Database path: {_dbPath}");
             InitializeDatabase();
+            InitializeCache();
+        }
+
+        private void InitializeCache()
+        {
+            _cache = new Dictionary<int, PachinkoData>();
+            _allRecordsCache = null;
+            _lastCacheUpdate = DateTime.MinValue;
         }
 
         private void InitializeDatabase()
@@ -80,6 +95,87 @@ namespace PachinkoGame.Data
             return _connection;
         }
 
+        #region Cache Management
+
+        /// <summary>
+        /// Enable or disable caching
+        /// </summary>
+        public void SetCacheEnabled(bool enabled)
+        {
+            _cacheEnabled = enabled;
+            if (!enabled)
+            {
+                ClearCache();
+            }
+        }
+
+        /// <summary>
+        /// Check if cache is expired
+        /// </summary>
+        private bool IsCacheExpired()
+        {
+            return (DateTime.Now - _lastCacheUpdate).TotalSeconds > _cacheExpirationSeconds;
+        }
+
+        /// <summary>
+        /// Clear all cache
+        /// </summary>
+        public void ClearCache()
+        {
+            _cache.Clear();
+            _allRecordsCache = null;
+            _lastCacheUpdate = DateTime.MinValue;
+            Debug.Log("Cache cleared");
+        }
+
+        /// <summary>
+        /// Invalidate cache (forces refresh on next access)
+        /// </summary>
+        public void InvalidateCache()
+        {
+            _lastCacheUpdate = DateTime.MinValue;
+            Debug.Log("Cache invalidated");
+        }
+
+        /// <summary>
+        /// Add or update item in cache
+        /// </summary>
+        private void CacheItem(PachinkoData data)
+        {
+            if (_cacheEnabled && data != null)
+            {
+                _cache[data.Id] = data;
+            }
+        }
+
+        /// <summary>
+        /// Remove item from cache
+        /// </summary>
+        private void RemoveFromCache(int id)
+        {
+            if (_cache.ContainsKey(id))
+            {
+                _cache.Remove(id);
+            }
+        }
+
+        /// <summary>
+        /// Get cache statistics
+        /// </summary>
+        public CacheStatistics GetCacheStatistics()
+        {
+            return new CacheStatistics
+            {
+                CachedItemCount = _cache.Count,
+                IsAllRecordsCached = _allRecordsCache != null,
+                LastUpdateTime = _lastCacheUpdate,
+                IsExpired = IsCacheExpired(),
+                IsEnabled = _cacheEnabled
+            };
+        }
+
+        #endregion
+
         #region CRUD Operations
 
         /// <summary>
@@ -89,7 +185,13 @@ namespace PachinkoGame.Data
         {
             try
             {
-                return _connection.Insert(data);
+                int result = _connection.Insert(data);
+                if (result > 0)
+                {
+                    CacheItem(data);
+                    InvalidateCache(); // Invalidate list caches
+                }
+                return result;
             }
             catch (Exception ex)
             {
@@ -105,7 +207,13 @@ namespace PachinkoGame.Data
         {
             try
             {
-                return _connection.Update(data);
+                int result = _connection.Update(data);
+                if (result > 0)
+                {
+                    CacheItem(data);
+                    InvalidateCache(); // Invalidate list caches
+                }
+                return result;
             }
             catch (Exception ex)
             {
@@ -121,7 +229,13 @@ namespace PachinkoGame.Data
         {
             try
             {
-                return _connection.Delete<PachinkoData>(id);
+                int result = _connection.Delete<PachinkoData>(id);
+                if (result > 0)
+                {
+                    RemoveFromCache(id);
+                    InvalidateCache(); // Invalidate list caches
+                }
+                return result;
             }
             catch (Exception ex)
             {
@@ -137,7 +251,13 @@ namespace PachinkoGame.Data
         {
             try
             {
-                return _connection.Delete(data);
+                int result = _connection.Delete(data);
+                if (result > 0)
+                {
+                    RemoveFromCache(data.Id);
+                    InvalidateCache(); // Invalidate list caches
+                }
+                return result;
             }
             catch (Exception ex)
             {
@@ -153,7 +273,16 @@ namespace PachinkoGame.Data
         {
             try
             {
-                return _connection.Get<PachinkoData>(id);
+                // Check cache first
+                if (_cacheEnabled && _cache.ContainsKey(id))
+                {
+                    return _cache[id];
+                }
+
+                // Fetch from database
+                PachinkoData data = _connection.Get<PachinkoData>(id);
+                CacheItem(data);
+                return data;
             }
             catch (Exception ex)
             {
@@ -169,7 +298,29 @@ namespace PachinkoGame.Data
         {
             try
             {
-                return _connection.Table<PachinkoData>().ToList();
+                // Check cache first
+                if (_cacheEnabled && _allRecordsCache != null && !IsCacheExpired())
+                {
+                    return new List<PachinkoData>(_allRecordsCache);
+                }
+
+                // Fetch from database
+                List<PachinkoData> records = _connection.Table<PachinkoData>().ToList();
+                
+                // Update cache
+                if (_cacheEnabled)
+                {
+                    _allRecordsCache = new List<PachinkoData>(records);
+                    _lastCacheUpdate = DateTime.Now;
+                    
+                    // Also cache individual items
+                    foreach (var record in records)
+                    {
+                        CacheItem(record);
+                    }
+                }
+                
+                return records;
             }
             catch (Exception ex)
             {
@@ -181,6 +332,154 @@ namespace PachinkoGame.Data
         #endregion
 
         #region Useful Queries
+
+        /// <summary>
+        /// Get all unsynced records (for offline sync)
+        /// </summary>
+        public List<PachinkoData> GetUnsyncedRecords()
+        {
+            try
+            {
+                return _connection.Table<PachinkoData>()
+                    .Where(p => p.IsSynced == false)
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"GetUnsyncedRecords failed: {ex.Message}");
+                return new List<PachinkoData>();
+            }
+        }
+
+        /// <summary>
+        /// Get all synced records
+        /// </summary>
+        public List<PachinkoData> GetSyncedRecords()
+        {
+            try
+            {
+                return _connection.Table<PachinkoData>()
+                    .Where(p => p.IsSynced == true)
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"GetSyncedRecords failed: {ex.Message}");
+                return new List<PachinkoData>();
+            }
+        }
+
+        /// <summary>
+        /// Mark a record as synced
+        /// </summary>
+        public int MarkAsSynced(int id)
+        {
+            try
+            {
+                var record = GetById(id);
+                if (record != null)
+                {
+                    record.IsSynced = true;
+                    return Update(record);
+                }
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"MarkAsSynced failed: {ex.Message}");
+                return 0;
+            }
+        }
+
+        /// <summary>
+        /// Mark multiple records as synced
+        /// </summary>
+        public int MarkMultipleAsSynced(List<int> ids)
+        {
+            try
+            {
+                int count = 0;
+                _connection.BeginTransaction();
+                
+                foreach (int id in ids)
+                {
+                    var record = GetById(id);
+                    if (record != null)
+                    {
+                        record.IsSynced = true;
+                        count += _connection.Update(record);
+                    }
+                }
+                
+                _connection.Commit();
+                InvalidateCache(); // Invalidate cache after bulk update
+                return count;
+            }
+            catch (Exception ex)
+            {
+                _connection.Rollback();
+                Debug.LogError($"MarkMultipleAsSynced failed: {ex.Message}");
+                return 0;
+            }
+        }
+
+        /// <summary>
+        /// Mark all unsynced records as synced
+        /// </summary>
+        public int MarkAllAsSynced()
+        {
+            try
+            {
+                int result = _connection.Execute("UPDATE PachinkoData SET IsSynced = 1 WHERE IsSynced = 0");
+                InvalidateCache(); // Invalidate cache after bulk update
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"MarkAllAsSynced failed: {ex.Message}");
+                return 0;
+            }
+        }
+
+        /// <summary>
+        /// Get count of unsynced records
+        /// </summary>
+        public int GetUnsyncedCount()
+        {
+            try
+            {
+                return _connection.Table<PachinkoData>()
+                    .Where(p => p.IsSynced == false)
+                    .Count();
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"GetUnsyncedCount failed: {ex.Message}");
+                return 0;
+            }
+        }
+
+        /// <summary>
+        /// Mark a record as unsynced (e.g., after modification)
+        /// </summary>
+        public int MarkAsUnsynced(int id)
+        {
+            try
+            {
+                var record = GetById(id);
+                if (record != null)
+                {
+                    record.IsSynced = false;
+                    return Update(record);
+                }
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"MarkAsUnsynced failed: {ex.Message}");
+                return 0;
+            }
+        }
 
         /// <summary>
         /// Get records by machine name
@@ -518,6 +817,15 @@ namespace PachinkoGame.Data
         public int TotalSmallBonus { get; set; }
         public PachinkoData BestGame { get; set; }
         public double AverageBallsWon { get; set; }
+    }
+
+    public class CacheStatistics
+    {
+        public int CachedItemCount { get; set; }
+        public bool IsAllRecordsCached { get; set; }
+        public DateTime LastUpdateTime { get; set; }
+        public bool IsExpired { get; set; }
+        public bool IsEnabled { get; set; }
     }
 
     #endregion

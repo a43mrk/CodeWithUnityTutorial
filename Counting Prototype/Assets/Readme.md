@@ -107,6 +107,9 @@
 
 [] Create Various Levels and the their Various payouts settings
 [] Make add the balls on basquet to the credits(pop dialog to confirm use)
+[] Sqlite
+[] Unity Services
+[] Offline and cache
 
 [x] Add Localization Package
 [x] Add language selection
@@ -121,6 +124,12 @@
 [x] Animate the collect white switch
 [] clicking the collect switch should switch
 [] Add tilt the Machine to move balls that are stuck
+[x] stacked chart
+    [] background
+    [] scaling
+[x] line graph
+    [] background
+    [] scaling
 
 ## Sound Fx
 [] Add Wing switching Audio

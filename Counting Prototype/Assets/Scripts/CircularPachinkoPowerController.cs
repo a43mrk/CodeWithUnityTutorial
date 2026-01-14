@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 public class CircularPachinkoPowerController : MonoBehaviour,
     IPointerDownHandler, IPointerUpHandler, IDragHandler
@@ -31,10 +32,17 @@ public class CircularPachinkoPowerController : MonoBehaviour,
     [Header("Input Scaling")]
     [SerializeField] private float dragSensitivity = 0.2f; // tweak this for integer scale
 
+    [Header("Auto Fire")]
+    [SerializeField] private float fireIntervalSeconds = 1f;
+
+    [SerializeField]
+    public UnityEvent<float> OnFireRequested;
+
     private bool isInteracting;
     private int rawValue;
     private float noiseOffset;
     private System.Random seededRandom;
+    private float fireTimer;
 
     void Awake()
     {
@@ -54,18 +62,22 @@ public class CircularPachinkoPowerController : MonoBehaviour,
         {
             rawValue = 0;
             radialSlider.value = 0;
+            fireTimer = 0f;
             return;
         }
 
+        // Decay logic (holding vs idle)
         if (enableDecay)
         {
-            float decaySpeedToUse = isInteracting ? decaySpeedWhileHolding : decaySpeedWhileIdle;
+            float decaySpeedToUse = isInteracting
+                ? decaySpeedWhileHolding
+                : decaySpeedWhileIdle;
+
             float decayAmount = decaySpeedToUse * Time.deltaTime * 100f;
             rawValue -= Mathf.FloorToInt(decayAmount);
             if (rawValue < 0) rawValue = 0;
         }
 
-        // Instability and slider update code unchanged
         float displayedValue = rawValue;
 
         if (enableInstability)
@@ -82,7 +94,10 @@ public class CircularPachinkoPowerController : MonoBehaviour,
         }
 
         radialSlider.value = Mathf.RoundToInt(displayedValue);
+
+        HandleAutoFire();
     }
+
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -114,6 +129,27 @@ public class CircularPachinkoPowerController : MonoBehaviour,
     {
         Debug.Log($"Pachinko Shot Force: {force}");
     }
+
+    private void HandleAutoFire()
+    {
+        if (rawValue <= 1)
+        {
+            fireTimer = 0f;
+            return;
+        }
+
+        fireTimer += Time.deltaTime;
+
+        if (fireTimer >= fireIntervalSeconds)
+        {
+            fireTimer -= fireIntervalSeconds;
+
+            float normalizedValue = rawValue / (float)maxValue;
+
+            OnFireRequested.Invoke(baseShootForce * normalizedValue);
+        }
+    }
+
 
     /// <summary>
     /// Updates raw slider value based on analog stick input vector (X,Y)

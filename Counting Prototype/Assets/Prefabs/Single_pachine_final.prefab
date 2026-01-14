@@ -3731,7 +3731,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 60db17e2e323469eb993cf011a6d8fa0
   m_Mesh: {fileID: 4300000, guid: 305f9c5abd5ad60f0854313a7edfc900, type: 2}
-  m_VersionIndex: 1920
+  m_VersionIndex: 1929
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -5074,7 +5074,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 28f7b9d6a9754bb483ed58ce6fabf9c0
   m_Mesh: {fileID: 4300000, guid: d7eafffae902f181c9bc7a0a450444b9, type: 2}
-  m_VersionIndex: 701
+  m_VersionIndex: 710
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -8301,7 +8301,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6047590871709844436
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10453,7 +10453,7 @@ RectTransform:
   m_Father: {fileID: 2048256240355291840}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -10706,6 +10706,22 @@ MonoBehaviour:
   noiseSeed: 12345
   baseShootForce: 1000
   dragSensitivity: 0.2
+  fireIntervalSeconds: 1
+  OnFireRequested:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 283052498890470569}
+        m_TargetAssemblyTypeName: PachinkoMachineManager, Assembly-CSharp
+        m_MethodName: ShootBall
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3859090799060792477
 GameObject:
   m_ObjectHideFlags: 0
@@ -12444,7 +12460,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 4e55dfd4b13b41eeaef6788041ee15ff
   m_Mesh: {fileID: 4300000, guid: f9c432c6e79ac63738e1d4612809ea0b, type: 2}
-  m_VersionIndex: 710
+  m_VersionIndex: 719
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -14287,6 +14303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4429a9fdea284805a5c2751321ea5e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  triggerCanvas: {fileID: 2684235786066692268}
   ballPrefab: {fileID: 7969750133989016303, guid: 0984ae0bf945a88b4a0f859564b95091, type: 3}
   startPointAndDirection: {fileID: 6018958682167431440}
   jackpotStartPointAndDirection: {fileID: 4561806355575081676}
@@ -16208,7 +16225,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 4b9e094233c34a4ea0ad3c7e23d77c3b
   m_Mesh: {fileID: 4300000, guid: 80ee290fd23114e12b2b11029087557c, type: 2}
-  m_VersionIndex: 719
+  m_VersionIndex: 728
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -23051,7 +23068,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 38248329025212967, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_VersionIndex
-      value: 2224
+      value: 2233
       objectReference: {fileID: 0}
     - target: {fileID: 183837645430006466, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_Mesh
@@ -23063,7 +23080,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 183837645430006466, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_VersionIndex
-      value: 2224
+      value: 2233
       objectReference: {fileID: 0}
     - target: {fileID: 2036889488882965751, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_LocalPosition.x
@@ -23115,7 +23132,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3796984156933109429, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_VersionIndex
-      value: 1978
+      value: 1987
       objectReference: {fileID: 0}
     - target: {fileID: 5977436746001891312, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_Mesh
@@ -23127,7 +23144,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5977436746001891312, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_VersionIndex
-      value: 2225
+      value: 2234
       objectReference: {fileID: 0}
     - target: {fileID: 8705884202327931433, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_Name
@@ -36454,7 +36471,7 @@ PrefabInstance:
       objectReference: {fileID: 4300000, guid: 82720bffd84425e08a35949ec6a8e164, type: 2}
     - target: {fileID: 38248329025212967, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_VersionIndex
-      value: 2224
+      value: 2233
       objectReference: {fileID: 0}
     - target: {fileID: 183837645430006466, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_Mesh
@@ -36462,7 +36479,7 @@ PrefabInstance:
       objectReference: {fileID: 4300000, guid: a8f70d894f4dcd0728abbc4e44b6e0e0, type: 2}
     - target: {fileID: 183837645430006466, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_VersionIndex
-      value: 2224
+      value: 2233
       objectReference: {fileID: 0}
     - target: {fileID: 2036889488882965751, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_LocalPosition.x
@@ -36514,7 +36531,7 @@ PrefabInstance:
       objectReference: {fileID: 4300000, guid: 067cf6c8a6783259f904a3ffb495dbb8, type: 2}
     - target: {fileID: 3796984156933109429, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_VersionIndex
-      value: 1978
+      value: 1987
       objectReference: {fileID: 0}
     - target: {fileID: 5977436746001891312, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_Mesh
@@ -36522,7 +36539,7 @@ PrefabInstance:
       objectReference: {fileID: 4300000, guid: d47076678f508c4399c09ec4e20efb9d, type: 2}
     - target: {fileID: 5977436746001891312, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_VersionIndex
-      value: 2224
+      value: 2233
       objectReference: {fileID: 0}
     - target: {fileID: 7509713599324574478, guid: c62144c626a4a9cc6b23e34fee63f8ac, type: 3}
       propertyPath: m_Mesh

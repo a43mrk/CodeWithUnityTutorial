@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PachinkoMachineManager : MonoBehaviour
 {
+    public GameObject triggerCanvas;
     public GameObject ballPrefab;
     public GameObject startPointAndDirection;
     public GameObject jackpotStartPointAndDirection;
@@ -240,11 +241,13 @@ public class PachinkoMachineManager : MonoBehaviour
         switch(state)
         {
             case GameStateType.Waiting:
+                triggerCanvas.SetActive(false);
                 player1actions.InGame.Disable();
                 player1actions.OnMenu.Enable();
                 break;
 
             case GameStateType.Playing:
+                triggerCanvas.SetActive(true);
                 player1actions.OnMenu.Disable();
                 player1actions.InGame.Enable();
                 StartGame();
@@ -271,7 +274,7 @@ public class PachinkoMachineManager : MonoBehaviour
         }
     }
 
-    public void ShootBall()
+    public void ShootBall(float? force = null)
     {
         shootingAudioFx.Play();
         leverAnimator.SetTrigger("Pull"); // play lever animation
@@ -290,7 +293,8 @@ public class PachinkoMachineManager : MonoBehaviour
         }
 
         Vector3 direction = startPointAndDirection.transform.up;
-        rb.AddForce(direction * UnityEngine.Random.Range(initialForce, maxForce), ForceMode.Impulse);
+        Debug.Log("ShootBall..." + force);
+        rb.AddForce(direction * (force ??UnityEngine.Random.Range(initialForce, maxForce)), ForceMode.Impulse);
     }
 
     public void PushJackPocketTime()

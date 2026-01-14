@@ -34,6 +34,7 @@ public class CircularPachinkoPowerController : MonoBehaviour,
 
     [Header("Auto Fire")]
     [SerializeField] private float fireIntervalSeconds = 1f;
+    [SerializeField] private bool pauseAutoFireWhileInteracting = true; // NEW: optional behavior
 
     [SerializeField]
     public UnityEvent<float> OnFireRequested;
@@ -103,6 +104,12 @@ public class CircularPachinkoPowerController : MonoBehaviour,
     {
         isInteracting = true;
         rawValue = Mathf.Clamp(Mathf.RoundToInt(radialSlider.value), minValue, maxValue);
+        
+        // Reset timer when user starts interacting to prevent immediate fire
+        if (pauseAutoFireWhileInteracting)
+        {
+            fireTimer = 0f;
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -122,20 +129,31 @@ public class CircularPachinkoPowerController : MonoBehaviour,
         float finalValueNormalized = radialSlider.value / 100f;
         float finalForce = baseShootForce * finalValueNormalized;
 
+        // FIXED: Now uses the unified FireBall method which invokes the event
         FireBall(finalForce);
     }
 
+    // FIXED: Now properly invokes OnFireRequested event
     private void FireBall(float force)
     {
         Debug.Log($"Pachinko Shot Force: {force}");
+        OnFireRequested?.Invoke(force);
     }
 
+    // FIXED: Now respects minValue threshold and optionally pauses during interaction
     private void HandleAutoFire()
     {
-        if (rawValue <= 1)
+        // FIXED: Use minValue instead of hardcoded 1
+        if (rawValue < minValue)
         {
             fireTimer = 0f;
             return;
+        }
+
+        // FIXED: Optionally pause auto-fire while user is interacting
+        if (pauseAutoFireWhileInteracting && isInteracting)
+        {
+            return; // Don't increment timer while holding
         }
 
         fireTimer += Time.deltaTime;
@@ -145,8 +163,10 @@ public class CircularPachinkoPowerController : MonoBehaviour,
             fireTimer -= fireIntervalSeconds;
 
             float normalizedValue = rawValue / (float)maxValue;
-
-            OnFireRequested.Invoke(baseShootForce * normalizedValue);
+            float force = baseShootForce * normalizedValue;
+            
+            // FIXED: Now uses unified FireBall method for consistency
+            FireBall(force);
         }
     }
 

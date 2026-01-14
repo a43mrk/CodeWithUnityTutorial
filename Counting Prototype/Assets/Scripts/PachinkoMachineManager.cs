@@ -274,7 +274,29 @@ public class PachinkoMachineManager : MonoBehaviour
         }
     }
 
-    public void ShootBall(float? force = null)
+    public void ShootBall()
+    {
+        shootingAudioFx.Play();
+        leverAnimator.SetTrigger("Pull"); // play lever animation
+
+        GameObject ball = Instantiate(
+            ballPrefab,
+            startPointAndDirection.transform.position,
+            Quaternion.identity
+        );
+
+        Rigidbody rb = ball.GetComponent<Rigidbody>();
+        if(rb == null)
+        {
+            Debug.LogError("Ball prefab must have a Rigidbody.");
+            return;
+        }
+
+        Vector3 direction = startPointAndDirection.transform.up;
+        rb.AddForce(direction * UnityEngine.Random.Range(initialForce, maxForce), ForceMode.Impulse);
+    }
+
+    public void FireBall(float force)
     {
         shootingAudioFx.Play();
         leverAnimator.SetTrigger("Pull"); // play lever animation
@@ -294,7 +316,7 @@ public class PachinkoMachineManager : MonoBehaviour
 
         Vector3 direction = startPointAndDirection.transform.up;
         Debug.Log("ShootBall..." + force);
-        rb.AddForce(direction * (force ??UnityEngine.Random.Range(initialForce, maxForce)), ForceMode.Impulse);
+        rb.AddForce(direction * force, ForceMode.Impulse);
     }
 
     public void PushJackPocketTime()

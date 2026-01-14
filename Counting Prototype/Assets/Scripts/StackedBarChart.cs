@@ -529,6 +529,7 @@ public class StackedBarChart : MonoBehaviour
         text.text = totalValue.ToString();
         text.color = totalTextColor;
         text.fontSize = totalTextFontSize;
+        text.raycastTarget = false;
 
         rt.anchorMin = new Vector2(0, 0);
         rt.anchorMax = new Vector2(0, 0);
@@ -584,6 +585,7 @@ public class StackedBarChart : MonoBehaviour
         // img.type = Image.Type.Tiled;
         // img.sprite = segmentPrefab.GetComponent<Image>().sprite;
         img.sprite = Sprite.Create(Texture2D.whiteTexture, new Rect(0, 0, 1, 1), new Vector2(0.5f, 0.5f));
+        img.raycastTarget = false;
 
         // Label
         RectTransform label = new GameObject("Label", typeof(RectTransform)).GetComponent<RectTransform>();
@@ -593,6 +595,7 @@ public class StackedBarChart : MonoBehaviour
         text.text = value.ToString("0");
         text.fontSize = majorLabelFontSize;
         text.color = majorLineColor;
+        text.raycastTarget = false;
 
         if(!horizontalMode)
         {

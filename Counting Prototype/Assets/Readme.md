@@ -110,6 +110,10 @@
 [] Sqlite
 [] Unity Services
 [] Offline and cache
+[x] Circular slider to show the shooting levels
+[] enable the circular slider on play
+[] disable the circular slider when game not running
+[] wire the circular slider to the trigger
 
 [x] Add Localization Package
 [x] Add language selection

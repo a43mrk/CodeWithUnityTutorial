@@ -160,6 +160,7 @@ public class SlumpPlot : MonoBehaviour
         t.color = Color.white;
         t.alignment = TextAnchor.LowerCenter;
         t.text = text;
+        t.raycastTarget = false;
 
         RectTransform rt = g.GetComponent<RectTransform>();
         rt.pivot = new Vector2(0.5f, 0);
@@ -428,6 +429,7 @@ public class SlumpPlot : MonoBehaviour
         Image glowImg = glow.GetComponent<Image>();
         glowImg.material = glowMaterial;
         glowImg.color = new Color(baseColor.r, baseColor.g, baseColor.b, glowAlpha);
+        glowImg.raycastTarget = false;
 
         RectTransform glowRt = glow.GetComponent<RectTransform>();
         glowRt.pivot = baseSegment.pivot;
@@ -446,6 +448,7 @@ public class SlumpPlot : MonoBehaviour
         Image img = go.GetComponent<Image>();
         img.material = null;
         img.color = col;
+        img.raycastTarget = false;
 
         RectTransform rt = go.GetComponent<RectTransform>();
         Vector3 diff = b - a;
@@ -504,6 +507,7 @@ public class SlumpPlot : MonoBehaviour
         img.sprite = circleSprite;
         img.type = Image.Type.Simple;
         img.color = isUpturn ? pivotUpColor : pivotDownColor;
+        img.raycastTarget = false;
 
         RectTransform crt = circle.GetComponent<RectTransform>();
         crt.sizeDelta = Vector2.one * pivotCircleRadius * 2f;
@@ -518,6 +522,7 @@ public class SlumpPlot : MonoBehaviour
         txt.fontSize = pivotLabelFontSize;
         txt.color = pivotLabelColor;
         txt.alignment = TextAnchor.MiddleCenter;
+        txt.raycastTarget = false;
 
         RectTransform lrt = label.GetComponent<RectTransform>();
         lrt.anchoredPosition = pivotLabelOffset;
@@ -593,6 +598,7 @@ public class SlumpPlot : MonoBehaviour
         Image img = go.GetComponent<Image>();
         img.color = col;
         img.material = lineMaterial;
+        img.raycastTarget = false;
 
         RectTransform rt = go.GetComponent<RectTransform>();
         rt.pivot = new Vector2(0, 0.5f);
@@ -613,6 +619,7 @@ public class SlumpPlot : MonoBehaviour
         t.fontSize = 12;
         t.color = Color.white;
         t.text = v.ToString("N0");
+        t.raycastTarget = false;
 
         RectTransform rt = g.GetComponent<RectTransform>();
         rt.pivot = new Vector2(1, 0.5f);

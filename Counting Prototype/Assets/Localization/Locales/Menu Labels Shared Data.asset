@@ -111,6 +111,10 @@ MonoBehaviour:
     m_Key: japanese_language
     m_Metadata:
       m_Items: []
+  - m_Id: 3312246710632448
+    m_Key: Settings
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

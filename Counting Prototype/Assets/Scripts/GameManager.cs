@@ -18,7 +18,7 @@ public enum GameDifficulty
 public enum GameActionType
 {
     ChooseDificulty,
-    ChooseLanguage,
+    GoToSettingsMenu,
     Pause,
     Resume,
     Restart,
@@ -34,6 +34,13 @@ public enum GameStateType
     Paused,
     GameOver
 }
+
+public enum ShootingType
+{
+    ManualOrAutomatic,
+    SemiAutomatic
+}
+
 
 public class GameManager : MonoBehaviour
 {
@@ -63,6 +70,8 @@ public class GameManager : MonoBehaviour
     private bool isGameRunning = false;
 
     public GameStateType State { get; private set; }
+
+    public ShootingType shootingType = ShootingType.SemiAutomatic;
 
 
 
@@ -141,7 +150,7 @@ public class GameManager : MonoBehaviour
 
     public void ChooseLanguage()
     {
-        gameActionChannel.Invoke(GameActionType.ChooseLanguage);
+        gameActionChannel.Invoke(GameActionType.GoToSettingsMenu);
     }
 
     public void Play()
@@ -170,6 +179,30 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         gameActionChannel.Invoke(GameActionType.Resume);
+    }
+
+    public void SetManualOrAutomaticShootingMethod(bool really)
+    {
+        if(really)
+        {
+            shootingType = ShootingType.ManualOrAutomatic;
+        }
+        else
+        {
+            shootingType = ShootingType.SemiAutomatic;
+        }
+    }
+
+    public void SetSemiAutomaticShootingMethod(bool really)
+    {
+        if(really)
+        {
+            shootingType = ShootingType.SemiAutomatic;
+        }
+        else
+        {
+            shootingType = ShootingType.ManualOrAutomatic;
+        }
     }
 
     public GameDifficulty GetGameDifficulty() => gameDifficulty;

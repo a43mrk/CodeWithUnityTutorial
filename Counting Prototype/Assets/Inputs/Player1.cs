@@ -435,7 +435,7 @@ public partial class @Player1: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""98c24408-eab6-4822-b1ab-9b48c40e2201"",
                     ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""PullLever"",

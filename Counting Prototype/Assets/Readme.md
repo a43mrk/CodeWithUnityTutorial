@@ -102,18 +102,30 @@
 [x] instantiate baskets after collecting n balls on a visible place
 [x] put balls that escaped/falled from the machine into the green tray
 [x] Add move balls to basquet on action input
+[] Reorganize Settings Menu
+[] Add Sound Fx Volume
+[] Add Music volume
+[x] Add shooting settings into menu
+    [x] set the checkbox on Awake
 [] Make the machine use the balls of white tray if any
+
 [] make spawn spendable balls on white tray otherthan add on the game manager on the flair
 
 [] Create Various Levels and the their Various payouts settings
 [] Make add the balls on basquet to the credits(pop dialog to confirm use)
 [] Sqlite
+    [] wire stacked bar graph
+    [] wire line graph
 [] Unity Services
+    [] Add login btn
+    [] retrieve users informations
+    [] save the users informations into the database
 [] Offline and cache
+    [] Add lifecycle that checks the synchronized data(to send what is not sent)
 [x] Circular slider to show the shooting levels
 [x] enable the circular slider on play
 [x] disable the circular slider when game not running
-[] wire the circular slider to the trigger
+[x] wire the circular slider to the trigger
 
 [x] Add Localization Package
 [x] Add language selection
@@ -139,6 +151,7 @@
 [] Add Wing switching Audio
 
 ## Bugs
+[] Fix the conflicting existence of having manual and automatic triger from circular slider
 [] Fix the null exception if no balls on the green tray
 [] Make the use of balls add credits and poweroff the queens light
 [] Use ball is not updating the Credits
@@ -160,5 +173,6 @@
 
 ## Code Improvements & Refactories
 [] eliminate game manager tight copling
+    [] clean duplicated codes
 [] Separate the btn logic from the machine?
 [] Separate the lever logic from the machine?

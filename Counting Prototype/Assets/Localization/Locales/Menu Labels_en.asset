@@ -67,7 +67,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 13
-    m_Localized: Language Settings
+    m_Localized: Language
     m_Metadata:
       m_Items: []
   - m_Id: 14
@@ -112,6 +112,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 164609379565568
     m_Localized: Japanese
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3312246710632448
+    m_Localized: Settings
     m_Metadata:
       m_Items: []
   references:

@@ -18,8 +18,9 @@ public class UIManager : MonoBehaviour
     public GameObject restartBtn;
     public GameObject resumeBtn;
     public GameObject languageMenu;
-    public GameObject goToLanguageOptionsBtn;
+    public GameObject showSettingsScreenBtn;
     [SerializeField] private TMP_Dropdown dropdown;
+    [SerializeField] private GameObject settingsMenu;
 
     public Text CounterText;
     public Text LostBallsText;
@@ -27,6 +28,10 @@ public class UIManager : MonoBehaviour
     public Text MissedBallsText;
     public Text ShootingBallsText;
     public Text CollectedBallsText;
+
+    public GameObject autoShootSwitch;
+    public Toggle semiAutomaticToggle;
+    public Toggle manualOrAutomaticToggle;
 
     private GameActionType lastAction;
 
@@ -64,6 +69,7 @@ public class UIManager : MonoBehaviour
         dropdown.AddOptions(options);
         dropdown.value = currentIndex;
         dropdown.onValueChanged.AddListener(OnLanguageChaged);
+        dropdown.gameObject.SetActive(false);
 
         counterLocalizedString = CounterText.gameObject.GetComponent<LocalizeStringEvent>().StringReference;
         lostBallsLocalizedString = LostBallsText.gameObject.GetComponent<LocalizeStringEvent>().StringReference;
@@ -76,8 +82,9 @@ public class UIManager : MonoBehaviour
     private void OnLanguageChaged(int index)
     {
         LocalizationSettings.SelectedLocale = locales[index];
+        settingsMenu.SetActive(false);
         dropdown.gameObject.SetActive(false);
-        goToLanguageOptionsBtn.SetActive(true);
+        showSettingsScreenBtn.SetActive(true);
     }
 
     // Update is called once per frame
@@ -109,8 +116,9 @@ public class UIManager : MonoBehaviour
                 resumeBtn.SetActive(false);
                 restartBtn.SetActive(false);
                 break;
-            case GameActionType.ChooseLanguage:
-                goToLanguageOptionsBtn.SetActive(false);
+            case GameActionType.GoToSettingsMenu:
+                showSettingsScreenBtn.SetActive(false);
+                settingsMenu.SetActive(true);
                 dropdown.gameObject.SetActive(true);
                 break;
         }
@@ -175,5 +183,19 @@ public class UIManager : MonoBehaviour
     {
         // CollectedBallsText.text = "Collected Balls : " + amount;
         ((IntVariable)collectedBallsLocalizedString["value"]).Value = amount;
+    }
+
+    public void OnShootingTypeChange(ShootingType st)
+    {
+        if(st == ShootingType.ManualOrAutomatic)
+        {
+            autoShootSwitch.SetActive(true);
+            manualOrAutomaticToggle.isOn = true;
+        }
+        else
+        {
+            autoShootSwitch.SetActive(false);
+            semiAutomaticToggle.isOn = true;
+        }
     }
 }

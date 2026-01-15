@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
@@ -50,6 +51,7 @@ public class PachinkoMachineManager : MonoBehaviour
     public GameActionChannel gameActionChannel;
     public GameDifficultyChannel gameDifficultyChannel;
     public GameStateChannel gameStateChannel;
+    public ShootingTypeChannel shootingTypeChannel;
 
     private GlowingLamp queensLamp;
     private GlowingLamp kingsLamp;
@@ -93,6 +95,10 @@ public class PachinkoMachineManager : MonoBehaviour
     {
         SetupActionMap();
         CheckCredits();
+
+
+        // initialize the ui settings of shooting settings ui checkboxes
+        shootingTypeChannel.Invoke(gameManager.shootingType);
     }
 
 
@@ -251,10 +257,33 @@ public class PachinkoMachineManager : MonoBehaviour
                 player1actions.OnMenu.Disable();
                 player1actions.InGame.Enable();
                 StartGame();
+                if(gameManager.shootingType == ShootingType.SemiAutomatic)
+                {
+                    DisableManualShoot();
+                    HideAutoShootSwitch();
+                    triggerCanvas.SetActive(true);
+                }
+                else
+                {
+                    EnableManualShoot();
+                    ShowAutoShootSwitch();
+                    triggerCanvas.SetActive(false);
+                }
                 break;
         }
     }
 
+    private void ShowAutoShootSwitch()
+    {
+        // TODO: refactory this
+        shootingTypeChannel.Invoke(ShootingType.ManualOrAutomatic);
+    }
+
+    private void HideAutoShootSwitch()
+    {
+        // TODO: refactory this
+        shootingTypeChannel.Invoke(ShootingType.SemiAutomatic);
+    }
 
     public void StartGame()
     {
@@ -518,5 +547,17 @@ public class PachinkoMachineManager : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void DisableManualShoot()
+    {
+
+        player1actions.InGame.PullLever.Disable();
+    }
+
+    public void EnableManualShoot()
+    {
+
+        player1actions.InGame.PullLever.Enable();
     }
 }

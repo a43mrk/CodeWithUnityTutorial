@@ -108,6 +108,8 @@
 [x] Add shooting settings into menu
     [x] set the checkbox on Awake
 [] Make the machine use the balls of white tray if any
+    [] Remove the credits amount
+    [] Make the Initial balls spawn from the jackpot payout
 
 [] make spawn spendable balls on white tray otherthan add on the game manager on the flair
 
@@ -136,7 +138,7 @@
       -> Select Entry -> press Add Binding
 
 ## Visual
-[] replace the metal material
+[x] replace the metal material
 [x] Animate the collect white switch
 [] clicking the collect switch should switch
 [] Add tilt the Machine to move balls that are stuck
@@ -146,14 +148,17 @@
 [x] line graph
     [] background
     [] scaling
-[] change the hdri
+[x] change the hdri
+[x] Add more scene objects to enrich environment
 [] Add more cameras
+[x] better illumination
 
 ## Sound Fx
 [] Add Wing switching Audio
 
 ## Bugs
-[] Fix the conflicting existence of having manual and automatic triger from circular slider
+[] Semiautomatic shooting shoots even without credits
+[x] Fix the conflicting existence of having manual and automatic triger from circular slider
 [] Fix the null exception if no balls on the green tray
 [] Make the use of balls add credits and poweroff the queens light
 [] Use ball is not updating the Credits
@@ -178,3 +183,6 @@
     [] clean duplicated codes
 [] Separate the btn logic from the machine?
 [] Separate the lever logic from the machine?
+
+## Adjustments
+[] Adjust the semiautomatic shoot settings

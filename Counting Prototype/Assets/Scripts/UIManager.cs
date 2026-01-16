@@ -70,6 +70,7 @@ public class UIManager : MonoBehaviour
         dropdown.value = currentIndex;
         dropdown.onValueChanged.AddListener(OnLanguageChaged);
         dropdown.gameObject.SetActive(false);
+        settingsMenu.SetActive(false);
 
         counterLocalizedString = CounterText.gameObject.GetComponent<LocalizeStringEvent>().StringReference;
         lostBallsLocalizedString = LostBallsText.gameObject.GetComponent<LocalizeStringEvent>().StringReference;

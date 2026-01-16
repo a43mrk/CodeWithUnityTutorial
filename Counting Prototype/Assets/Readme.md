@@ -146,6 +146,8 @@
 [x] line graph
     [] background
     [] scaling
+[] change the hdri
+[] Add more cameras
 
 ## Sound Fx
 [] Add Wing switching Audio

@@ -34,7 +34,6 @@ public class CircularPachinkoPowerController : MonoBehaviour,
 
     [Header("Auto Fire")]
     [SerializeField] private float fireIntervalSeconds = 1f;
-    [SerializeField] private bool pauseAutoFireWhileInteracting = true; // NEW: optional behavior
 
     [SerializeField]
     public UnityEvent<float> OnFireRequested;
@@ -104,12 +103,6 @@ public class CircularPachinkoPowerController : MonoBehaviour,
     {
         isInteracting = true;
         rawValue = Mathf.Clamp(Mathf.RoundToInt(radialSlider.value), minValue, maxValue);
-        
-        // Reset timer when user starts interacting to prevent immediate fire
-        if (pauseAutoFireWhileInteracting)
-        {
-            fireTimer = 0f;
-        }
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -125,12 +118,7 @@ public class CircularPachinkoPowerController : MonoBehaviour,
     public void OnPointerUp(PointerEventData eventData)
     {
         isInteracting = false;
-
-        float finalValueNormalized = radialSlider.value / 100f;
-        float finalForce = baseShootForce * finalValueNormalized;
-
-        // FIXED: Now uses the unified FireBall method which invokes the event
-        FireBall(finalForce);
+        // Manual firing removed - only auto-fire mechanism is used
     }
 
     // FIXED: Now properly invokes OnFireRequested event
@@ -140,7 +128,7 @@ public class CircularPachinkoPowerController : MonoBehaviour,
         OnFireRequested?.Invoke(force);
     }
 
-    // FIXED: Now respects minValue threshold and optionally pauses during interaction
+    // FIXED: Auto-fire continues even while holding (user adjusts, balls keep firing)
     private void HandleAutoFire()
     {
         // FIXED: Use minValue instead of hardcoded 1
@@ -148,12 +136,6 @@ public class CircularPachinkoPowerController : MonoBehaviour,
         {
             fireTimer = 0f;
             return;
-        }
-
-        // FIXED: Optionally pause auto-fire while user is interacting
-        if (pauseAutoFireWhileInteracting && isInteracting)
-        {
-            return; // Don't increment timer while holding
         }
 
         fireTimer += Time.deltaTime;

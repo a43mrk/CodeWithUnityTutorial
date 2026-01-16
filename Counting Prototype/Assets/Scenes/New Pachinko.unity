@@ -6992,21 +6992,17 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1648811352}
-    - target: {fileID: 283052498890470569, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
-      propertyPath: shootingTypeChannel
-      value: 
-      objectReference: {fileID: 11400000, guid: de1125e64811cf25babff245ccf93229, type: 2}
     - target: {fileID: 318144532787263210, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: m_VersionIndex
-      value: 2245
+      value: 2248
       objectReference: {fileID: 0}
     - target: {fileID: 459573037373294095, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: m_VersionIndex
-      value: 2245
+      value: 2248
       objectReference: {fileID: 0}
     - target: {fileID: 582307133432613379, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: m_VersionIndex
-      value: 740
+      value: 743
       objectReference: {fileID: 0}
     - target: {fileID: 1215776817506026701, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: m_Camera
@@ -7054,19 +7050,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2774326024984509462, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: m_VersionIndex
-      value: 2245
+      value: 2248
       objectReference: {fileID: 0}
     - target: {fileID: 3484726845864153720, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: m_VersionIndex
-      value: 1999
+      value: 2002
       objectReference: {fileID: 0}
     - target: {fileID: 4173467439265162525, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: m_VersionIndex
-      value: 731
+      value: 734
       objectReference: {fileID: 0}
     - target: {fileID: 4667388548017894739, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: m_VersionIndex
-      value: 1999
+      value: 2002
       objectReference: {fileID: 0}
     - target: {fileID: 5276400318553131493, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: m_Name
@@ -7074,7 +7070,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6204196050048621373, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: m_VersionIndex
-      value: 2246
+      value: 2249
       objectReference: {fileID: 0}
     - target: {fileID: 6263722261310052059, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: mainCamera
@@ -7084,25 +7080,21 @@ PrefabInstance:
       propertyPath: basquetSpawnPoint
       value: 
       objectReference: {fileID: 840167888}
-    - target: {fileID: 6456267357655441254, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
-      propertyPath: m_BlockingObjects
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 6825580673624011773, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: m_VersionIndex
-      value: 1941
+      value: 1944
       objectReference: {fileID: 0}
     - target: {fileID: 7073807983818781089, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: m_VersionIndex
-      value: 722
+      value: 725
       objectReference: {fileID: 0}
     - target: {fileID: 8427254673845604801, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: m_VersionIndex
-      value: 2245
+      value: 2248
       objectReference: {fileID: 0}
     - target: {fileID: 8572991683454476580, guid: f20ddd012695f9ba296fa6e6b6373fbd, type: 3}
       propertyPath: m_VersionIndex
-      value: 2245
+      value: 2248
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
